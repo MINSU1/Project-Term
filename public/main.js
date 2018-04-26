@@ -1,5 +1,7 @@
 var topButClass = document.getElementsByClassName('top_but');
 var address = ''
+var popup = document.getElementById('popup_display');
+var popup_close = document.getElementById('popup_close')
 //--------------------------------contact map-----------------------------------------------
 function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
@@ -97,5 +99,14 @@ document.getElementById('re_address').addEventListener('click',()=>{
 });
 document.getElementById('next_submit').addEventListener('click',()=>{
 	window.location="/location";
-})
+});
 
+window.addEventListener('load', function() {
+	popup.style.bottom = "0px";
+	popup.style.opacity = 1;
+});
+
+popup_close.addEventListener('click', function(){
+
+	popup.style.opacity = -50;
+});
