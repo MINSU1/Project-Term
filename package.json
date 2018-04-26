@@ -18,11 +18,14 @@
   },
   "homepage": "https://github.com/Y-JayKim/nodeProject#readme",
   "dependencies": {
+    "async": "^2.6.0",
     "body-parser": "^1.18.2",
     "express": "^4.16.3",
     "fs": "0.0.1-security",
     "hbs": "^4.0.1",
+    "mysql": "^2.15.0",
     "node-form": "^1.0.18",
-    "request": "^2.85.0"
+    "request": "^2.85.0",
+    "tedious": "^2.3.1"
   }
 }
