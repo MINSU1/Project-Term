@@ -1,5 +1,6 @@
 var topButClass = document.getElementsByClassName('top_but');
-var address = ''
+var address = '';
+var counter = 0;
 //--------------------------------contact map-----------------------------------------------
 function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
@@ -71,6 +72,7 @@ for (var ind = 0; ind < topButClass.length; ind++){
 		document.getElementById('contact_display').style.display = 'none'
 		document.getElementById('about_display').style.display = 'none'
 		document.getElementById('main_display').style.display = 'none'
+        document.getElementById('review_display').style.display = 'none'
 		document.getElementById(ev.target.id + '_display').style.display='block';
 	});
 };
@@ -97,5 +99,31 @@ document.getElementById('re_address').addEventListener('click',()=>{
 });
 document.getElementById('next_submit').addEventListener('click',()=>{
 	window.location="/location";
+});
+
+document.getElementById('reviewSub').addEventListener('click', function(){
+    document.getElementById('endScreen').style.display = 'block';
+    document.getElementById('review_info').style.display = 'none';
+    counter = 1
+});
+
+for (var i = 0; i < document.getElementsByClassName('toRevPage').length; i++){
+    document.getElementById(document.getElementsByClassName('toRevPage')[i].id).addEventListener('click', function(){
+        document.getElementById('review_header').style.display = 'none';
+        document.getElementById('endScreen').style.display = 'none';
+        document.getElementById('review_info').style.display = 'none';
+        document.getElementById('revPage').style.display = 'block';
 })
+};
+
+document.getElementById('backBut').addEventListener('click', function(){
+    document.getElementById('revPage').style.display = 'none';
+    if (counter == 0){
+        document.getElementById('review_header').style.display = 'block';
+        document.getElementById('review_info').style.display = 'block';
+    } else if (counter == 1){
+        document.getElementById('review_header').style.display = 'block';
+        document.getElementById('endScreen').style.display = 'block';
+    }
+});
 
