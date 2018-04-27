@@ -1,6 +1,9 @@
 var topButClass = document.getElementsByClassName('top_but');
 var address = '';
 var counter = 0;
+var address = ''
+var popup = document.getElementById('popup_display');
+var popup_close = document.getElementById('popup_close')
 //--------------------------------contact map-----------------------------------------------
 function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
@@ -126,4 +129,12 @@ document.getElementById('backBut').addEventListener('click', function(){
         document.getElementById('endScreen').style.display = 'block';
     }
 });
+window.addEventListener('load', function() {
+	popup.style.bottom = "0px";
+	popup.style.opacity = 1;
+});
 
+popup_close.addEventListener('click', function(){
+
+	popup.style.opacity = -50;
+});
