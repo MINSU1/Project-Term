@@ -34,6 +34,7 @@
         open_now = '',
         isDivExist = 0;
 
+    /** initializing google */
     function initMap() {
         var pyrmont = { lat: latitu, lng: longitu };
 
@@ -51,6 +52,7 @@
         }, callback);
     }
 
+    /** callback function for initMap */
     function callback(results, status) {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
             for (var i = 0; i < results.length; i++) {
@@ -59,6 +61,7 @@
         }
     }
 
+    /** Marker generator in gogle map */
     function createMarker(place) {
         var placeLoc = place.geometry.location;
         var marker = new google.maps.Marker({
@@ -81,6 +84,8 @@
             // addtodiv(place)
         });
     }
+
+    /** find out whether it is open */
     function isItOpen(par){
         if (par) {
             return 'open';
@@ -88,6 +93,8 @@
             return 'closed';
         }
     }
+
+    /** creating a new div when user click Marker on the map */
     function myFunction() {
         if (isDivExist != 0){
                 document.getElementById('order_div').innerHTML = place_name;   
@@ -107,7 +114,7 @@
             addDiv.id = "add_div";
             typeDiv.id = "type_div";
             openDiv.id = "open_div";
-            // nameDiv.innerHTML = place_name + '<br>' +place_rating+ '<br>' +place_address+ '<br>' +place_type+ '<br>' +price_level+ '<br>' +open_now;
+
             nameDiv.innerHTML = place_name;          
             ratingDiv.innerHTML = "Rating: "+place_rating;       
             addDiv.innerHTML = "Address: "+place_address;      
@@ -130,6 +137,7 @@
         
     }
 
+    /** adding information to the div */
     function addtodiv(place) {
         var placeLoc = place.geometry.location;
         var marker = new google.maps.Marker({
@@ -144,6 +152,7 @@
         document.getElementById('explanation').appendChild(newDiv);
     }
 
+    /** communication function with server.js */
     function location_confirmation(){
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.open("POST", "/location_confirmation", true);
@@ -157,6 +166,7 @@
     }
 
     //-------------------------------------interactions---------------------------------
+    /** run location_confirmation function when submit Button is clicked */
     document.getElementById('submit').addEventListener('click',()=>{
         location_confirmation();
     });

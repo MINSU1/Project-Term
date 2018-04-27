@@ -1,6 +1,13 @@
+/**
+ * topButClass = shortcut for document.getElementsByClassName('top_but')
+ * global variable address that store address information
+ */
 var topButClass = document.getElementsByClassName('top_but');
 var address = ''
-//--------------------------------contact map-----------------------------------------------
+
+/** 
+ * initialize google map from the latitude and longitude
+ */
 function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
         center: { lat: 49.283387, lng: -123.115097 },
@@ -29,7 +36,10 @@ function initMap() {
     }
 }
 
-// ------------------------------functions-------------------------------------------------
+/** 
+ * Check whether input field is empty or not 
+ * @returns {boolean}
+ */
 function address_no_empty(){
 	if(document.getElementById("address_input").value == ''){
 		alert("Please enter address");
@@ -45,6 +55,10 @@ function address_no_empty(){
 	}
 }
 
+/** 
+ * communicating with server.js 
+ * @param {integer} validity change address input field to address summary
+ */
 function address_check(validity){
 	var xmlhttp = new XMLHttpRequest();
 	xmlhttp.open("POST", "/address_check", true);
@@ -65,7 +79,7 @@ function address_check(validity){
 	xmlhttp.send(`address=${address}&validity=${validity}`);
 }
 
-// ------------------------------interaction-------------------------------------------------
+/** display the block associated with the clicked element */
 for (var ind = 0; ind < topButClass.length; ind++){
 	document.getElementById(topButClass[ind].id).addEventListener('click',(ev)=>{
 		document.getElementById('contact_display').style.display = 'none'
@@ -75,6 +89,7 @@ for (var ind = 0; ind < topButClass.length; ind++){
 	});
 };
 
+/** when address_submit button is clicked, change global address variable and check if address input is empty */
 document.getElementById("address_submit").addEventListener("click",()=>{
 	address = String(document.getElementById('address_input').value) +', '+ String(document.getElementById('city_input').value) +', '+ 'BC' + ', CA'
 	if(address_no_empty()){
@@ -82,19 +97,25 @@ document.getElementById("address_submit").addEventListener("click",()=>{
 	}
 });
 
-// fix this
+ /** when enter key is pressed on address_input, change global address variable and check if address input is empty  */
 document.getElementById("address_input").addEventListener('keydown',(ev)=>{
+	address = String(document.getElementById('address_input').value) +', '+ String(document.getElementById('city_input').value) +', '+ 'BC' + ', CA'
 	if(ev.keyCode == 13 && address_no_empty()){
 		address_check(1);
 	}
 });
+
+/** go to /signin when login_submit button is clicked */
 document.getElementById('login_submit').addEventListener('click',()=>{
 	window.location ='/signin';
 });
 
+/** change address feature */
 document.getElementById('re_address').addEventListener('click',()=>{
 	address_check(0);
 });
+
+/** goto /location page when next_submit button is clicked */
 document.getElementById('next_submit').addEventListener('click',()=>{
 	window.location="/location";
 })

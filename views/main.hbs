@@ -51,6 +51,10 @@
         </div>
         <button type="submit" id="next_submit" style="display:block;">Next</button>
         <script>
+        /**
+         * validity 0 == address input display
+         * validity 1 == address summary display
+         */
         if (`{{{validity}}}` == 0) {
             document.getElementById("no_address").style.display = "block";
             document.getElementById("yes_address").style.display = "none";
