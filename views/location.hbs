@@ -34,23 +34,6 @@
         open_now = '',
         isDivExist = 0;
 
-    var getAddress = (address, callback)=>{
-        request({
-            url:'https://maps.googleapis.com/maps/api/geocode/json'+'?address='+encodeURIComponent(address),
-            json: true
-        }, (error, response, body) => {
-            if (error) {
-                console.log('Can not connect to google maps');
-            } else if (body.status === 'ZERO_RESULTS') {
-                console.log('Can not find requested address');
-            } else if (body.status === 'OK') {
-                console.log(`Your requested venue: ${address}`);
-                console.log(`Address: ${body.results[0].formatted_address}`);
-                console.log(`Type: ${body.results[0].types[0]}`);
-            }
-        });
-    };
-
     function initMap() {
         var pyrmont = { lat: latitu, lng: longitu };
 
