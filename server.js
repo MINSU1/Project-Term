@@ -22,15 +22,15 @@ hbs.registerPartials(__dirname + '/views/partials');
 app.set('view engine', 'hbs');
 app.use(express.static(__dirname + '/public'));
 //-----------------------------------------------------------------------------------------------
-var lat = '49.2834444',
-    lng = '-123.1196331',
-    username = 'Guest',
-    address = '460 Westveiw St, coquitlam, bc, canada',
-    dest_address = 'bcit, bc, ca',
-    validity = 0,
-    weather_body = '';
+// var lat = '49.2834444',
+//     lng = '-123.1196331'
+var username = 'Guest',
+    address = '',
+    // dest_address = 'bcit, bc, ca',
+    validity = 0
+    // weather_body = '';
 
-var userlog = { jay: { password: "123", address: "204-460 Westview St, Coquitlam, BC, Canada" }, min: { password: "123", address: "minsu st, vancouver, BC, Canada" } };
+//var userlog = { jay: { password: "123", address: "204-460 Westview St, Coquitlam, BC, Canada" }, min: { password: "123", address: "minsu st, vancouver, BC, Canada" } };
 //---------------------------------------functions-----------------------------------------------
 function readJsonFile() {
     fs.readFile('./username.json', (err, data) => {
@@ -38,6 +38,7 @@ function readJsonFile() {
             throw err;
         }
         userlog = JSON.parse(data);
+        //console.log(userlog);
     });
 }
 function writeJsonFile() {
@@ -78,7 +79,7 @@ app.get('/', (request, response) => {
 app.post('/address_check', (request, response) => {
     address = request.body.address;
 
-    if (request.body.validity === 1) {
+    if (request.body.validity == 1) {
         address_finder.getAddress(address, (errorMessage, results) => {
             if (errorMessage) {
                 response.send('invalid');
@@ -91,7 +92,7 @@ app.post('/address_check', (request, response) => {
                 validity = 1;
             }
         });
-    } else if (request.body.validity === 0) {
+    } else if (request.body.validity == 0) {
         validity = 0;
         response.send('reload');
     }
@@ -108,7 +109,7 @@ app.post('/login_input', (request, response, next) => {
     validity_check = request.body.validity;
     console.log(String(username_check) in userlog);
     console.log(userlog[String(username_check)]);
-    if (String(username_check) in userlog && String(password_check) === userlog[String(username_check)].password) {
+    if (String(username_check) in userlog && String(password_check) == userlog[String(username_check)].password) {
         username = username_check;
         password = password_check;
         validity = validity_check;
