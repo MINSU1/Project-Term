@@ -70,8 +70,6 @@ var distance_calc = (pointa, pointb) => {
 			}
 		});
 	});
-	
-
 }
 
 /** module exporting */
