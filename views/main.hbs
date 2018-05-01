@@ -14,7 +14,6 @@
         <button id="about" class="top_but">About Us</button>
         <button id="review" class="top_but">Review Us</button>
     </div>
-
     <img id="background" src="./img/background.jpg">
     <div id="main_display" class="displays">
         <div id="no_address" style="display: none;">
@@ -53,10 +52,6 @@
         </div>
         <button type="submit" id="next_submit" style="display:block;">Next</button>
         <script>
-        /**
-         * validity 0 == address input display
-         * validity 1 == address summary display
-         */
         if (`{{{validity}}}` == 0) {
             document.getElementById("no_address").style.display = "block";
             document.getElementById("yes_address").style.display = "none";
@@ -111,20 +106,7 @@
             </div>
             <img id="about_img" src="./img/about.jpg">
         </div>
-        <div id="dom-target">
-            <?php 
-                $output = "42"; //Again, do some operation, get the output.
-                echo htmlspecialchars($output); /* You have to escape because the result
-                                                   will not be valid HTML otherwise. */
-            ?>
-        </div>
-        <script>
-            var div = document.getElementById("dom-target");
-            var myData = div.textContent;
-        </script>
     </div>
-    <script src="main.js">
-    </script>
     <div id="review_display" class="displays" style="display:none;">
         <div id="review_header">
             <h1>Please let us know what you think about our service!</h1>
@@ -185,7 +167,7 @@
             </div>
             <br>
             <button id='reviewSub'>Submit</button>
-            <button id='toRevBut' class='toRevPage'>See others' comments</button>   
+            <button id='toRevBut' class='toRevPage'>See others' comments</button>
         </div>
         <div id='revPage' style='display:none;'>
             <div id ='revPageHeader'>
@@ -205,4 +187,5 @@
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOYA62OBwbkCp7SgiDlDYLCdJOIv1fySY&callback=initMap">
     </script>
 </body>
+
 </html>

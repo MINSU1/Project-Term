@@ -1,11 +1,6 @@
 {
   "ExpandedNodes": [
 <<<<<<< HEAD
-    ""
-  ],
-  "SelectedNode": "\\New folder",
-=======
-<<<<<<< HEAD
     "",
     "\\views"
   ],
@@ -14,6 +9,5 @@
   ],
   "SelectedNode": "\\weather_request.js",
 >>>>>>> dev
->>>>>>> fbba254fe693055dc13fe0eedb85e32b8b9fa23a
   "PreviewInSolutionExplorer": false
 }
