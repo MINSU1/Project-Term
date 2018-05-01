@@ -70,19 +70,6 @@ function readJsonFile() {
 function writeJsonFile(){
 	fs.writeFile('./username.json', JSON.stringify(userlog));
 }
-
-// function readCSVFile() {
-// 	var inputStream = fs.createReadStream('comment.csv', 'utf8');
-// 	inputStream
-// 		.pipe(csvReader({ parseNumbers: true, parseBooleans: true, trim: true }))
-// 	    .on('data', function (row) {
-// 	        console.log('A row arrived: ', row);
-// 	    })
-// 	    .on('end', function (data) {
-// 	        console.log('No more rows!');
-// 	    });
-// }
-
 /** 
  * based on the address what user entered, find the latitude and longitude, and find the weather in the place
  * @param {string} address - address the user entered
@@ -102,10 +89,20 @@ function weather_fetcher(address){
 /** Sending hbs file when cliet enter address */
 app.get('/', (request, response) => {
 	readJsonFile();
+
+	//temp function
+	fs.readFile("./reviews.json", (err, data)=> {
+	    if (err) {
+	        throw err;
+	    }
+	    reviews = JSON.parse(data);
+	})
+
     response.render('main', {
     	validity: validity,
     	username: username,
-    	address: address
+    	address: address,
+    	reviews:reviews
     });
 });
 
