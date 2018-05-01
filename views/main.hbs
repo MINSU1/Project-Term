@@ -53,6 +53,10 @@
         </div>
         <button type="submit" id="next_submit" style="display:block;">Next</button>
         <script>
+        /**
+         * validity 0 == address input display
+         * validity 1 == address summary display
+         */
         if (`{{{validity}}}` == 0) {
             document.getElementById("no_address").style.display = "block";
             document.getElementById("yes_address").style.display = "none";
@@ -181,7 +185,7 @@
             </div>
             <br>
             <button id='reviewSub'>Submit</button>
-            <button id='toRevBut' class='toRevPage'>See others' comments</button>
+            <button id='toRevBut' class='toRevPage'>See others' comments</button>   
         </div>
         <div id='revPage' style='display:none;'>
             <div id ='revPageHeader'>
@@ -201,5 +205,4 @@
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOYA62OBwbkCp7SgiDlDYLCdJOIv1fySY&callback=initMap">
     </script>
 </body>
-
 </html>

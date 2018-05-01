@@ -73,6 +73,10 @@
             var strInfo = "";
             var username = document.getElementById("username");
             //-----------------------------function----------------------
+            /**
+             * check if every section is filled
+             * @returns {boolean}
+             */
             function errorTest(){
                 if(parseInt(document.getElementById("day").value)>31 || parseInt(document.getElementById("year").value)>2010){
                     alert("Wrong Brithday Input")
@@ -116,6 +120,8 @@
                 }
                 return true;
             }
+
+            /** communcation function with server.js */
             function login_submit(){
                 var xmlhttp = new XMLHttpRequest();
                 xmlhttp.open("POST", "/register_check", true);
@@ -135,6 +141,7 @@
                 xmlhttp.send(`username=${document.getElementById("username").value}&password=${document.getElementById("password1").value}&address=${document.getElementById("address").value}&city=${document.getElementById("city").value}&zipcode=${document.getElementById("zipcode").value}`);
             }
             //------------------interaction-------------------------------
+            /** do the error test and run login_submit() */
             document.getElementById('submit').addEventListener('click',()=>{
                 if(errorTest()){
                     login_submit();

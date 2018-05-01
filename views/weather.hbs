@@ -39,6 +39,7 @@
             var distance = `{{{dist}}}`;
             var extra_fee = 0;
 
+            /** calculation for summary page */
             if (icon.indexOf('cloudy') != -1){
                 document.getElementById('weather_icon').src = 'https://d30y9cdsu7xlg0.cloudfront.net/png/204253-200.png';
                 extra_fee = 5;
@@ -63,6 +64,8 @@
                 document.getElementById('total').innerHTML = '$' + String(5 + extra_fee + {{{dist_fee}}})
                 document.getElementById('p6').innerHTML = extra_fee;
             }
+
+            /** go to /confirm when confirm_order is clicked */
             document.getElementById('confirm_order').addEventListener('click',()=>{
                 window.location="/confirm";
             });
