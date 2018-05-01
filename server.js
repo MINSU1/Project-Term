@@ -102,7 +102,7 @@ app.get('/', (request, response) => {
     	validity: validity,
     	username: username,
     	address: address,
-    	reviews:reviews
+    	// reviews:reviews
     });
 });
 
