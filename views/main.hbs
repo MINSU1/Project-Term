@@ -14,7 +14,6 @@
         <button id="about" class="top_but">About Us</button>
         <button id="review" class="top_but">Review Us</button>
     </div>
-
     <img id="background" src="./img/background.jpg">
     <div id="main_display" class="displays">
         <div id="no_address" style="display: none;">
@@ -107,17 +106,6 @@
             </div>
             <img id="about_img" src="./img/about.jpg">
         </div>
-        <div id="dom-target">
-            <?php 
-                $output = "42"; //Again, do some operation, get the output.
-                echo htmlspecialchars($output); /* You have to escape because the result
-                                                   will not be valid HTML otherwise. */
-            ?>
-        </div>
-        <script>
-            var div = document.getElementById("dom-target");
-            var myData = div.textContent;
-        </script>
     </div>
     <script src="main.js">
     </script>
