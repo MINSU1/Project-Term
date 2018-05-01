@@ -67,8 +67,6 @@ var distance_calc = (pointa, pointb) => {
 
 					resolve({dis:distance,ori:ori_addr,dest:dest_addr});
 				}
-				
-				
 			}
 		});
 	});
