@@ -130,11 +130,11 @@ document.getElementById('backBut').addEventListener('click', function(){
     }
 });
 window.addEventListener('load', function() {
-	popup.style.bottom = "0px";
 	popup.style.opacity = 1;
 });
 
 popup_close.addEventListener('click', function(){
 
 	popup.style.opacity = -50;
+	setTimeout(function(){popup.style.display = "none"}, 1500)
 });
