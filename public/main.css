@@ -474,9 +474,8 @@ p7{
 #popup_display {
     position: fixed;
     background-color: white;
-    bottom: -100px;
-    right: 0;
-    left: 0;
+    right: 10px;
+    bottom: 10px;
     margin: 5% auto;
     width: 400px;
     border: 2px solid black;
