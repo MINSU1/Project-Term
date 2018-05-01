@@ -1,30 +1,36 @@
 {
-  "name": "project",
+  "name": "project-term",
   "version": "1.0.0",
   "description": "\"# ACIT2520\"",
-  "main": "server.js",
+  "main": "address_finder.js",
+  "directories": {
+    "test": "test"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Y-JayKim/nodeProject.git"
+    "url": "git+https://github.com/MINSU1/Project-Term.git"
   },
-  "author": "jay",
+  "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Y-JayKim/nodeProject/issues"
+    "url": "https://github.com/MINSU1/Project-Term/issues"
   },
-  "homepage": "https://github.com/Y-JayKim/nodeProject#readme",
+  "homepage": "https://github.com/MINSU1/Project-Term#readme",
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.16.3",
     "fs": "0.0.1-security",
     "hbs": "^4.0.1",
+    "request": "^2.85.0"
+    "jsdoc": "^3.5.5",
     "node-form": "^1.0.18",
     "npm": "^6.0.0",
-    "request": "^2.85.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "jest": "^22.4.3"
+  }
 }
