@@ -4,6 +4,76 @@ const hbs = require('hbs');
 const fs = require('fs');
 const request = require('request');
 const bodyParser = require('body-parser')
+const Connection = require('tedious').Connection;  
+const config = {  
+    userName: 'Student',  
+    password: 'P@ssw0rd',  
+    server: 'team8server.database.windows.net',  
+    // If you are on Microsoft Azure, you need this:  
+    options: {encrypt: true, database: 'Project'}  
+}; 
+const connection = new Connection(config); 
+const Request = require('tedious').Request;  
+const TYPES = require('tedious').TYPES; 
+
+///////////////////////////////////////////////////////////////
+
+ 
+function getMembers(){
+    connection.on('connect', function(err) {  
+    // If no error, then good to proceed. 
+    if (err){
+       console.log(err); 
+    }
+    //console.log("Connected");  
+    executeStatement().then((message) => {
+        //console.log(message);
+        return message
+    }).then((list)=>{
+        var newjson = {}
+        for (item in list){
+            str = `${list[item][2]}, ${list[item][3]}, ${list[item][4]}`
+            newjson[list[item][0]] = {
+                'password': list[item][1],
+                'address': str
+            }
+        }
+        userlog = newjson
+        //console.log(userlog);
+        return newjson
+    }).catch((error) => {
+        console.log('Error:', error);
+    });
+    })
+} 
+
+function executeStatement() { 
+    return new Promise((resolve,reject) => {
+    request2 = new Request("SELECT * FROM member", function(err) {  
+    if (err) {  
+        console.log(err);}  
+    });  
+    var result = []; 
+    list = []
+    request2.on('row', function(columns) {  
+        columns.forEach(function(column) {  
+          if (column.value === null) {  
+            console.log('NULL');  
+          } else {  
+            result.push(column.value);  
+          }  
+        });  
+        list.push(result)
+        result =[];
+        resolve(list)
+    });  
+    request2.on('done', function(rowCount, more) {  
+    //console.log(rowCount + ' rows returned');  
+    });
+    connection.execSql(request2); 
+    })
+}  
+///////////////////////////////////////////////////////////////
 
 // Importing js file and its functions
 const address_finder = require('./address_finder.js')
@@ -54,17 +124,19 @@ var lat = '49.2834444',
 	weather_body = '';
 
 // user information 
-var userlog = {jay:{password:"123",address:"204-460 Westview St, Coquitlam, BC, Canada"},min:{password:"123",address:"minsu st, vancouver, BC, Canada"}};
+var userlog = readJsonFile()
+//{jay:{password:"123",address:"204-460 Westview St, Coquitlam, BC, Canada"},min:{password:"123",address:"minsu st, vancouver, BC, Canada"}};
 //---------------------------------------functions-----------------------------------------------
-// Reading JSON file in local storage
+// Reading JSON file in local storag
 function readJsonFile() {
-    fs.readFile('./username.json', (err, data) => {
-        if (err) {
-            throw err;
-        }
-        userlog = JSON.parse(data);
-        //console.log(userlog);
-    });
+    getMembers()
+    // fs.readFile('./username.json', (err, data) => {
+    //     if (err) {
+    //         throw err;
+    //     }
+    //     userlog = JSON.parse(data);
+    //     console.log(userlog);
+    // });
 }
 function writeJsonFile() {
     fs.writeFile('./username.json', JSON.stringify(userlog));
@@ -256,7 +328,6 @@ app.post("/register_check", (request, response) =>{
 app.get('/location', (request, response) => {
     console.log(lat, lng)
     response.render('location', { latitu: lat, longitu: lng });
-    response.render('location', {latitu:lat, longitu:lng});
 });
 
 // take the address information what user picked
