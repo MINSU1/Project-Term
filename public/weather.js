@@ -1,6 +1,6 @@
 const request = require('request');
 
-
+/**  google api with using Promise */
 var geocode = (address) => {
     // return new Promise
     return new Promise((resolve, reject) => {
@@ -23,6 +23,7 @@ var geocode = (address) => {
 	});
 };
 
+/**  weather api with using Promise */
 var weather = (lat, lng) => {
 	return new Promise((resolve, reject)=> {
 		request({
@@ -42,6 +43,7 @@ var weather = (lat, lng) => {
 	});
 };
 
+/**  google api with using Promise to find information of the restaurants*/
 var distance_calc = (pointa, pointb) => {
 
 	return new Promise((resolve, reject)=> {
@@ -65,15 +67,12 @@ var distance_calc = (pointa, pointb) => {
 
 					resolve({dis:distance,ori:ori_addr,dest:dest_addr});
 				}
-				
-				
 			}
 		});
 	});
-	
-
 }
 
+/** module exporting */
 module.exports = {
 	geocode,
 	weather,

@@ -37,6 +37,7 @@
         url_site='',
         isDivExist = 0;
 
+<<<<<<< HEAD
     var getAddress = (address, callback)=>{
         request({
             url:'https://maps.googleapis.com/maps/api/geocode/json'+'?address='+encodeURIComponent(address),
@@ -54,6 +55,9 @@
         });
     };
 
+=======
+    /** initializing google */
+>>>>>>> 0e02cb8cb8cb8a18159c0ad4ccf4db1d6f305d07
     function initMap() {
         var pyrmont = { lat: latitu, lng: longitu };
 
@@ -71,6 +75,7 @@
         service.nearbySearch(request, callback);
     }
 
+    /** callback function for initMap */
     function callback(results, status) {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
             for (var i = 0; i < results.length; i++) {
@@ -79,6 +84,7 @@
         }
     }
 
+    /** Marker generator in gogle map */
     function createMarker(place) {
         var placeLoc = place.geometry.location;
         var marker = new google.maps.Marker({
@@ -107,6 +113,10 @@
         });
     }
 
+<<<<<<< HEAD
+=======
+    /** find out whether it is open */
+>>>>>>> 0e02cb8cb8cb8a18159c0ad4ccf4db1d6f305d07
     function isItOpen(par){
         if (par) {
             return 'open';
@@ -114,6 +124,8 @@
             return 'closed';
         }
     }
+
+    /** creating a new div when user click Marker on the map */
     function myFunction() {
         if (isDivExist != 0){
                 document.getElementById('order_div').innerHTML = place_name;   
@@ -137,9 +149,13 @@
             addDiv.id = "add_div";
             typeDiv.id = "type_div";
             openDiv.id = "open_div";
+<<<<<<< HEAD
             phonediv.id = "phone_div";
             sitediv.id = "site_div";
             // nameDiv.innerHTML = place_name + '<br>' +place_rating+ '<br>' +place_address+ '<br>' +place_type+ '<br>' +price_level+ '<br>' +open_now;
+=======
+
+>>>>>>> 0e02cb8cb8cb8a18159c0ad4ccf4db1d6f305d07
             nameDiv.innerHTML = place_name;          
             ratingDiv.innerHTML = "Rating: "+place_rating;       
             addDiv.innerHTML = "Address: "+place_address;      
@@ -168,6 +184,7 @@
         
     }
 
+    /** adding information to the div */
     function addtodiv(place) {
         var placeLoc = place.geometry.location;
         var marker = new google.maps.Marker({
@@ -181,6 +198,7 @@
         document.getElementById('explanation').appendChild(newDiv);
     }
 
+    /** communication function with server.js */
     function location_confirmation(){
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.open("POST", "/location_confirmation", true);
@@ -194,6 +212,7 @@
     }
 
     //-------------------------------------interactions---------------------------------
+    /** run location_confirmation function when submit Button is clicked */
     document.getElementById('submit').addEventListener('click',()=>{
         location_confirmation();
     });

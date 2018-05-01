@@ -22,9 +22,20 @@
   "homepage": "https://github.com/MINSU1/Project-Term#readme",
   "dependencies": {
     "body-parser": "^1.18.2",
+    "csv-reader": "^1.0.2",
+    "d3": "^5.1.0",
     "express": "^4.16.3",
     "fs": "0.0.1-security",
     "hbs": "^4.0.1",
+<<<<<<< HEAD
     "request": "^2.85.0"
+=======
+    "jsdoc": "^3.5.5",
+    "node-form": "^1.0.18",
+    "request": "^2.85.0"
+  },
+  "devDependencies": {
+    "jest": "^22.4.3"
+>>>>>>> 0e02cb8cb8cb8a18159c0ad4ccf4db1d6f305d07
   }
 }
