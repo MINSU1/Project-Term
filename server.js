@@ -146,6 +146,10 @@ app.get("/register", (request, response) =>{
 	response.render("register");
 });
 
+app.get("/review", (request, response)=>{
+	response.render("review")
+})
+
 /** Simply sending findid.hbs page */
 app.get("/findid", (request, response) =>{
 	response.render('findid');
