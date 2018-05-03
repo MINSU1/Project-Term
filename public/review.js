@@ -1,3 +1,5 @@
+var counter = 0;
+
 document.getElementById('reviewSub').addEventListener('click', function(){
     document.getElementById('endScreen').style.display = 'block';
     document.getElementById('review_info').style.display = 'none';
@@ -15,11 +17,10 @@ for (var i = 0; i < document.getElementsByClassName('toRevPage').length; i++){
 
 document.getElementById('backBut').addEventListener('click', function(){
     document.getElementById('revPage').style.display = 'none';
+    document.getElementById('review_header').style.display = 'block'
     if (counter == 0){
-        document.getElementById('review_header').style.display = 'block';
         document.getElementById('review_info').style.display = 'block';
     } else if (counter == 1){
-        document.getElementById('review_header').style.display = 'block';
         document.getElementById('endScreen').style.display = 'block';
     }
 });

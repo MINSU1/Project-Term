@@ -1,9 +1,8 @@
 var topButClass = document.getElementsByClassName('top_but');
 var address = '';
-var counter = 0;
-var address = ''
+var address = '';
 var popup = document.getElementById('popup_display');
-var popup_close = document.getElementById('popup_close')
+var popup_close = document.getElementById('popup_close');
 //--------------------------------contact map-----------------------------------------------
 function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
@@ -101,6 +100,11 @@ document.getElementById('login_submit').addEventListener('click',()=>{
 document.getElementById('re_address').addEventListener('click',()=>{
 	address_check(0);
 });
+
+document.getElementById('review').addEventListener('click',()=>{
+	window.location="/review";
+});
+
 document.getElementById('next_submit').addEventListener('click',()=>{
 	window.location="/location";
 });
