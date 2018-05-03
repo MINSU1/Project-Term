@@ -23,7 +23,6 @@ var getWeather = (lat, lng, callback) => {
 };
 
 var getAddress = (address, callback) => {
-	console.log(address);
 	request({
 	    url: 'http://maps.googleapis.com/maps/api/geocode/json' +
 	        '?address=' + encodeURIComponent(address),

@@ -1,77 +1,41 @@
-const address_finder = require('./address_finder.js')
-const weather_file = require('./public/weather.js');
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: server.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: server.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/** Calling every module */
 const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
 const request = require('request');
 const bodyParser = require('body-parser')
-const Connection = require('tedious').Connection;  
-const config = {  
-    userName: 'Student',  
-    password: 'P@ssw0rd',  
-    server: 'team8server.database.windows.net',  
-    // If you are on Microsoft Azure, you need this:  
-    options: {encrypt: true, database: 'Project'}  
-}; 
-const connection = new Connection(config); 
-const Request = require('tedious').Request;  
-const TYPES = require('tedious').TYPES; 
 
-/////////////////////////////////////////////////////////////// 
-function getMembers(){
-    connection.on('connect', function(err) {  
-    // If no error, then good to proceed. 
-    console.log(err); 
-    console.log("Connected");  
-    executeStatement().then((message) => {
-        //console.log(message);
-        return message
-    }).then((list)=>{
-        var newjson = {}
-        for (item in list){
-            str = `${list[item][2]}, ${list[item][3]}, ${list[item][4]}`
-            newjson[list[item][0]] = {
-                'password': list[item][1],
-                'address': str
-            }
-        }
-        userlog = newjson
-        //console.log(userlog);
-        return newjson
-    }).catch((error) => {
-        console.log('Error:', error);
-    });
-    })
-} 
-
-function executeStatement() { 
-    return new Promise((resolve,reject) => {
-    request2 = new Request("SELECT * FROM member", function(err) {  
-    if (err) {  
-        console.log(err);}  
-    });  
-    var result = []; 
-    list = []
-    request2.on('row', function(columns) {  
-        columns.forEach(function(column) {  
-          if (column.value === null) {  
-            //console.log('NULL');  
-          } else {  
-            result.push(column.value);  
-          }  
-        });  
-        list.push(result)
-        result =[];
-        resolve(list)
-    });  
-    request2.on('done', function(rowCount, more) {  
-    //console.log(rowCount + ' rows returned');  
-    });
-    connection.execSql(request2); 
-    })
-}  
-///////////////////////////////////////////////////////////////
-
+/** Importing js file and its functions */
+const address_finder = require('./address_finder.js')
+const weather_file = require('./public/weather.js');
 
 /** calling express */
 var app = express();
@@ -82,11 +46,11 @@ app.use(bodyParser.urlencoded({
 
 app.use(bodyParser.json());
 
-
 /** port can be 8080 or the port for Heroku */
 const port = process.env.PORT || 8080;
 
 hbs.registerPartials(__dirname + '/views/partials');
+
 /** declaring hbs */
 app.set('view engine', 'hbs');
 
@@ -113,14 +77,18 @@ var lat = '49.2834444',
 	weather_body = '';
 
 /** Global variable that stores fetched data from weather.js user information */
-var userlog = {};
-getMembers()
+var userlog = {jay:{password:"123",address:"204-460 Westview St, Coquitlam, BC, Canada"},min:{password:"123",address:"minsu st, vancouver, BC, Canada"}};
 //---------------------------------------functions-----------------------------------------------
 /** 
  * Reading JSON file in local storage
  */
 function readJsonFile() {
-	getMembers()
+	fs.readFile('./username.json', (err, data)=> {
+	    if (err) {
+	        throw err;
+	    }
+	    userlog = JSON.parse(data);
+	});
 }
 
 /** 
@@ -129,72 +97,43 @@ function readJsonFile() {
 function writeJsonFile(){
 	fs.writeFile('./username.json', JSON.stringify(userlog));
 }
+
 /** 
  * based on the address what user entered, find the latitude and longitude, and find the weather in the place
  * @param {string} address - address the user entered
  */
 function weather_fetcher(address){
 	weather_file.geocode(address).then((result) =>{
-		return weather_file.weather(result.lat, result.lng);
+		lat = result.lat
+		lng = result.lng
+		return weather_file.weather(lat, lng);
 	}).then((result)=>{
 		weather_body = result;
 	}).catch((error)=>{
 		console.log(error)
 	})
 }
-function latlng_converter(address){
-	address_finder.getAddress(address, (errorMessage, results) =>{
-		if (errorMessage){
-			//console.log("latlng_converter Error");
-			lat = '49.2834444',
-			lng = '-123.1196331';
-		} else{
-			lat = JSON.stringify(results.lat, undefined, 2)
-			lng = JSON.stringify(results.lng, undefined, 2)
-		}
-	});
-}
 //-----------------------------------main page--------------------------------------------------
 /** Sending hbs file when cliet enter address */
 app.get('/', (request, response) => {
 	readJsonFile();
-    //console.log(userlog);
-
-	//temp function
-	fs.readFile("./reviews.json", (err, data)=> {
-	    if (err) {
-	        throw err;
-	    }
-	    reviews = JSON.parse(data);
-	})
-
     response.render('main', {
     	validity: validity,
     	username: username,
-    	address: address,
-    	// reviews:reviews
+    	address: address
     });
 });
 
 /** This is for Guest input. find wether the adress is available or not */
 app.post('/address_check', (request, response) => {
 	address = request.body.address;
-
+	username = 'Guest'
 	if(request.body.validity == 1){
-		address_finder.getAddress(address, (errorMessage, results) =>{
-			if (errorMessage){
-				response.send('invalid');
-			} else{
-				lat = JSON.stringify(results.lat, undefined, 2)
-				lng = JSON.stringify(results.lng, undefined, 2)
-				
-				response.send('valid');
-				weather_fetcher();
-				validity = 1;
-			}
-		});
+		response.send('valid');
+		weather_fetcher(address);
+		validity = 1; // if validity is 1, it means address has been entered
 	}else if(request.body.validity == 0){
-		validity = 0;
+		validity = 0; // if validity is 0, it means address has not been entered
 		response.send('reload');
 	}
 });
@@ -207,7 +146,7 @@ app.get('/signin', (request, response) => {
 
 /** fetch out the login information what user entered and save it into the variable */
 app.post('/login_input', (request, response, next) => {
-	if (String(request.body.id_input) in userlog && String(request.body.pass_input) == userlog[String(request.body.id_input)].password){
+	if (String(request.body.id_input) in userlog &amp;&amp; String(request.body.pass_input) == userlog[String(request.body.id_input)].password){
 		username = request.body.id_input;
 		password = request.body.pass_input;
 		validity = request.body.validity;
@@ -225,16 +164,10 @@ app.get("/register", (request, response) =>{
 	response.render("register");
 });
 
-
-app.get("/review", (request, response)=>{
-	response.render("review")
-})
-
 /** Simply sending findid.hbs page */
 app.get("/findid", (request, response) =>{
 	response.render('findid');
 });
-
 
 /** Check whether the address input is valid and store the information into JSON file */
 app.post("/register_check", (request, response) =>{
@@ -250,17 +183,13 @@ app.post("/register_check", (request, response) =>{
 			address = String(user_info.address)+', '+ String(user_info.city) +", "+ "BC" +", "+"Canada";
 			lat = JSON.stringify(results.lat, undefined, 2)
 			lng = JSON.stringify(results.lng, undefined, 2)
-
-			//console.log(userlog)
 			writeJsonFile();
 			response.send('valid');
-	   		
 		}
 	});
 });
 
 //-----------------------------------location page--------------------------------------------------
-
 /** Simply sending location.hbs page */
 app.get('/location', (request, response) => {
     response.render('location', {latitu:lat, longitu:lng});
@@ -287,8 +216,6 @@ app.get('/weather', (request, response) => {
 		distance_fee = parseInt(result.dis.split(' ')[0])*5;
 		ori = result.ori;
 		dest = result.dest;
-
-		//console.log(weather_body, '!!');
 		response.render('weather', {summary: weather_body.summary,icon:weather_body.icon,temp:weather_body.temperature,humid:weather_body.humidity,winds:weather_body.windSpeed,dist_fee:distance_fee,dist:distance, ori:ori,dest:dest});
 	}).catch((error)=>{
 		console.log(error);
@@ -304,4 +231,26 @@ app.get('/confirm', (request, response) => {
 /** listening assigned port */
 app.listen(port, () => {
     console.log(`Server is up on the port ${port}`);
-});
+});</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#address">address</a></li><li><a href="global.html#address_check">address_check</a></li><li><a href="global.html#address_finder">address_finder</a></li><li><a href="global.html#address_no_empty">address_no_empty</a></li><li><a href="global.html#app">app</a></li><li><a href="global.html#distance_calc">distance_calc</a></li><li><a href="global.html#express">express</a></li><li><a href="global.html#geocode">geocode</a></li><li><a href="global.html#initMap">initMap</a></li><li><a href="global.html#lat">lat</a></li><li><a href="global.html#login_submit">login_submit</a></li><li><a href="global.html#port">port</a></li><li><a href="global.html#readJsonFile">readJsonFile</a></li><li><a href="global.html#topButClass">topButClass</a></li><li><a href="global.html#userlog">userlog</a></li><li><a href="global.html#username">username</a></li><li><a href="global.html#weather">weather</a></li><li><a href="global.html#weather_fetcher">weather_fetcher</a></li><li><a href="global.html#writeJsonFile">writeJsonFile</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Apr 26 2018 18:24:21 GMT-0700 (Pacific Daylight Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
