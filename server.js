@@ -150,9 +150,10 @@ app.get("/review", (request, response)=>{
 	response.render("review")
 })
 
-// app.response("/review_submit", (request, response)=>{
-
-// })
+app.post("/review", (request, response)=>{
+	console.log(response.body)
+	response.render("review")
+})
 /** Simply sending findid.hbs page */
 app.get("/findid", (request, response) =>{
 	response.render('findid');
