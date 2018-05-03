@@ -114,6 +114,11 @@ document.getElementById("address_input").addEventListener('keydown',(ev)=>{
 	}
 });
 
+
+document.getElementById("review").addEventListener("click", ()=>{
+	window.location = "/review";
+})
+
 /** go to /signin when login_submit button is clicked */
 document.getElementById('login_submit').addEventListener('click',()=>{
 	window.location ='/signin';
