@@ -61,25 +61,6 @@
     cursor:pointer;
 }
 
-#revPageHeader{
-    position: absolute;
-    left:0px;
-    margin:auto;
-    text-align:left;
-}
-
-#cmtDisplay{
-    position: absolute;
-    left:0px;
-    right:0px;
-    top:90px;
-    margin:auto;
-    width:100vw;
-    height:auto;
-    border-top: rgb(165,0,0) 2px solid;
-    font-family: Sans-serif;
-}
-
 #toRevBut{
     position:relative;
     right:11%;
@@ -94,19 +75,6 @@
     border-radius: 25px;
 }
 
-#backArrow {
-    transform: rotate(135deg);
-    -webkit-transform: rotate(135deg);
-    border: solid black;
-    border-width: 0 3px 3px 0;
-    display: inline-block;
-    padding: 3px;
-}
-
-#backBut {
-    cursor:pointer;
-}
-
 #background{
     position: fixed;
     width:100%;
@@ -118,22 +86,6 @@
     background-position: center;
     opacity: 0.2;
     filter: alpha(opacity=50);
-}
-
-#homeIcon{
-    position:absolute;
-    height:50%;
-    top:25%;
-    cursor:pointer;
-}
-
-#textMenu{
-    position:absolute;
-    height:20%;
-    top:15%;
-    left:3%;
-    color: white;
-    cursor:pointer;
 }
 
 #logo{
