@@ -14,56 +14,58 @@
         <b>Also, see what others have to say about us <u id='toRevPage' class='toRevPage'>here</u>!</b>
     </div>
     <div id="review_info">
-        <div id = "rateUs">
-            <br>
-            <div id ='rateP'>
-                <b>On a scale of 1 to 5, what would you rate us?</b>
-            </div>
-            <div class = 'radBut'>
-                <input type ='radio' name ='scale'/>
+        <form action="/review_submit" method="post">
+            <div id = "rateUs">
                 <br>
-                Awful
+                <div id ='rateP'>
+                    <b>On a scale of 1 to 5, what would you rate us?</b>
+                </div>
+                <div class = 'radBut'>
+                    <input type ='radio' name ='scale'/>
+                    <br>
+                    Awful
+                </div>
+                <div class = 'radBut'>
+                    <input type ='radio' name ='scale'/>
+                    <br>
+                    Bad
+                </div>
+                <div class = 'radBut'>
+                    <input type ='radio' name ='scale'/>
+                    <br>
+                    Okay
+                </div>
+                <div class = 'radBut'>
+                    <input type ='radio' name ='scale'/>
+                    <br>
+                    Good
+                </div>
+                <div class = 'radBut'>
+                    <input type ='radio' name ='scale'/>
+                    <br>
+                    Excellent
+                </div>
             </div>
-            <div class = 'radBut'>
-                <input type ='radio' name ='scale'/>
-                <br>
-                Bad
-            </div>
-            <div class = 'radBut'>
-                <input type ='radio' name ='scale'/>
-                <br>
-                Okay
-            </div>
-            <div class = 'radBut'>
-                <input type ='radio' name ='scale'/>
-                <br>
-                Good
-            </div>
-            <div class = 'radBut'>
-                <input type ='radio' name ='scale'/>
-                <br>
-                Excellent
-            </div>
-        </div>
-        <div>
-            <br>
             <div>
-                <b>What do you think about our service?</b>
+                <br>
+                <div>
+                    <b>What do you think about our service?</b>
+                </div>
+                <br>
+                <textarea rows='6' cols='97' placeholder='Leave your feedback here...'></textarea>
             </div>
-            <br>
-            <textarea rows='6' cols='97' placeholder='Leave your feedback here...'></textarea>
-        </div>
-        <div>
-            <br>
             <div>
-            <b>How would you suggest us improve it?</b>
+                <br>
+                <div>
+                <b>How would you suggest us improve it?</b>
+                </div>
+                <br>
+                <textarea rows='6' cols='97' placeholder='Leave your feedback here...'></textarea>
             </div>
-            <br>
-            <textarea rows='6' cols='97' placeholder='Leave your feedback here...'></textarea>
-        </div>
-            <br>
-            <button id='reviewSub'>Submit</button>
-            <button id='toRevBut' class='toRevPage'>See others' comments</button>
+                <br>
+                <button id='reviewSub'>Submit</button>
+                <button id='toRevBut' class='toRevPage'>See others' comments</button>
+        </form>
     </div>
     <div id='revPage' style='display:none;'>
         <div id ='revPageHeader'>

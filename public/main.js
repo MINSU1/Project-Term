@@ -7,10 +7,8 @@ var address = '';
 var counter = 0;
 var address = ''
 
-var popup = document.getElementById('popup_display');
-var popup_close = document.getElementById('popup_close')
-
-console.log(`{{{reviews}}}`);
+// var popup = document.getElementById('popup_display');
+// var popup_close = document.getElementById('popup_close');
 //--------------------------------contact map-----------------------------------------------
 /** 
  * initialize google map from the latitude and longitude
@@ -74,8 +72,7 @@ function address_check(validity){
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
 			if(xmlhttp.responseText == "invalid"){
 				alert("invalid address.\nPlesae enter again");
-			}
-			else if(xmlhttp.responseText == "valid"){
+			}else if(xmlhttp.responseText == "valid"){
 				alert('Found the matching address!');
 				location.reload();
 			}else if(xmlhttp.responseText == "reload"){
@@ -106,15 +103,6 @@ document.getElementById("address_submit").addEventListener("click",()=>{
 	}
 });
 
- /** when enter key is pressed on address_input, change global address variable and check if address input is empty  */
-document.getElementById("address_input").addEventListener('keydown',(ev)=>{
-	address = String(document.getElementById('address_input').value) +', '+ String(document.getElementById('city_input').value) +', '+ 'BC' + ', CA'
-	if(ev.keyCode == 13 && address_no_empty()){
-		address_check(1);
-	}
-});
-
-
 document.getElementById("review").addEventListener("click", ()=>{
 	window.location = "/review";
 })
@@ -134,14 +122,13 @@ document.getElementById('next_submit').addEventListener('click',()=>{
 	window.location="/location";
 });
 
-window.addEventListener('load', function() {
-	popup.style.opacity = 1;
-});
+// window.addEventListener('load', function() {
+// 	popup.style.opacity = 1;
+// });
 
-popup_close.addEventListener('click', function(){
-
-	popup.style.opacity = -50;
-	setTimeout(function(){
-		popup.style.display = "none"
-	}, 1500)
-});
+// popup_close.addEventListener('click', function(){
+// 	popup.style.opacity = -50;
+// 	setTimeout(function(){
+// 		popup.style.display = "none"
+// 	}, 1500)
+// });
