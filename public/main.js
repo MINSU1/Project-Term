@@ -4,11 +4,10 @@
  */
 var topButClass = document.getElementsByClassName('top_but');
 var address = '';
-var counter = 0;
-var address = ''
-
 var popup = document.getElementById('popup_display');
-var popup_close = document.getElementById('popup_close')
+var popup_close = document.getElementById('popup_close');
+var counter = 0;
+
 
 console.log(`{{{reviews}}}`);
 //--------------------------------contact map-----------------------------------------------
@@ -127,6 +126,10 @@ document.getElementById('login_submit').addEventListener('click',()=>{
 /** change address feature */
 document.getElementById('re_address').addEventListener('click',()=>{
 	address_check(0);
+});
+
+document.getElementById('review').addEventListener('click',()=>{
+	window.location="/review";
 });
 
 /** goto /location page when next_submit button is clicked */
