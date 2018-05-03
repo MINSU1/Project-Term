@@ -1,5 +1,13 @@
+#review_display{
+	position: absolute;
+	top:70px;
+	left:0px;
+	width:100%;
+    height:50%;
+}
+
 #review_header{
-    position: absolute;
+    position:absolute;
     left:0px;
     right:0px;
     margin:auto;
@@ -53,25 +61,6 @@
     cursor:pointer;
 }
 
-#revPageHeader{
-    position: absolute;
-    left:0px;
-    margin:auto;
-    text-align:left;
-}
-
-#cmtDisplay{
-    position: absolute;
-    left:0px;
-    right:0px;
-    top:90px;
-    margin:auto;
-    width:100vw;
-    height:auto;
-    border-top: rgb(165,0,0) 2px solid;
-    font-family: Sans-serif;
-}
-
 #toRevBut{
     position:relative;
     right:11%;
@@ -86,15 +75,35 @@
     border-radius: 25px;
 }
 
-#backArrow {
-    transform: rotate(135deg);
-    -webkit-transform: rotate(135deg);
-    border: solid black;
-    border-width: 0 3px 3px 0;
-    display: inline-block;
-    padding: 3px;
+#background{
+    position: fixed;
+    width:100%;
+    height:100%;
+    left:0%;
+    background-size:cover;
+    background-repeat: repeat-y;
+    background-attachment: fixed;
+    background-position: center;
+    opacity: 0.2;
+    filter: alpha(opacity=50);
 }
 
-#backBut {
-    cursor:pointer;
+#logo{
+    position: absolute;
+    top:5px;
+    left:45%;
+    width:90px;
+    height:70px;
+    background:url(../views/img/logo.jpg) no-repeat;
+    background-size: contain;
+}
+
+#top_padding{
+	position: fixed;
+	z-index: 1;
+	top:0px;
+	left:0px;
+	width:100%;
+	height:70px;
+    background-color:rgb(0,0,0);
 }

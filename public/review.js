@@ -10,7 +10,7 @@ for (var i = 0; i < document.getElementsByClassName('toRevPage').length; i++){
         document.getElementById('endScreen').style.display = 'none';
         document.getElementById('review_info').style.display = 'none';
         document.getElementById('revPage').style.display = 'block';
-})
+    })
 };
 
 document.getElementById('backBut').addEventListener('click', function(){
@@ -23,5 +23,3 @@ document.getElementById('backBut').addEventListener('click', function(){
         document.getElementById('endScreen').style.display = 'block';
     }
 });
-
-document.getElementById('')
