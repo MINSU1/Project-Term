@@ -9,7 +9,7 @@ const config = {
 const connection = new Connection(config); 
 const Request = require('tedious').Request;  
 const TYPES = require('tedious').TYPES; 
- 
+
 function getData(){
     connection.on('connect', function(err) {  
     // If no error, then good to proceed. 
