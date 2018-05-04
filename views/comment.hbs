@@ -3,14 +3,14 @@
 
 <head>
     <title>Comment</title>
-    <link href='../public/comment.css' rel='stylesheet' type='text/css' />
+    <link href='comment.css' rel='stylesheet' type='text/css' />
 </head>
 
 <body>
     <div id='top_padding'>
         <div id='logo'></div>
     </div>
-    <img id="background" src="../public/img/background.jpg">
+    <img id="background" src="./img/background.jpg">
     <div id='revPage'>
         <div id ='revPageHeader'>
             <h1>Comments</h1>
@@ -18,7 +18,11 @@
         <div id ='cmtDisplay'>
         </div>
     </div>
-    <script src='../public/comment.js'></script>
+    <script src='comment.js'></script>
+    <script type='text/javascript'>
+        var reviews = `{{{review}}}`
+        console.log(reviews.split(','))
+    </script>
 </body>
 
 </html>

@@ -94,7 +94,7 @@
     left:45%;
     width:90px;
     height:70px;
-    background:url(../views/img/logo.jpg) no-repeat;
+    background:url(./img/logo.jpg) no-repeat;
     background-size: contain;
 }
 

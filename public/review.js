@@ -1,9 +1,3 @@
-document.getElementById('reviewSub').addEventListener('click', function(){
-    document.getElementById('endScreen').style.display = 'block';
-    document.getElementById('review_info').style.display = 'none';
-    counter = 1
-});
-
 for (var i = 0; i < document.getElementsByClassName('toRevPage').length; i++){
     document.getElementById(document.getElementsByClassName('toRevPage')[i].id).addEventListener('click', function(){
         document.getElementById('review_header').style.display = 'none';

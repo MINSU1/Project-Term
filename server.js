@@ -47,7 +47,9 @@ var lat = '49.2834444',
 	address = '460 Westveiw St, coquitlam, bc, canada',
     dest_address = 'bcit, bc, ca',
 	validity = 0
-	weather_body = '';
+	weather_body = '',
+	review_check = 0,
+	reviews = {'review': []};
 
 /** Global variable that stores fetched data from weather.js user information */
 var userlog = {jay:{password:"123",address:"204-460 Westview St, Coquitlam, BC, Canada"},min:{password:"123",address:"minsu st, vancouver, BC, Canada"}};
@@ -62,8 +64,17 @@ function readJsonFile() {
 	    }
 	    userlog = JSON.parse(data);
 	});
-}
+	fs.readFile("./reviews.json", (err, data)=> {
+	    if (err) {
+	        throw err;
+	    }
+	   	json_reviews = JSON.parse(data);
 
+	    for(item in json_reviews){
+			reviews['review'].push(json_reviews[item].concat(item));
+		}
+	})
+}
 /** 
  * Writing JSON file in local storage
  */
@@ -89,20 +100,10 @@ function weather_fetcher(address){
 /** Sending hbs file when cliet enter address */
 app.get('/', (request, response) => {
 	readJsonFile();
-
-	//temp function
-	fs.readFile("./reviews.json", (err, data)=> {
-	    if (err) {
-	        throw err;
-	    }
-	    reviews = JSON.parse(data);
-	})
-
     response.render('main', {
     	validity: validity,
     	username: username,
     	address: address,
-    	// reviews:reviews
     });
 });
 
@@ -147,13 +148,21 @@ app.get("/register", (request, response) =>{
 });
 
 app.get("/review", (request, response)=>{
-	response.render("review")
+	response.render("review", {'check':review_check})
 })
 
 app.post("/review", (request, response)=>{
-	console.log(response.body)
-	response.render("review")
+	if(!(request.body.feedback == "")){
+		review_check = 1
+		response.render("review", {'check':review_check})
+	}
 })
+
+app.post('/comment', (request, response)=>{
+	console.log(reviews);
+	response.render('comment', reviews);
+})
+
 /** Simply sending findid.hbs page */
 app.get("/findid", (request, response) =>{
 	response.render('findid');

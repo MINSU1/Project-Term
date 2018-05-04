@@ -1,80 +1,94 @@
 <!DOCTYPE html>
 <html>
+
 <head>
+    <title>Review</title>
     <link href ='review.css' rel='stylesheet' type='text/css' />
 </head>
+
 <body>
-    <div id="review_header">
-        <h1>Please let us know what you think about our service!</h1>
+    <div id='top_padding'>
+        <div id='logo'></div>
     </div>
-    <div id='endScreen' style='display:none;'>
-        <br>
-        <b>Thank you for your feedback. We really appreciate the time you took to help us improve our service.</b>
-        <br><br>
-        <b>Also, see what others have to say about us <u id='toRevPage' class='toRevPage'>here</u>!</b>
-    </div>
-    <div id="review_info">
-        <form action="/review" method="post">
-            <div id = "rateUs">
-                <br>
-                <div id ='rateP'>
-                    <b>On a scale of 1 to 5, what would you rate us?</b>
-                </div>
-                <div class = 'radBut'>
-                    <input type ='radio' name ='scale'/>
+    <img id="background" src="./img/background.jpg">
+    <div id= 'review_display'>
+        <div id="review_header">
+            <h1>Please let us know what you think about our service!</h1>
+        </div>
+        <div id='endScreen' style='display:none;'>
+            <br>
+            <b>Thank you for your feedback. We really appreciate the time you took to help us improve our service.</b>
+            <br><br>
+            <b>Also, see what others have to say about us <u id='toRevPage' class='toRevPage'>here</u>!</b>
+        </div>
+        <div id="review_info">
+            <form action="/review" method="post">
+                <div id = "rateUs">
                     <br>
-                    Awful
+                    <div id ='rateP'>
+                        <b>On a scale of 1 to 5, what would you rate us?</b>
+                    </div>
+                    <div class = 'radBut'>
+                        <input type ='radio' name ='scale1'/>
+                        <br>
+                        Awful
+                    </div>
+                    <div class = 'radBut'>
+                        <input type ='radio' name ='scale2'/>
+                        <br>
+                        Bad
+                    </div>
+                    <div class = 'radBut'>
+                        <input type ='radio' name ='scale3'/>
+                        <br>
+                        Okay
+                    </div>
+                    <div class = 'radBut'>
+                        <input type ='radio' name ='scale4'/>
+                        <br>
+                        Good
+                    </div>
+                    <div class = 'radBut'>
+                        <input type ='radio' name ='scale5'/>
+                        <br>
+                        Excellent
+                    </div>
                 </div>
-                <div class = 'radBut'>
-                    <input type ='radio' name ='scale'/>
-                    <br>
-                    Bad
-                </div>
-                <div class = 'radBut'>
-                    <input type ='radio' name ='scale'/>
-                    <br>
-                    Okay
-                </div>
-                <div class = 'radBut'>
-                    <input type ='radio' name ='scale'/>
-                    <br>
-                    Good
-                </div>
-                <div class = 'radBut'>
-                    <input type ='radio' name ='scale'/>
-                    <br>
-                    Excellent
-                </div>
-            </div>
-            <div>
-                <br>
                 <div>
-                    <b>What do you think about our service?</b>
+                    <br>
+                    <div>
+                        <b>What do you think about our service?</b>
+                    </div>
+                    <br>
+                    <textarea id="feedback1" rows='6' cols='97' placeholder='Leave your feedback here...' name="feedback"></textarea>
                 </div>
-                <br>
-                <textarea rows='6' cols='97' placeholder='Leave your feedback here...'></textarea>
-            </div>
-            <div>
-                <br>
                 <div>
-                <b>How would you suggest us improve it?</b>
+                    <br>
+                    <div>
+                    <b>How would you suggest us improve it?</b>
+                    </div>
+                    <br>
+                    <textarea rows='6' cols='97' placeholder='Leave your feedback here...'></textarea>
                 </div>
-                <br>
-                <textarea rows='6' cols='97' placeholder='Leave your feedback here...'></textarea>
-            </div>
                 <br>
                 <button id='reviewSub'>Submit</button>
+            </form>
+            <form action="/comment" method='post'>
                 <button id='toRevBut' class='toRevPage'>See others' comments</button>
-        </form>
-    </div>
-    <div id='revPage' style='display:none;'>
-        <div id ='revPageHeader'>
-            <p id ='backBut'><i id="backArrow"></i> <u>Go back</u></p>
-            <h1>Comments</h1>
-        </div>
-        <div id ='cmtDisplay'>
+            </form>
         </div>
     </div>
     <script src='review.js'></script>
+    <script>
+        document.getElementById('reviewSub').addEventListener('click', function(){
+            console.log(`{{{check}}}`);
+            if(`{{{check}}}` == 1){
+            document.getElementById('endScreen').style.display = 'block';
+            document.getElementById('review_info').style.display = 'none';
+            }
+        });
+        
+    </script>
 </body>
+
 </html>
