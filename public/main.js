@@ -1,9 +1,5 @@
 var topButClass = document.getElementsByClassName('top_but');
-var address = '';
-var counter = 0;
 var address = ''
-var popup = document.getElementById('popup_display');
-var popup_close = document.getElementById('popup_close')
 //--------------------------------contact map-----------------------------------------------
 function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
@@ -75,7 +71,6 @@ for (var ind = 0; ind < topButClass.length; ind++){
 		document.getElementById('contact_display').style.display = 'none'
 		document.getElementById('about_display').style.display = 'none'
 		document.getElementById('main_display').style.display = 'none'
-        document.getElementById('review_display').style.display = 'none'
 		document.getElementById(ev.target.id + '_display').style.display='block';
 	});
 };
@@ -92,6 +87,7 @@ document.getElementById("address_input").addEventListener('keydown',(ev)=>{
 	if(ev.keyCode == 13 && address_no_empty()){
 		address_check(1);
 	}
+
 });
 document.getElementById('login_submit').addEventListener('click',()=>{
 	window.location ='/signin';
@@ -102,39 +98,28 @@ document.getElementById('re_address').addEventListener('click',()=>{
 });
 document.getElementById('next_submit').addEventListener('click',()=>{
 	window.location="/location";
-});
-
-document.getElementById('reviewSub').addEventListener('click', function(){
-    document.getElementById('endScreen').style.display = 'block';
-    document.getElementById('review_info').style.display = 'none';
-    counter = 1
-});
-
-for (var i = 0; i < document.getElementsByClassName('toRevPage').length; i++){
-    document.getElementById(document.getElementsByClassName('toRevPage')[i].id).addEventListener('click', function(){
-        document.getElementById('review_header').style.display = 'none';
-        document.getElementById('endScreen').style.display = 'none';
-        document.getElementById('review_info').style.display = 'none';
-        document.getElementById('revPage').style.display = 'block';
 })
-};
-
-document.getElementById('backBut').addEventListener('click', function(){
-    document.getElementById('revPage').style.display = 'none';
-    if (counter == 0){
-        document.getElementById('review_header').style.display = 'block';
-        document.getElementById('review_info').style.display = 'block';
-    } else if (counter == 1){
-        document.getElementById('review_header').style.display = 'block';
-        document.getElementById('endScreen').style.display = 'block';
-    }
+//-----change the color of the box----
+document.getElementById('address_submit').addEventListener("click",function(){
+	if(document.getElementById('address_input').value== ''){
+		document.getElementById('address_input').style.backgroundColor="rgb(246,220,220)";
+	}else{
+		document.getElementById('address_input').style.backgroundColor=" ";
+	}
+	if(document.getElementById('city_input').value == ''){
+		document.getElementById('city_input').style.backgroundColor = "rgb(246,220,220)";
+		}else{
+			document.getElementById('city_input').style.backgroundColor=" ";
+		}
+	if(document.getElementById('zip_input').value ==''){
+		document.getElementById('zip_input').style.backgroundColor="rgb(246,220,220)";
+	}else{
+		document.getElementById('zip_input').style.backgroundColor= " ";
+	}
 });
-window.addEventListener('load', function() {
-	popup.style.bottom = "0px";
-	popup.style.opacity = 1;
-});
 
-popup_close.addEventListener('click', function(){
+document.getElementById('main').addEventListener('click',function(){
+	
+})
 
-	popup.style.opacity = -50;
-});
+//----scroll down- faded---//
