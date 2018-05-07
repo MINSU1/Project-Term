@@ -2,7 +2,7 @@
   "name": "project-term",
   "version": "1.0.0",
   "description": "\"# ACIT2520\"",
-  "main": "unittest.js",
+  "main": "address_finder.js",
   "directories": {
     "test": "test"
   },
@@ -16,7 +16,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "mocha",
+    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
   "repository": {
