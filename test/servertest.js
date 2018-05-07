@@ -8,67 +8,97 @@ const config = {
 }; 
 const connection = new Connection(config); 
 const Request = require('tedious').Request;  
-const TYPES = require('tedious').TYPES; 
+const TYPES = require('tedious').TYPES;  
 
-function getData(){
+function addMember(type, data){
+    console.log(data)
     connection.on('connect', function(err) {  
-        // If no error, then good to proceed.
-        return new Promise((resolve,reject)=>{
-            console.log(err);   
-            return GetInfo('Members').then((message) => {
-                //console.log(message);
-                return listToJson(message)
-            }).then((list)=>{
-                //console.log(list);
-                resolve(list)
-            }).catch((error) => {
-                console.log('Error:', error);
-            });
-        })
+        //console.log(err);   
+        addInfo(type, data)
     })
-} 
+}
+function removeMember(data){
+    connection.on('connect', function(err) {  
+        console.log(err);   
+        removeInfo('Member', data)
+    })
+}
 
-function GetInfo(info) { 
+function get(type){
+    connection.on('connect', function(err) {  
+        console.log(err); 
+        //console.log("Connected");  
+        getInfo(type).then((message) => {
+            //console.log(message);
+            return listToJson(message)
+        }).then((json)=>{
+            console.log(json);
+            return json
+        }).catch((error) => {
+            //console.log('Error:', error);
+        });
+    })
+}
+
+function getInfo(info) { 
     return new Promise((resolve,reject) => {
         command = ''
+        list = []
         if( info == 'Members'){
+            list = [info]
             command = "SELECT * FROM member"
         }
         if( info == 'Orders'){
+            list = [info]
             command = "SELECT * FROM order_history"
         }
-        request = new Request(command, function(err) {  
+        request = new Request(command, function(err) {
         if (err) {  
-            console.log(err);}  
+            //console.log(err);
+        }  
         });  
         var result = []; 
-        list = [info]
         request.on('row', function(columns) {  
             columns.forEach(function(column) {  
               if (column.value === null) {  
-                console.log('NULL');  
+                //console.log('NULL');  
               } else {  
                 result.push(column.value);  
               }  
             });  
-            //console.log(result);
             list.push(result)
-            //console.log(result);
             result =[];
-            //console.log(result);
             resolve(list)
         });  
-        request.on('done', function(rowCount, more) {  
-        //console.log(rowCount + ' rows returned');  
-        });
         connection.execSql(request); 
     })
 }  
-
-
+function addInfo(type, data) { 
+        if( type == 'Member'){
+            command = `Insert into member(username, password, line_address, city, zipcode)Values('${data[0]}','${data[1]}','${data[2]}','${data[3]}','${data[4]}')`
+            console.log(command);
+        }
+        request = new Request(command, function(err) {  
+        if (err) {  
+            console.log(err);
+        }  
+        });  
+        connection.execSql(request); 
+}
+function removeInfo(type, data) { 
+    command = ''
+    if( type == 'Member'){
+        command = `Delete from member where ${data[0]}='${data[1]}'`
+    }
+    request = new Request(command, function(err) {  
+    if (err) {  
+        console.log(err);
+    }  
+    });  
+    connection.execSql(request); 
+}
 function listToJson(list) {
     var newjson = {}
-    console.log(list[0]);
     if(list[0] == 'Members'){
         for (x=1;x<list.length;x++){
             str = `${list[x][2]}, ${list[x][3]}, ${list[x][4]}`
@@ -76,7 +106,6 @@ function listToJson(list) {
                 'password': list[x][1],
                 'address': str
             }
-        //console.log(list[item]);
         }
     }
     if(list[0] == 'Orders'){
@@ -90,15 +119,20 @@ function listToJson(list) {
             }
         }
     }
-    //console.log(newjson);
     return newjson
 }
 
-
 module.exports = {
     listToJson,
-    GetInfo
+    getInfo,
+    removeMember,
+    addMember,
+    get
 }
+
+//get('Members')
+//removeMember(['username','bob'])
+//addMember('Member',['bob', '5678', '555 lol ave', 'vancouver', 'v5s 4h4'])
 
 //commands 
 /*

@@ -110,7 +110,8 @@ var lat = '',
 	address = '',
     dest_address = '',
 	validity = 0
-	weather_body = '';
+	weather_body = '',
+	reviews = {'review': []};
 
 /** Global variable that stores fetched data from weather.js user information */
 var userlog = {};
@@ -122,7 +123,6 @@ getMembers()
 function readJsonFile() {
 	getMembers()
 }
-
 /** 
  * Writing JSON file in local storage
  */
@@ -158,21 +158,10 @@ function latlng_converter(address){
 /** Sending hbs file when cliet enter address */
 app.get('/', (request, response) => {
 	readJsonFile();
-    //console.log(userlog);
-
-	//temp function
-	fs.readFile("./reviews.json", (err, data)=> {
-	    if (err) {
-	        throw err;
-	    }
-	    reviews = JSON.parse(data);
-	})
-
     response.render('main', {
     	validity: validity,
     	username: username,
     	address: address,
-    	// reviews:reviews
     });
 });
 
@@ -227,7 +216,21 @@ app.get("/register", (request, response) =>{
 
 
 app.get("/review", (request, response)=>{
-	response.render("review")
+	response.render("review", {comment:''});
+})
+
+app.post("/review", (request, response)=>{
+	if(!(request.body.feedback == "")){
+		response.render('greet');
+	}else{
+		response.render('review', {comment:'Plesae leave a feedback.'});
+	}
+	
+})
+
+app.post('/comment', (request, response)=>{
+	console.log(reviews);
+	response.render('comment', reviews);
 })
 
 /** Simply sending findid.hbs page */
@@ -287,9 +290,15 @@ app.get('/weather', (request, response) => {
 		distance_fee = parseInt(result.dis.split(' ')[0])*5;
 		ori = result.ori;
 		dest = result.dest;
-
-		//console.log(weather_body, '!!');
-		response.render('weather', {summary: weather_body.summary,icon:weather_body.icon,temp:weather_body.temperature,humid:weather_body.humidity,winds:weather_body.windSpeed,dist_fee:distance_fee,dist:distance, ori:ori,dest:dest});
+		response.render('weather', {summary: weather_body.summary,
+            icon:weather_body.icon,
+            temp:parseFloat(Math.round(weather_body.temperature-32)*(5/9)).toFixed(2),
+            humid:weather_body.humidity,
+            winds:weather_body.windSpeed,
+            dist_fee:distance_fee,
+            dist:distance,
+            ori:ori,
+            dest:dest});
 	}).catch((error)=>{
 		console.log(error);
 	});
