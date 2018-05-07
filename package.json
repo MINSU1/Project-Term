@@ -2,29 +2,24 @@
   "name": "project_term",
   "version": "1.0.0",
   "description": "\"# ACIT2520\"",
-  "main": "app_test.js",
+  "main": "address_finder.js",
   "directories": {
     "test": "test"
   },
   "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
     "body-parser": "^1.18.2",
-    "mocha": "^5.1.1",
-    "csv-reader": "^1.0.2",
-    "d3": "^5.1.0",
     "ejs": "^2.5.9",
     "express": "^4.16.3",
     "fs": "^0.0.1-security",
     "hbs": "^4.0.1",
-    "jsdoc": "^3.5.5",
-    "request": "^2.85.0"
-  },
-  "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
     "jest": "^22.4.3",
+    "request": "^2.85.0",
     "superagent": "^3.8.3",
     "supertest": "^3.0.0"
   },
+  "devDependencies": {},
   "scripts": {
     "test": "jest",
     "start": "node server.js"
