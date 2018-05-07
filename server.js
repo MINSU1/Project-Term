@@ -97,8 +97,8 @@ app.use(express.static(__dirname + '/public'));
  * lat and lng variable will be replaced with the longitude and latitude of the address what user entered
  * 49.2834444' is default lat for simple error handling.
  */ 
-var lat = '49.2834444',
-	lng = '-123.1196331',
+var lat = '',
+	lng = '',
 /** Default Username is Guest, and when the client signin, it will be replaced with the user's name */
 	username = 'Guest',
 /** 
@@ -107,8 +107,8 @@ var lat = '49.2834444',
  * validity = for main_page. become 1 when user type address or signin
  * weather_body = Global variable that stores fetched data from weather.js
  */
-	address = '460 Westveiw St, coquitlam, bc, canada',
-    dest_address = 'bcit, bc, ca',
+	address = '',
+    dest_address = '',
 	validity = 0
 	weather_body = '';
 
@@ -145,9 +145,9 @@ function weather_fetcher(address){
 function latlng_converter(address){
 	address_finder.getAddress(address, (errorMessage, results) =>{
 		if (errorMessage){
-			//console.log("latlng_converter Error");
-			lat = '49.2834444',
-			lng = '-123.1196331';
+			console.log("latlng_converter Error");
+			lat = '',
+			lng = '';
 		} else{
 			lat = JSON.stringify(results.lat, undefined, 2)
 			lng = JSON.stringify(results.lng, undefined, 2)
