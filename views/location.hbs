@@ -164,8 +164,22 @@
             document.getElementById('explanation').appendChild(sitediv);
             document.getElementById('submit').style.display = 'block';
             isDivExist = 1;
+            ratecolor = ratingcolor();
+            ratingDiv.style.color = ratecolor;
         }
         
+    }
+
+    function ratingcolor() {
+        mycolor = "red";
+        console.log(place_rating);
+        if (place_rating >= 2.5) {
+            mycolor = "#ffcc00";
+        }
+        if (place_rating >= 3.5) {
+            mycolor = "Lime";
+        }
+        return mycolor;
     }
 
     function addtodiv(place) {
