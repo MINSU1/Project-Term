@@ -126,15 +126,9 @@ module.exports = {
     listToJson,
     getInfo,
     removeMember,
-    addMember,
-    get
+    addMember
 }
 
-//get('Members')
-//removeMember(['username','bob'])
-//addMember('Member',['bob', '5678', '555 lol ave', 'vancouver', 'v5s 4h4'])
-
-//commands 
 /*
 DELETE FROM <table>
 WHERE title='<value>'

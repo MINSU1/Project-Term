@@ -4,6 +4,38 @@ const hbs = require('hbs');
 const fs = require('fs');
 const request = require('request');
 const bodyParser = require('body-parser')
+const server = require('./test/servertest.js')
+const Connection = require('tedious').Connection;  
+const config = {  
+    userName: 'Student',  
+    password: 'P@ssw0rd',  
+    server: 'team8server.database.windows.net',  
+    // If you are on Microsoft Azure, you need this:  
+    options: {encrypt: true, database: 'Project'}  
+}; 
+const connection = new Connection(config); 
+const Request = require('tedious').Request;  
+const TYPES = require('tedious').TYPES;
+
+//database getter
+function getUsers(){
+	type = 'Members'
+    connection.on('connect', function(err) {  
+        console.log(err);
+        //console.log("Connected");  
+        server.getInfo(type).then((message) => {
+            return server.listToJson(message)
+        }).then((json)=>{
+            //console.log(json);
+            userlog = json
+            console.log(userlog);
+            return json
+        }).catch((error) => {
+            console.log('Error:', error);
+        });
+    })
+}
+//
 
 /** calling express */
 var app = express();
@@ -54,13 +86,10 @@ var userlog = {jay:{password:"123",address:"204-460 Westview St, Coquitlam, BC, 
 /** 
  * Reading JSON file in local storage
  */
+getUsers()
+
 function readJsonFile() {
-	fs.readFile('./username.json', (err, data)=> {
-	    if (err) {
-	        throw err;
-	    }
-	    userlog = JSON.parse(data);
-	});
+	console.log(userlog);
 	fs.readFile("./reviews.json", (err, data)=> {
 	    if (err) {
 	        throw err;
