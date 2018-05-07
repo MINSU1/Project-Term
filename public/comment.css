@@ -19,6 +19,7 @@
     height:70px;
     background:url(./img/logo.jpg) no-repeat;
     background-size: contain;
+    cursor:pointer;
 }
 
 #top_padding{
@@ -48,4 +49,8 @@
     height:auto;
     border-top: rgb(165,0,0) 2px solid;
     font-family: Sans-serif;
+}
+
+table, th, td {
+    border: 1px solid black;
 }
