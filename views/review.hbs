@@ -15,12 +15,6 @@
         <div id="review_header">
             <h1>Please let us know what you think about our service!</h1>
         </div>
-        <div id='endScreen' style='display:none;'>
-            <br>
-            <b>Thank you for your feedback. We really appreciate the time you took to help us improve our service.</b>
-            <br><br>
-            <b>Also, see what others have to say about us <u id='toRevPage' class='toRevPage'>here</u>!</b>
-        </div>
         <div id="review_info">
             <form action="/review" method="post">
                 <div id = "rateUs">
@@ -79,15 +73,10 @@
         </div>
     </div>
     <script src='review.js'></script>
-    <script>
-        document.getElementById('reviewSub').addEventListener('click', function(){
-            console.log(`{{{check}}}`);
-            if(`{{{check}}}` == 1){
-            document.getElementById('endScreen').style.display = 'block';
-            document.getElementById('review_info').style.display = 'none';
-            }
-        });
-        
+    <script type="text/javascript">
+        if(!(`{{{comment}}}` == '')){
+            alert(`{{{comment}}}`);
+        }
     </script>
 </body>
 

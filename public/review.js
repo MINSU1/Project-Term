@@ -17,3 +17,4 @@ document.getElementById('backBut').addEventListener('click', function(){
         document.getElementById('endScreen').style.display = 'block';
     }
 });
+

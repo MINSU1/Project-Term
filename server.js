@@ -48,7 +48,6 @@ var lat = '49.2834444',
     dest_address = 'bcit, bc, ca',
 	validity = 0
 	weather_body = '',
-	review_check = 0,
 	reviews = {'review': []};
 
 /** Global variable that stores fetched data from weather.js user information */
@@ -148,14 +147,16 @@ app.get("/register", (request, response) =>{
 });
 
 app.get("/review", (request, response)=>{
-	response.render("review", {'check':review_check})
+	response.render("review", {comment:''});
 })
 
 app.post("/review", (request, response)=>{
 	if(!(request.body.feedback == "")){
-		review_check = 1
-		response.render("review", {'check':review_check})
+		response.render('greet');
+	}else{
+		response.render('review', {comment:'Plesae leave a feedback.'});
 	}
+	
 })
 
 app.post('/comment', (request, response)=>{
