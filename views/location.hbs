@@ -12,6 +12,11 @@
     <div id="top_padding"></div>
     <img id="background" src="./img/background.jpg">
     <div id='logo'></div>
+    <div id="radiusoption">
+        <h>500m</h><input id="checkBox" type="checkbox">
+        <h>1km</h><input id="checkBox" type="checkbox">
+        <h>1.5km</h><input id="checkBox" type="checkbox">
+    </div>
     <div id="map"></div>
     <div id="explanation">
         
@@ -212,6 +217,20 @@
         location_confirmation();
     });
     window.onload = initMap;
+
+    // function addClassCheck(element){
+    //     if(element.checked){
+    //         element.classList.add("radcheckbox");
+    //     }else{
+    //         element.classList.remove("radcheckbox");
+    //     }
+    //     if(document.getElementsByClassName("radcheckbox").length>1){
+    //       alert("Please select only one check box");
+    //         element.checked=false;
+    //         element.classList.remove("radcheckbox");
+    //     }
+
+    // }
 
     </script>
 </body>

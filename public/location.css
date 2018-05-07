@@ -16,7 +16,7 @@
     top:0px;
     left:0px;
     width:100%;
-    height:18%;
+    height:12%;
     background-color:rgb(0,0,0);
 }
 
@@ -42,7 +42,7 @@
     right:0px;
     margin:auto;
     width:170px;
-    height:17%;
+    height:12%;
     background:url(./img/logo.jpg) no-repeat;
     background-size:contain;
 }
@@ -127,4 +127,35 @@
     font-family:sans-serif;
     color:white;
     cursor:pointer;
+}
+
+.radcheckbox{
+    /*position:fixed;*/
+    display:inline-block;
+    right:620px;
+
+}
+
+#radiusoption{
+    position:absolute;
+    top:90px;
+    left:220px;
+    width:200px;
+    height:20px;
+    border:2px solid black;
+    border-radius: 20px;
+    /*background-color: rgb(165,0,0);*/a
+    /*opacity: 0.2;*/
+    /*filter: alpha(opacity=50);*/
+}
+
+h{
+    position:relative;
+    left:0px;
+    font-size:18px;
+    font-family:sans-serif;
+}
+
+#eachcheckbox{
+    position:relative;
 }

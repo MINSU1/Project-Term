@@ -16,6 +16,20 @@
             <h1>Comments</h1>
         </div>
         <div id ='cmtDisplay'>
+            <table style="position:absolute;top:20px;width:70%; left:0px;right:0px;margin:auto;">
+              <tr>
+                <th>Feedback</th>
+                <th>rate</th> 
+                <th>date</th>
+                <th>name</th>
+              </tr>
+              <tr>
+                <td>I really like this application!</td>
+                <td>Good</td> 
+                <td>May 1st, 2018</td>
+                <td>Jay</td>
+              </tr>
+            </table>
             <br>
         </div>
     </div>
@@ -24,15 +38,15 @@
         var reviews = `{{{review}}}`,
             review = reviews.split(',')
 
-        var div = document.createElement("div");
-        div.style.position = "absolute";
-        div.style.width = "500px";
-        div.style.left = "50px";
-        div.style.height = "20px";
-        div.style.border = "black solid 2px";
-        div.innerHTML = review[3] + '\t' + review[0];
+        // var div = document.createElement("div");
+        // div.style.position = "absolute";
+        // div.style.width = "500px";
+        // div.style.left = "50px";
+        // div.style.height = "20px";
+        // div.style.border = "black solid 2px";
+        // div.innerHTML = review[3] + '\t' + review[0];
 
-        document.getElementById("cmtDisplay").appendChild(div);
+        // document.getElementById("cmtDisplay").appendChild(div);
     </script>
 </body>
 
