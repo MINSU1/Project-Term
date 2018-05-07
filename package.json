@@ -2,12 +2,13 @@
   "name": "project_term",
   "version": "1.0.0",
   "description": "\"# ACIT2520\"",
-  "main": "address_finder.js",
+  "main": "unittest.js",
   "directories": {
     "test": "test"
   },
   "dependencies": {
     "body-parser": "^1.18.2",
+    "mocha": "^5.1.1",
     "csv-reader": "^1.0.2",
     "d3": "^5.1.0",
     "ejs": "^2.5.9",
@@ -20,7 +21,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha",
     "start": "node server.js"
   },
   "repository": {
