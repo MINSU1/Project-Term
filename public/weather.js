@@ -43,7 +43,6 @@ var weather = (lat, lng) => {
 };
 
 var distance_calc = (pointa, pointb) => {
-
 	return new Promise((resolve, reject)=> {
 		request({
 		    url: "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins="+encodeURIComponent(pointa)+",DC&destinations="+encodeURIComponent(pointb)+",NY&key=AIzaSyCHXWx_trBSkgcp7PIEBrmNGI2_vAoKSuA",
@@ -62,16 +61,11 @@ var distance_calc = (pointa, pointb) => {
 					var distance = body.rows[0].elements[0].distance.text,
 						ori_addr = body.origin_addresses[0],
 						dest_addr = body.destination_addresses[0];
-
 					resolve({dis:distance,ori:ori_addr,dest:dest_addr});
 				}
-				
-				
 			}
 		});
 	});
-	
-
 }
 
 module.exports = {
