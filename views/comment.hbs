@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Comment</title>
+    <link href='comment.css' rel='stylesheet' type='text/css' />
+</head>
+
+<body>
+    <div id='top_padding'>
+        <div id='logo'></div>
+    </div>
+    <img id="background" src="./img/background.jpg">
+    <div id='revPage'>
+        <div id ='revPageHeader'>
+            <h1>Comments</h1>
+        </div>
+        <div id ='cmtDisplay'>
+            <br>
+        </div>
+    </div>
+    <script src='comment.js'></script>
+    <script type='text/javascript'>
+        var reviews = `{{{review}}}`,
+            review = reviews.split(',')
+
+        var div = document.createElement("div");
+        div.style.position = "absolute";
+        div.style.width = "500px";
+        div.style.left = "50px";
+        div.style.height = "20px";
+        div.style.border = "black solid 2px";
+        div.innerHTML = review[3] + '\t' + review[0];
+
+        document.getElementById("cmtDisplay").appendChild(div);
+    </script>
+</body>
+
+</html>
