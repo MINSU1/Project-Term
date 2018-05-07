@@ -144,6 +144,7 @@ document.getElementById('address_submit').addEventListener("click",function(){
 	}else{
 		document.getElementById('zip_input').style.backgroundColor= " ";
 	}
+})
 
 document.getElementById('review').addEventListener('click',()=>{
 	window.location="/review";
@@ -167,4 +168,3 @@ document.getElementById('main').addEventListener('click',function(){
 	setTimeout(function(){
 		popup.style.display = "none"
 	}, 1500)
-});
