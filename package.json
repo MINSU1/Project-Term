@@ -2,7 +2,7 @@
   "name": "project_term",
   "version": "1.0.0",
   "description": "\"# ACIT2520\"",
-  "main": "address_finder.js",
+  "main": "app_test.js",
   "directories": {
     "test": "test"
   },
@@ -14,13 +14,18 @@
     "express": "^4.16.3",
     "fs": "^0.0.1-security",
     "hbs": "^4.0.1",
-    "jest": "^22.4.3",
     "jsdoc": "^3.5.5",
     "request": "^2.85.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "jest": "^22.4.3",
+    "superagent": "^3.8.3",
+    "supertest": "^3.0.0"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start": "node server.js"
   },
   "repository": {
