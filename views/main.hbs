@@ -17,9 +17,9 @@
     <img id="background" src="./img/background.jpg">
     <div id="main_display" class="displays">
         <div id="no_address" style="display: none;">
-            <p1>Please enter your address to continue as a guest</p1>
             <div id="address_div">
-                <p>Address Line</p>
+                <p id="guesttext">Please enter your address to continue as a guest</p>
+                <p id="guestentry">Address Line</p>
                 <input type="text" id='address_input' class="guest_address" placeholder="Apt#/Street">
                 <p>City</p>
                 <input type="text" id='city_input' class="guest_address" placeholder="ex)Vancouver">
@@ -27,7 +27,6 @@
                 <input type="text" id='zip_input' class="guest_address" placeholder="ex)V6B 3H6">
                 <button type="submit" id="address_submit">Submit</button>
             </div>
-            <p3>Or</p3>
             <div id="login_div">
                 <!--<p2>If you have an account, press login!</p2>-->
                 <button type="submit" id="login_submit">Sign in</button>
