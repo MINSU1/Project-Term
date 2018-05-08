@@ -107,9 +107,7 @@
 
             infowindow.setContent(place.name + "<br><br>" + `<button onclick="myFunction()">SELECT</button>`);
             infowindow.open(map, this);
-            // website_link = 
             (place.name)
-            // addtodiv(place)
         });
     }
     function isItOpen(par){
@@ -144,7 +142,7 @@
             openDiv.id = "open_div";
             phonediv.id = "phone_div";
             sitediv.id = "site_div";
-            // nameDiv.innerHTML = place_name + '<br>' +place_rating+ '<br>' +place_address+ '<br>' +place_type+ '<br>' +price_level+ '<br>' +open_now;
+
             nameDiv.innerHTML = place_name;          
             ratingDiv.innerHTML = "Rating: "+place_rating;       
             addDiv.innerHTML = "Address: "+place_address;      
