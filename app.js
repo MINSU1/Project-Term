@@ -4,7 +4,7 @@ const hbs = require('hbs');
 const fs = require('fs');
 const request = require('request');
 const bodyParser = require('body-parser')
-const server = require('./test/servertest.js')
+const server = require('./public/database.js')
 const Connection = require('tedious').Connection;  
 const config = {  
     userName: 'Student',  
@@ -28,7 +28,7 @@ function getUsers(){
         }).then((json)=>{
             //console.log(json);
             userlog = json
-            console.log(userlog);
+            //console.log(userlog);
             return json
         }).catch((error) => {
             console.log('Error:', error);
