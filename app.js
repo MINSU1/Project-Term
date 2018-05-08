@@ -3,13 +3,13 @@ const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
 const request = require('request');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
 
 /** calling express */
 var app = express();
 
 /** Importing js file and its functions */
-const address_finder = require('./address_finder.js')
+const address_finder = require('./address_finder.js');
 const weather_file = require('./public/weather.js');
 
 
@@ -106,15 +106,17 @@ app.get('/', (request, response) => {
 
 /** This is for Guest input. find wether the adress is available or not */
 app.post('/address_check', (request, response) => {
-	address = request.body.address;
-	username = 'Guest'
 	if(request.body.validity == 1){
+		address = request.body.address;
+		username = 'Guest'
 		response.send('valid');
 		weather_fetcher(address);
 		validity = 1; // if validity is 1, it means address has been entered
 	}else if(request.body.validity == 0){
 		validity = 0; // if validity is 0, it means address has not been entered
 		response.send('reload');
+	}else{
+		response.statusCode = 404;
 	}
 });
 //-----------------------------------signin page--------------------------------------------------
@@ -135,6 +137,7 @@ app.post('/login_input', (request, response, next) => {
 		response.send('valid');
 	}else{
 		response.send("invalid");
+		response.statusCode = 404;
 	}
 });
 
@@ -154,12 +157,12 @@ app.post("/review", (request, response)=>{
 	}else{
 		response.render('review', {comment:'Plesae leave a feedback.'});
 	}
-})
+});
 
 app.post('/comment', (request, response)=>{
 	console.log(reviews);
 	response.render('comment', reviews);
-})
+});
 
 /** Simply sending findid.hbs page */
 app.get("/findid", (request, response) =>{
