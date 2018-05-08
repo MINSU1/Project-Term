@@ -48,9 +48,43 @@
     width:100vw;
     height:auto;
     border-top: rgb(165,0,0) 2px solid;
-    font-family: Sans-serif;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
 
 table, th, td {
     border: 1px solid black;
+}
+
+.commentDiv {
+    position:relative;
+    width:100vw;
+    border-bottom:rgb(165,0,0) 2px solid;
+}
+
+.userName{
+    width:10%;
+    font-size:20px;
+    font-weight: bold;
+    text-align:center;
+}
+
+.rating{
+    position:absolute;
+    top:5%;
+    left:10%;
+}
+
+.date{
+    position:absolute;
+    top:0px;
+    right:1%;
+}
+
+.feedback{
+    position:relative;
+    left:10px;
+}
+
+.checked {
+    color: yellow;
 }
