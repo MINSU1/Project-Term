@@ -161,7 +161,9 @@ app.post("/review", (request, response)=>{
 });
 
 app.post('/comment', (request, response)=>{
-	console.log(reviews);
+	response.render('comment', reviews);
+});
+app.get('/comment', (request, response)=>{
 	response.render('comment', reviews);
 });
 
