@@ -3,14 +3,10 @@
  * global variable address that store address information
  */
 var topButClass = document.getElementsByClassName('top_but');
-var address = '';
+var address = ''
 var popup = document.getElementById('popup_display');
 var popup_close = document.getElementById('popup_close');
 var counter = 0;
-
-var popup = document.getElementById('popup_display');
-var popup_close = document.getElementById('popup_close');
-
 //--------------------------------contact map-----------------------------------------------
 /** 
  * initialize google map from the latitude and longitude
@@ -47,6 +43,10 @@ function initMap() {
  * Check whether input field is empty or not 
  * @returns {boolean}
  */
+
+
+
+
 function address_no_empty(){
 	if(document.getElementById("address_input").value == ''){
 		alert("Please enter address");
@@ -104,10 +104,14 @@ document.getElementById("address_submit").addEventListener("click",()=>{
 		address_check(1);
 	}
 });
+ /** when enter key is pressed on address_input, change global address variable and check if address input is empty  */
+document.getElementById("address_input").addEventListener('keydown',(ev)=>{
+	address = String(document.getElementById('address_input').value) +', '+ String(document.getElementById('city_input').value) +', '+ 'BC' + ', CA'
+	if(ev.keyCode == 13 && address_no_empty()){
+		address_check(1);
+	}
 
-document.getElementById("review").addEventListener("click", ()=>{
-	window.location = "/review";
-})
+});
 
 /** go to /signin when login_submit button is clicked */
 document.getElementById('login_submit').addEventListener('click',()=>{
@@ -118,6 +122,25 @@ document.getElementById('login_submit').addEventListener('click',()=>{
 document.getElementById('re_address').addEventListener('click',()=>{
 	address_check(0);
 });
+
+// //-----change the color of the box----
+// document.getElementById('address_submit').addEventListener("click",function(){
+// 	if(document.getElementById('address_input').value== ''){
+// 		document.getElementById('address_input').style.backgroundColor="rgb(246,220,220)";
+// 	}else{
+// 		document.getElementById('address_input').style.backgroundColor=" ";
+// 	}
+// 	if(document.getElementById('city_input').value == ''){
+// 		document.getElementById('city_input').style.backgroundColor = "rgb(246,220,220)";
+// 		}else{
+// 			document.getElementById('city_input').style.backgroundColor=" ";
+// 		}
+// 	if(document.getElementById('zip_input').value ==''){
+// 		document.getElementById('zip_input').style.backgroundColor="rgb(246,220,220)";
+// 	}else{
+// 		document.getElementById('zip_input').style.backgroundColor= " ";
+// 	}
+// })
 
 document.getElementById('review').addEventListener('click',()=>{
 	window.location="/review";
@@ -132,6 +155,7 @@ window.addEventListener('load', function() {
 	popup.style.opacity = 1;
 });
 
+//----scroll down- faded---//
 popup_close.addEventListener('click', function(){
 	popup.style.opacity = -50;
 	setTimeout(function(){
