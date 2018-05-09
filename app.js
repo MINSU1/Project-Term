@@ -46,7 +46,8 @@ var lat = '49.2834444',
     dest_address = 'bcit, bc, ca',
 	validity = 0
 	weather_body = '',
-	reviews = {'review': []};
+	reviiew = JSON.stringify([{name:'Jay', rating: 5, date: '20170501', comment: 'This app is awesome'}, {name:'Jakob', rating: 1, date: '20170501', comment: 'App is too buggy, the devs suck lol'}]),
+	reviews = {'review': reviiew};
 
 /** Global variable that stores fetched data from weather.js user information */
 var userlog = {jay:{password:"123",address:"204-460 Westview St, Coquitlam, BC, Canada"},min:{password:"123",address:"minsu st, vancouver, BC, Canada"}};
@@ -61,16 +62,16 @@ function readJsonFile() {
 	    }
 	    userlog = JSON.parse(data);
 	});
-	fs.readFile("./reviews.json", (err, data)=> {
-	    if (err) {
-	        throw err;
-	    }
-	   	json_reviews = JSON.parse(data);
+	// fs.readFile("./reviews.json", (err, data)=> {
+	//     if (err) {
+	//         throw err;
+	//     }
+	//    	json_reviews = JSON.parse(data);
 
-	    for(item in json_reviews){
-			reviews['review'].push(json_reviews[item].concat(item));
-		}
-	})
+	//     for(item in json_reviews){
+	// 		reviews['review'].push(json_reviews[item].concat(item));
+	// 	}
+	// })
 }
 /** 
  * Writing JSON file in local storage
@@ -149,7 +150,7 @@ app.get("/register", (request, response) =>{
 
 app.get("/review", (request, response)=>{
 	response.render("review", {comment:''});
-})
+});
 
 app.post("/review", (request, response)=>{
 	if(!(request.body.feedback == "")){
