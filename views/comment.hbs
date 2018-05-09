@@ -4,6 +4,7 @@
 <head>
     <title>Comment</title>
     <link href='comment.css' rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -38,6 +39,16 @@
     <script type='text/javascript'>
         var a = document.getElementById('review_data').innerHTML;
         console.log(JSON.parse(a));
+        var reviews = `{{{review}}}`,
+            review = reviews.split(',')
+        var div = document.createElement("div");
+        div.style.position = "absolute";
+        div.style.width = "500px";
+        div.style.left = "50px";
+        div.style.height = "20px";
+        div.style.border = "black solid 2px";
+        div.innerHTML = review[3] + '\t' + review[0];
+        document.getElementById("cmtDisplay").appendChild(div);
     </script>
 </body>
 
