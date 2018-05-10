@@ -59,10 +59,6 @@
         });
     };
 
-    // function linkhome() {
-        
-    // }
-
     function initMap() {
         var pyrmont = { lat: latitu, lng: longitu };
 
@@ -109,7 +105,7 @@
                 url_site=details.website;
             });
 
-            infowindow.setContent(place.name + "<br><br>" + `<button onclick="myFunction()">SELECT</button>`);
+            infowindow.setContent(place.name + "<br><br>" + `<button id=markerButton onclick="myFunction()">SELECT</button>`);
             infowindow.open(map, this);
             // website_link = 
             (place.name)
@@ -126,12 +122,15 @@
     function myFunction() {
         if (isDivExist != 0){
                 document.getElementById('order_div').innerHTML = place_name;   
-                document.getElementById('rating_div').innerHTML = "Rating: "+place_rating; 
+                document.getElementById('rating_div').innerHTML = "Rating: "+place_rating;
+                ratecolor = ratingcolor(place_rating);
+                document.getElementById('rating_div').style.color = ratecolor;
                 document.getElementById('add_div').innerHTML = "Address: "+place_address;
                 document.getElementById('type_div').innerHTML = "Type: "+place_type;    
                 document.getElementById('open_div').innerHTML = "Open/Closed: "+isItOpen(open_now),
                 document.getElementById('phone_div').innerHTML = "Number: "+phone_num;;
                 document.getElementById('site_div').innerHTML = "Website: "+url_site;
+
         }else{
             var nameDiv = document.createElement("div"),
                 ratingDiv = document.createElement("div"),
@@ -173,19 +172,18 @@
             document.getElementById('explanation').appendChild(sitediv);
             document.getElementById('submit').style.display = 'block';
             isDivExist = 1;
-            ratecolor = ratingcolor();
+            ratecolor = ratingcolor(place_rating);
             ratingDiv.style.color = ratecolor;
         }
         
     }
 
-    function ratingcolor() {
+    function ratingcolor(rating) {
         mycolor = "red";
-        console.log(place_rating);
-        if (place_rating >= 2.5) {
+        if (rating >= 2.5) {
             mycolor = "#ffcc00";
         }
-        if (place_rating >= 3.5) {
+        if (rating >= 4) {
             mycolor = "Lime";
         }
         return mycolor;
