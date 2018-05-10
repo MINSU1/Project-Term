@@ -95,9 +95,9 @@ function readJsonFile() {
 	    }
 	   	json_reviews = JSON.parse(data);
 
-	    for(item in json_reviews){
-			reviews['review'].push(json_reviews[item].concat(item));
-		}
+	 //    for(item in json_reviews){
+		// 	reviews['review'].push(json_reviews[item].concat(item));
+		// }
 	})
 }
 /** 
