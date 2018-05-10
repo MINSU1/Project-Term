@@ -1,4 +1,4 @@
-#review_display{
+#greet_display{
 	position: absolute;
 	top:70px;
 	left:0px;
@@ -6,7 +6,7 @@
     height:50%;
 }
 
-#review_header{
+#greet_header{
     position:absolute;
     left:0px;
     right:0px;
@@ -16,7 +16,7 @@
     text-align:center;
 }
 
-#review_info{
+#greetInfo{
     position: absolute;
     left:0px;
     right:0px;
@@ -28,46 +28,19 @@
     font-family: Sans-serif;
 }
 
-#rateP{
-    position:relative;
-    top:-20px;
-    display:inline-block;
-    margin-right:10px;
-}
-
-.radBut{
-    display:inline-block;
-    text-align:center;
-    margin-left:10px;
-    margin-right:10px;
-}
-
-#reviewSub{
-    position:relative;
-    left:90%;
-    height:30px;
-    width:auto;
-    border:none;
-    background:rgb(165,0,0);
-    color:white;
-    font-weight: bold;
+#toRevPage{
+    color: blue;
     cursor:pointer;
-    font-size:18px;
-    border-radius: 25px;
 }
 
-#toRevBut{
-    position:relative;
-    height:30px;
-    top:-30px;
-    width:auto;
-    border:none;
-    background:rgb(165,0,0);
-    color:white;
-    font-weight: bold;
-    cursor:pointer;
-    font-size:18px;
-    border-radius: 25px;
+#top_padding{
+	position: fixed;
+	z-index: 1;
+	top:0px;
+	left:0px;
+	width:100%;
+	height:70px;
+    background-color:rgb(0,0,0);
 }
 
 #background{
@@ -92,14 +65,4 @@
     background:url(./img/logo.jpg) no-repeat;
     background-size: contain;
     cursor:pointer;
-}
-
-#top_padding{
-	position: fixed;
-	z-index: 1;
-	top:0px;
-	left:0px;
-	width:100%;
-	height:70px;
-    background-color:rgb(0,0,0);
 }
