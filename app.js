@@ -3,13 +3,13 @@ const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
 const request = require('request');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
 
 /** calling express */
 var app = express();
 
 /** Importing js file and its functions */
-const address_finder = require('./address_finder.js')
+const address_finder = require('./address_finder.js');
 const weather_file = require('./public/weather.js');
 
 
@@ -46,7 +46,8 @@ var lat = '49.2834444',
     dest_address = 'bcit, bc, ca',
 	validity = 0
 	weather_body = '',
-	reviews = {'review': []};
+	reviiew = JSON.stringify([{name:'Jay', rating: 5, date: '20170501', comment: 'This app is awesome'}, {name:'Jakob', rating: 1, date: '20170501', comment: 'App is too buggy, the devs suck lol'}]),
+	reviews = {'review': reviiew};
 
 /** Global variable that stores fetched data from weather.js user information */
 var userlog = {jay:{password:"123",address:"204-460 Westview St, Coquitlam, BC, Canada"},min:{password:"123",address:"minsu st, vancouver, BC, Canada"}};
@@ -61,16 +62,16 @@ function readJsonFile() {
 	    }
 	    userlog = JSON.parse(data);
 	});
-	fs.readFile("./reviews.json", (err, data)=> {
-	    if (err) {
-	        throw err;
-	    }
-	   	json_reviews = JSON.parse(data);
+	// fs.readFile("./reviews.json", (err, data)=> {
+	//     if (err) {
+	//         throw err;
+	//     }
+	//    	json_reviews = JSON.parse(data);
 
-	    for(item in json_reviews){
-			reviews['review'].push(json_reviews[item].concat(item));
-		}
-	})
+	//     for(item in json_reviews){
+	// 		reviews['review'].push(json_reviews[item].concat(item));
+	// 	}
+	// })
 }
 /** 
  * Writing JSON file in local storage
@@ -106,15 +107,17 @@ app.get('/', (request, response) => {
 
 /** This is for Guest input. find wether the adress is available or not */
 app.post('/address_check', (request, response) => {
-	address = request.body.address;
-	username = 'Guest'
 	if(request.body.validity == 1){
+		address = request.body.address;
+		username = 'Guest'
 		response.send('valid');
 		weather_fetcher(address);
 		validity = 1; // if validity is 1, it means address has been entered
 	}else if(request.body.validity == 0){
 		validity = 0; // if validity is 0, it means address has not been entered
 		response.send('reload');
+	}else{
+		response.statusCode = 404;
 	}
 });
 //-----------------------------------signin page--------------------------------------------------
@@ -135,6 +138,7 @@ app.post('/login_input', (request, response, next) => {
 		response.send('valid');
 	}else{
 		response.send("invalid");
+		response.statusCode = 404;
 	}
 });
 
@@ -146,7 +150,7 @@ app.get("/register", (request, response) =>{
 
 app.get("/review", (request, response)=>{
 	response.render("review", {comment:''});
-})
+});
 
 app.post("/review", (request, response)=>{
 	if(!(request.body.feedback == "")){
@@ -154,12 +158,14 @@ app.post("/review", (request, response)=>{
 	}else{
 		response.render('review', {comment:'Plesae leave a feedback.'});
 	}
-})
+});
 
 app.post('/comment', (request, response)=>{
-	console.log(reviews);
 	response.render('comment', reviews);
-})
+});
+app.get('/comment', (request, response)=>{
+	response.render('comment', reviews);
+});
 
 /** Simply sending findid.hbs page */
 app.get("/findid", (request, response) =>{
