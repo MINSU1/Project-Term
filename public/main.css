@@ -181,7 +181,7 @@ p1{
 	position: absolute;
     margin: auto;
     top: 50px;
-    left: 80px;
+    left: 250px;
     width: 500px;
     height: 400px;
     font-size: 2em;
@@ -203,7 +203,6 @@ p1{
     right: 0px;
     margin: 10px;
     padding: 5px;
-
 }
 .guest_address{
     width: 80%;
@@ -226,11 +225,11 @@ p1{
 #login_div{
     position: absolute;
     margin: auto;
-    top: 50px;
-    left: 700px;
     width: 500px;
     height: 400px;
     font-size: 2em;
+    top:50px;
+    right:250px;
     background: white;
     font-family: serif;
     border: rgb(165,0,0) solid 3px;
@@ -408,9 +407,6 @@ p7{
     animation-name: bounce;
     animation-fill-mode: forwards;
 }
-
-
-
 @-webkit-keyframes bounce {
     0%, 20%, 50%, 80%, 100% {-webkit-transform: translateY(0);}
     40% {-webkit-transform: translateY(-30px) }
@@ -518,3 +514,4 @@ input[type="text"]
     background-color: green;
 }
 
+}
