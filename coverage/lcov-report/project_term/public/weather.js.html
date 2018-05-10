@@ -20,31 +20,31 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">21.88% </span>
+        <span class="strong">68.75% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>7/32</span>
+        <span class='fraction'>22/32</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">37.5% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/16</span>
+        <span class='fraction'>6/16</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">22.22% </span>
+        <span class="strong">88.89% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>2/9</span>
+        <span class='fraction'>8/9</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">21.88% </span>
+        <span class="strong">68.75% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>7/32</span>
+        <span class='fraction'>22/32</span>
       </div>
     </div>
     <p class="quiet">
       Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
     </p>
   </div>
-  <div class='status-line low'></div>
+  <div class='status-line medium'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -137,12 +137,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -152,8 +152,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -172,26 +172,26 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -216,13 +216,13 @@ var geocode = (address) =&gt; {
 		    url: 'http://maps.googleapis.com/maps/api/geocode/json' +
 		        '?address=' + encodeURIComponent(address),
 		    json: true
-		}, <span class="fstat-no" title="function not covered" >(e</span>rror, response, body) =&gt; {
-<span class="cstat-no" title="statement not covered" >			if (error){</span>
+		}, (error, response, body) =&gt; {
+			<span class="missing-if-branch" title="if path not taken" >I</span>if (error){
 <span class="cstat-no" title="statement not covered" >				reject('Cannot connect to Google Maps');</span>
-			}else <span class="cstat-no" title="statement not covered" >if (body.status == 'ZERO_RESULTS'){</span>
+			}else <span class="missing-if-branch" title="if path not taken" >I</span>if (body.status == 'ZERO_RESULTS'){
 <span class="cstat-no" title="statement not covered" >				reject('Cannot find requested address');</span>
-			}else <span class="cstat-no" title="statement not covered" >if (body.status == 'OK'){</span>
-<span class="cstat-no" title="statement not covered" >				resolve({</span>
+			}else <span class="missing-if-branch" title="else path not taken" >E</span>if (body.status == 'OK'){
+				resolve({
 					lat: body.results[0].geometry.location.lat,
 					lng: body.results[0].geometry.location.lng
 				})
@@ -231,9 +231,9 @@ var geocode = (address) =&gt; {
 	});
 };
 &nbsp;
-var weather = <span class="fstat-no" title="function not covered" >(l</span>at, lng) =&gt; {
-<span class="cstat-no" title="statement not covered" >	return new Promise(<span class="fstat-no" title="function not covered" >(r</span>esolve, reject)=&gt; {</span>
-<span class="cstat-no" title="statement not covered" >		request({</span>
+var weather = (lat, lng) =&gt; {
+	return new Promise((resolve, reject)=&gt; {
+		request({
 		    url: 'https://api.darksky.net/forecast/fb2d78ddaa5b88137bda186278187c8d/'+lat+','+lng,
 		    json: true
 		}, <span class="fstat-no" title="function not covered" >(e</span>rror, response, body) =&gt; {
@@ -250,28 +250,28 @@ var weather = <span class="fstat-no" title="function not covered" >(l</span>at, 
 	});
 };
 &nbsp;
-var distance_calc = <span class="fstat-no" title="function not covered" >(p</span>ointa, pointb) =&gt; {
+var distance_calc = (pointa, pointb) =&gt; {
 &nbsp;
-<span class="cstat-no" title="statement not covered" >	return new Promise(<span class="fstat-no" title="function not covered" >(r</span>esolve, reject)=&gt; {</span>
-<span class="cstat-no" title="statement not covered" >		request({</span>
+	return new Promise((resolve, reject)=&gt; {
+		request({
 		    url: "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&amp;origins="+encodeURIComponent(pointa)+",DC&amp;destinations="+encodeURIComponent(pointb)+",NY&amp;key=AIzaSyCHXWx_trBSkgcp7PIEBrmNGI2_vAoKSuA",
 		    json: true
-		}, <span class="fstat-no" title="function not covered" >(e</span>rror, response, body) =&gt; {
-<span class="cstat-no" title="statement not covered" >			if (error){</span>
+		}, (error, response, body) =&gt; {
+			<span class="missing-if-branch" title="if path not taken" >I</span>if (error){
 <span class="cstat-no" title="statement not covered" >				reject('Cannot connect to Darksky.net');</span>
 				//console.log('Cannot connnect to Google Maps');
-			}else <span class="cstat-no" title="statement not covered" >if(body.code == 400){</span>
+			}else <span class="missing-if-branch" title="if path not taken" >I</span>if(body.code == 400){
 <span class="cstat-no" title="statement not covered" >				reject('Cannot find weather form the address');</span>
 				//console.log('Cannot find requested address');
 			}else{
-<span class="cstat-no" title="statement not covered" >				if (body.rows[0].elements[0].status == "NOT_FOUND"){</span>
+				<span class="missing-if-branch" title="if path not taken" >I</span>if (body.rows[0].elements[0].status == "NOT_FOUND"){
 <span class="cstat-no" title="statement not covered" >					reject(body);</span>
 				}else{
-					var distance = <span class="cstat-no" title="statement not covered" >body.rows[0].elements[0].distance.text,</span>
-						ori_addr = <span class="cstat-no" title="statement not covered" >body.origin_addresses[0],</span>
-						dest_addr = <span class="cstat-no" title="statement not covered" >body.destination_addresses[0];</span>
+					var distance = body.rows[0].elements[0].distance.text,
+						ori_addr = body.origin_addresses[0],
+						dest_addr = body.destination_addresses[0];
 &nbsp;
-<span class="cstat-no" title="statement not covered" >					resolve({dis:distance,ori:ori_addr,dest:dest_addr});</span>
+					resolve({dis:distance,ori:ori_addr,dest:dest_addr});
 				}
 				
 				
@@ -292,7 +292,7 @@ module.exports = {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon May 07 2018 13:53:18 GMT-0700 (Pacific Daylight Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Thu May 10 2018 14:24:07 GMT-0700 (Pacific Daylight Time)
 </div>
 </div>
 <script src="..\..\prettify.js"></script>

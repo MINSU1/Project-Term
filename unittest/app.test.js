@@ -11,11 +11,10 @@ describe('Test the root path', () => {
 });
 
 // post
-describe.skip('Test address_check post path', () => {
-    test('/address_check should response the POST method', (done) => {
-        request(app).post('/address_check').then((response) => {
-            expect(response.statusCode).toBe(200);
-            done();
+describe('Test address_check post path', () => {
+    test('/address_check should response the POST method', () => {
+        return request(app).get("/address_check").then(response => {
+            expect(response.statusCode).toBe(404);
         });
     });
 });
@@ -30,8 +29,8 @@ describe('Test the sigin path', () => {
 });
 describe('Test the login_input post path', () => {
     test('/login_input should response the POST method', (done) => {
-        request(app).post('/login_input').then((response) => {
-            expect(response.statusCode).toBe(200);
+        request(app).get('/login_input').then((response) => {
+            expect(response.statusCode).toBe(404);
             done();
         });
     });
@@ -80,7 +79,7 @@ describe('Test the findid path', () => {
     });
 });
 
-describe.skip('Test the register_check path', () => {
+describe('Test the register_check path', () => {
     test('/register_check should response the POST method', (done) => {
         request(app).post('/register_check').then((response) => {
             expect(response.statusCode).toBe(200);

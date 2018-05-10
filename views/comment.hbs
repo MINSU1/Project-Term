@@ -4,6 +4,7 @@
 <head>
     <title>Comment</title>
     <link href='comment.css' rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -16,8 +17,6 @@
             <h1>Comments</h1>
         </div>
         <div id ='cmtDisplay'>
-<<<<<<< HEAD
-=======
             <table style="position:absolute;top:20px;width:70%; left:0px;right:0px;margin:auto;">
               <tr>
                 <th>Feedback</th>
@@ -32,37 +31,10 @@
                 <td>Jay</td>
               </tr>
             </table>
->>>>>>> b810823c075f7611590b441db1989c13e2bae6ad
             <br>
         </div>
     </div>
+    <div style="display:none;" id="review_data">{{{review}}}</div>
     <script src='comment.js'></script>
-    <script type='text/javascript'>
-        var reviews = `{{{review}}}`,
-            review = reviews.split(',')
-
-<<<<<<< HEAD
-        var div = document.createElement("div");
-        div.style.position = "absolute";
-        div.style.width = "500px";
-        div.style.left = "50px";
-        div.style.height = "20px";
-        div.style.border = "black solid 2px";
-        div.innerHTML = review[3] + '\t' + review[0];
-
-        document.getElementById("cmtDisplay").appendChild(div);
-=======
-        // var div = document.createElement("div");
-        // div.style.position = "absolute";
-        // div.style.width = "500px";
-        // div.style.left = "50px";
-        // div.style.height = "20px";
-        // div.style.border = "black solid 2px";
-        // div.innerHTML = review[3] + '\t' + review[0];
-
-        // document.getElementById("cmtDisplay").appendChild(div);
->>>>>>> b810823c075f7611590b441db1989c13e2bae6ad
-    </script>
 </body>
-
 </html>
