@@ -124,23 +124,22 @@ document.getElementById('re_address').addEventListener('click',()=>{
 });
 
 // //-----change the color of the box----
-// document.getElementById('address_submit').addEventListener("click",function(){
-// 	if(document.getElementById('address_input').value== ''){
-// 		document.getElementById('address_input').style.backgroundColor="rgb(246,220,220)";
-// 	}else{
-// 		document.getElementById('address_input').style.backgroundColor=" ";
-// 	}
-// 	if(document.getElementById('city_input').value == ''){
-// 		document.getElementById('city_input').style.backgroundColor = "rgb(246,220,220)";
-// 		}else{
-// 			document.getElementById('city_input').style.backgroundColor=" ";
-// 		}
-// 	if(document.getElementById('zip_input').value ==''){
-// 		document.getElementById('zip_input').style.backgroundColor="rgb(246,220,220)";
-// 	}else{
-// 		document.getElementById('zip_input').style.backgroundColor= " ";
-// 	}
-// })
+document.getElementById('address_submit').addEventListener("click",function(){
+ 	if(document.getElementById('address_input').value== ''){
+ 		document.getElementById('address_input').style.backgroundColor="rgb(246,220,220)";
+ 	}else{
+ 		document.getElementById('address_input').style.backgroundColor=" ";
+ 	}
+ 	if(document.getElementById('city_input').value == ''){
+ 		document.getElementById('city_input').style.backgroundColor = "rgb(246,220,220)";
+ 		}else{
+ 			document.getElementById('city_input').style.backgroundColor=" ";
+ 		}
+ 	if(document.getElementById('zip_input').value ==''){
+ 		document.getElementById('zip_input').style.backgroundColor="rgb(246,220,220)";
+ 	}else{ 		document.getElementById('zip_input').style.backgroundColor= " ";
+ 	}
+ })
 
 document.getElementById('review').addEventListener('click',()=>{
 	window.location="/review";
