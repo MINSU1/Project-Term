@@ -30,10 +30,8 @@ var weather = (lat, lng) => {
 		}, (error, response, body) => {
 			if (error){
 				reject('Cannot connect to Darksky.net');
-				//console.log('Cannot connnect to Google Maps');
 			}else if(body.code == 400){
 				reject('Cannot find weather form the address');
-				//console.log('Cannot find requested address');
 			}else{
 				resolve(body.currently);
 			}
