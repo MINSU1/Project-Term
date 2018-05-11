@@ -59,6 +59,7 @@ var distance_calc = (pointa, pointb) => {
 				if (body.rows[0].elements[0].status == "NOT_FOUND"){
 					reject(body);
 				}else{
+                    console.log(body);
 					var distance = body.rows[0].elements[0].distance.text,
 						ori_addr = body.origin_addresses[0],
 						dest_addr = body.destination_addresses[0];

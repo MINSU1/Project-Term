@@ -6,7 +6,7 @@ create table member
  zipcode varchar(10) not null);
 
 insert into member values ('Jacob', '123', '555 Seymour Street','Vancouver', 'V5R B8A');
-insert into member values ('Jay', '123', '556 Seymour Street','Vancouver', 'V5R B8L');
+insert into member values ('Jay', '123', '460 Westview St','Coquitlam', 'V3K 6C9');
 insert into member values ('Le', '123', '557 Seymour Street','Vancouver', 'V5R K8L');
 insert into member values ('Min', '123', '558 Seymour Street','Vancouver', 'V5R B8F');
 insert into member values ('Ryan', '123', '559 Seymour Street','Vancouver', 'V5R D8B');

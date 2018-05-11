@@ -12,7 +12,7 @@ const TYPES = require('tedious').TYPES;
 
 function addMember(type, data){
     console.log(data)
-    connection.on('connect', function(err) {  
+    connection.on('connect', function(err) {
         console.log(err);   
         addInfo(type, data)
     })
