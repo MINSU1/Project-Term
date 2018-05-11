@@ -8,17 +8,19 @@ const config = {
 }; 
 const connection = new Connection(config); 
 const Request = require('tedious').Request;  
-const TYPES = require('tedious').TYPES;  
+const TYPES = require('tedious').TYPES; 
+
 function getData(){
-    connection.on('connect', function(err) {  
-    // If no error, then good to proceed. 
-    console.log(err); 
-    console.log("Connected");  
-    executeStatement().then((message) => {
-        console.log(message);
-    }).catch((error) => {
-        console.log('Error:', error);
-    });
+    connection.on('connect', function(err) {    
+        executeStatement().then((message) => {
+            //console.log(message);
+            return listToJson(message)
+        }).then((list)=>{
+            console.log(list);
+            return list
+        }).catch((error) => {
+            console.log('Error:', error);
+        });
     })
 } 
 
@@ -28,26 +30,35 @@ function executeStatement() {
     if (err) {  
         console.log(err);}  
     });  
-    var result = ""; 
+    var result = []; 
     list = []
     request.on('row', function(columns) {  
         columns.forEach(function(column) {  
           if (column.value === null) {  
             console.log('NULL');  
           } else {  
-            result+= column.value + " ";  
+            result.push(column.value);  
           }  
         });  
-        //console.log(result);
         list.push(result)
-        result ="";  
+        result =[];
         resolve(list)
     });  
-    request.on('done', function(rowCount, more) {  
-    //console.log(rowCount + ' rows returned');  
-    });
     connection.execSql(request); 
     })
 }  
 
+function listToJson(list) {
+    var newjson = {}
+    for (item in list){
+        str = `${list[item][2]}, ${list[item][3]}, ${list[item][4]}`
+        newjson[list[item][0]] = {
+            'password': list[item][1],
+            'address': str
+        }
+    //console.log(list[item]);
+    }
+    //console.log(newjson);
+    return newjson
+}
 getData()
