@@ -53,8 +53,6 @@ function login_submit(){
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
             if(xmlhttp.responseText == "username invalid"){
                 alert("Invalid username please use other username");
-            }else if(xmlhttp.responseText == "address invalid"){
-                alert("Invalid address");
             }else if(xmlhttp.responseText == "valid"){
                 console.log('login_submit valid');
                 window.location ='/signin';

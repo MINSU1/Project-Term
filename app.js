@@ -39,7 +39,6 @@ function getUsers(){
 var app = express();
 
 /** Importing js file and its functions */
-const address_finder = require('./address_finder.js');
 const weather_file = require('./public/weather.js');
 
 
@@ -204,20 +203,13 @@ app.get("/findid", (request, response) =>{
 app.post("/register_check", (request, response) =>{
 	user_info = request.body;
 
-	address_finder.getAddress(user_info.address, (errorMessage, results) =>{
-		if (errorMessage){
-            response.send('address invalid');
-		}else if(user_info.username in userlog){
-			response.send('username invalid');
-		}else{
-			userlog[String(user_info.username)]= {password:String(user_info.password),address:String(user_info.address)+', '+ String(user_info.city) +", "+ "BC" +", "+"Canada"};
-			address = String(user_info.address)+', '+ String(user_info.city) +", "+ "BC" +", "+"Canada";
-			lat = JSON.stringify(results.lat, undefined, 2)
-			lng = JSON.stringify(results.lng, undefined, 2)
-			writeJsonFile();
-			response.send('valid');
-		}
-	});
+	if(user_info.username in userlog){
+		response.send('username invalid');
+	}else{
+		userlog[String(user_info.username)]= {password:String(user_info.password),address:String(user_info.address)+', '+ String(user_info.city) +", "+ "BC" +", "+"Canada"};
+		address = String(user_info.address)+', '+ String(user_info.city) +", "+ "BC" +", "+"Canada";
+		response.send('valid');
+	}
 });
 
 //-----------------------------------location page--------------------------------------------------
