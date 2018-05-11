@@ -14,7 +14,7 @@ var geocode = (address) => {
 			}else if (body.status == 'ZERO_RESULTS'){
 				reject('Cannot find requested address');
 			}else if (body.status == 'OK'){
-				console.log(body.results[0]);
+				//console.log(body.results[0]);
 				resolve({
 					lat: body.results[0].geometry.location.lat,
 					lng: body.results[0].geometry.location.lng
@@ -44,7 +44,6 @@ var weather = (lat, lng) => {
 };
 
 var distance_calc = (pointa, pointb) => {
-
 	return new Promise((resolve, reject)=> {
 		request({
 		    url: "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins="+encodeURIComponent(pointa)+",DC&destinations="+encodeURIComponent(pointb)+",NY&key=AIzaSyCHXWx_trBSkgcp7PIEBrmNGI2_vAoKSuA",

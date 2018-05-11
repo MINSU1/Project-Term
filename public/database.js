@@ -11,15 +11,15 @@ const Request = require('tedious').Request;
 const TYPES = require('tedious').TYPES;  
 
 function addMember(type, data){
-    console.log(data)
+    //console.log(data)
     connection.on('connect', function(err) {  
         //console.log(err);   
         addInfo(type, data)
         if(!(err)){
-            return True;
+            return true;
         }
         else{
-            return False
+            return false
         }
     })
 }
@@ -29,10 +29,10 @@ function removeMember(data){
         //console.log(err);   
         removeInfo('Member', data)
         if(!(err)){
-            return True;
+            return true;
         }
         else{
-            return False
+            return false
         }
     })
 }
@@ -40,17 +40,18 @@ function removeMember(data){
 function get(type){
     connection.on('connect', function(err) {  
         console.log(err); 
-        //console.log("Connected");  
+        console.log("Connected");  
         getInfo(type).then((message) => {
-            //console.log(message);
+            console.log(message);
             return listToJson(message)
         }).then((json)=>{
-            console.log(json);
+            //console.log(json);
             return json
         }).catch((error) => {
             //console.log('Error:', error);
         });
     })
+    return {}
 }
 
 function getInfo(info) { 
@@ -99,6 +100,7 @@ function addInfo(type, data) {
         connection.execSql(request); 
 }
 function removeInfo(type, data) { 
+
     command = ''
     if( type == 'Member'){
         command = `Delete from member where ${data[0]}='${data[1]}'`
@@ -135,24 +137,13 @@ function listToJson(list) {
     return newjson
 }
 
+function imTrue(){
+    return true
+}
 module.exports = {
     listToJson,
     getInfo,
     removeMember,
-    addMember
+    addMember,
+    get
 }
-
-/*
-DELETE FROM <table>
-WHERE title='<value>'
-
-select <value> from <table>
-
-INSERT INTO table_name (column1, column2, column3, ...)
-VALUES (value1, value2, value3, ...);
-
-UPDATE table_name
-SET column1 = value1, column2 = value2, ...
-WHERE condition;
-*/
-

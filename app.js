@@ -251,6 +251,7 @@ app.get('/weather', (request, response) => {
 		distance_fee = parseInt(result.dis.split(' ')[0])*5;
 		ori = result.ori;
 		dest = result.dest;
+		console.log({summary: weather_body.summary,icon:weather_body.icon,temp:weather_body.temperature,humid:weather_body.humidity,winds:weather_body.windSpeed,dist_fee:distance_fee,dist:distance, ori:ori,dest:dest});
 		response.render('weather', {summary: weather_body.summary,icon:weather_body.icon,temp:weather_body.temperature,humid:weather_body.humidity,winds:weather_body.windSpeed,dist_fee:distance_fee,dist:distance, ori:ori,dest:dest});
 	}).catch((error)=>{
 		//console.log(error);
