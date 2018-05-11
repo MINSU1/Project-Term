@@ -1,8 +1,9 @@
-var commentArr = [{name:'Jay', rating: 5, date: '20170501', comment: 'This app is awesome'}, {name:'Jakob', rating: 1, date: '20170501', comment: 'App is too buggy, the devs suck lol'}];
+var commentArr = JSON.parse(document.getElementById('review_data').innerHTML);
 
+//logo links back to home
 document.getElementById("logo").addEventListener("click",()=>{
-	window.location = "/";
-})
+    window.location = "/";
+});
 
 function createComments(i){
     newCont = document.createElement('div');
