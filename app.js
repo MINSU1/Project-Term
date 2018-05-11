@@ -21,7 +21,7 @@ const TYPES = require('tedious').TYPES;
 function getUsers(){
 	type = 'Members'
     connection.on('connect', function(err) {  
-        console.log(err);
+        //console.log(err);
         //console.log("Connected");  
         server.getInfo(type).then((message) => {
             return server.listToJson(message)
@@ -31,7 +31,7 @@ function getUsers(){
             //console.log(userlog);
             return json
         }).catch((error) => {
-            console.log('Error:', error);
+            //console.log('Error:', error);
         });
     })
 }
@@ -62,8 +62,8 @@ app.use(express.static(__dirname + '/public'));
  * lat and lng variable will be replaced with the longitude and latitude of the address what user entered
  * 49.2834444' is default lat for simple error handling.
  */ 
-var lat = '49.2834444',
-	lng = '-123.1196331',
+var lat = '',
+	lng = '',
 /** Default Username is Guest, and when the client signin, it will be replaced with the user's name */
 	username = 'Guest',
 /** 
@@ -88,16 +88,16 @@ var userlog = {jay:{password:"123",address:"204-460 Westview St, Coquitlam, BC, 
 getUsers()
 
 function readJsonFile() {
-	console.log(userlog);
+	//console.log(userlog);
 	fs.readFile("./reviews.json", (err, data)=> {
 	    if (err) {
 	        throw err;
 	    }
 	   	json_reviews = JSON.parse(data);
 
-	    for(item in json_reviews){
-			reviews['review'].push(json_reviews[item].concat(item));
-		}
+	 //    for(item in json_reviews){
+		// 	reviews['review'].push(json_reviews[item].concat(item));
+		// }
 	})
 }
 /** 
@@ -111,14 +111,16 @@ function writeJsonFile(){
  * @param {string} address - address the user entered
  */
 function weather_fetcher(address){
+	//console.log(address);
 	weather_file.geocode(address).then((result) =>{
+		//console.log(result);
 		lat = result.lat
 		lng = result.lng
 		return weather_file.weather(lat, lng);
 	}).then((result)=>{
 		weather_body = result;
 	}).catch((error)=>{
-		console.log(error)
+		//console.log(error)
 	})
 }
 //-----------------------------------main page--------------------------------------------------
@@ -223,6 +225,8 @@ app.post("/register_check", (request, response) =>{
 //-----------------------------------location page--------------------------------------------------
 /** Simply sending location.hbs page */
 app.get('/location', (request, response) => {
+	//console.log(lat);
+	//console.log(lng);
     response.render('location', {latitu:lat, longitu:lng});
 });
 
@@ -249,7 +253,7 @@ app.get('/weather', (request, response) => {
 		dest = result.dest;
 		response.render('weather', {summary: weather_body.summary,icon:weather_body.icon,temp:weather_body.temperature,humid:weather_body.humidity,winds:weather_body.windSpeed,dist_fee:distance_fee,dist:distance, ori:ori,dest:dest});
 	}).catch((error)=>{
-		console.log(error);
+		//console.log(error);
 	});
 });
 

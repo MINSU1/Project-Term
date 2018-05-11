@@ -13,14 +13,27 @@ const TYPES = require('tedious').TYPES;
 function addMember(type, data){
     console.log(data)
     connection.on('connect', function(err) {  
-        console.log(err);   
+        //console.log(err);   
         addInfo(type, data)
+        if(!(err)){
+            return True;
+        }
+        else{
+            return False
+        }
     })
 }
+
 function removeMember(data){
     connection.on('connect', function(err) {  
-        console.log(err);   
+        //console.log(err);   
         removeInfo('Member', data)
+        if(!(err)){
+            return True;
+        }
+        else{
+            return False
+        }
     })
 }
 
