@@ -88,16 +88,15 @@ var userlog = {jay:{password:"123",address:"204-460 Westview St, Coquitlam, BC, 
 getUsers()
 
 function readJsonFile() {
-	console.log(userlog);
 	fs.readFile("./reviews.json", (err, data)=> {
 	    if (err) {
 	        throw err;
 	    }
 	   	json_reviews = JSON.parse(data);
 
-	    for(item in json_reviews){
-			reviews['review'].push(json_reviews[item].concat(item));
-		}
+	 //    for(item in json_reviews){
+		// 	reviews['review'].push(json_reviews[item].concat(item));
+		// }
 	})
 }
 /** 
