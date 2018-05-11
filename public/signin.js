@@ -45,3 +45,8 @@ document.getElementById('forget').addEventListener("click",()=>{
 document.getElementById('forget').addEventListener('click',()=>{
     alert("Did you forget your password or Username?")
 });
+
+//logo links back to home
+document.getElementById("logo").addEventListener("click",()=>{
+	window.location = "/";
+});

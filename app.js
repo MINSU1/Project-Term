@@ -4,12 +4,42 @@ const hbs = require('hbs');
 const fs = require('fs');
 const request = require('request');
 const bodyParser = require('body-parser')
+const server = require('./public/database.js')
+const Connection = require('tedious').Connection;  
+const config = {  
+    userName: 'Student',  
+    password: 'P@ssw0rd',  
+    server: 'team8server.database.windows.net',  
+    // If you are on Microsoft Azure, you need this:  
+    options: {encrypt: true, database: 'Project'}  
+}; 
+const connection = new Connection(config); 
+const Request = require('tedious').Request;  
+const TYPES = require('tedious').TYPES;
 
+//database getter
+function getUsers(){
+	type = 'Members'
+    connection.on('connect', function(err) {  
+        console.log(err);
+        //console.log("Connected");  
+        server.getInfo(type).then((message) => {
+            return server.listToJson(message)
+        }).then((json)=>{
+            //console.log(json);
+            userlog = json
+            //console.log(userlog);
+            return json
+        }).catch((error) => {
+            console.log('Error:', error);
+        });
+    })
+}
 /** calling express */
 var app = express();
 
 /** Importing js file and its functions */
-const address_finder = require('./address_finder.js')
+const address_finder = require('./address_finder.js');
 const weather_file = require('./public/weather.js');
 
 
@@ -46,7 +76,8 @@ var lat = '49.2834444',
     dest_address = 'bcit, bc, ca',
 	validity = 0
 	weather_body = '',
-	reviews = {'review': []};
+	reviiew = JSON.stringify([{name:'Jay', rating: 5, date: '20170501', comment: 'This app is awesome'}, {name:'Jakob', rating: 1, date: '20170501', comment: 'App is too buggy, the devs suck lol'}]),
+	reviews = {'review': reviiew};
 
 /** Global variable that stores fetched data from weather.js user information */
 var userlog = {jay:{password:"123",address:"204-460 Westview St, Coquitlam, BC, Canada"},min:{password:"123",address:"minsu st, vancouver, BC, Canada"}};
@@ -54,22 +85,19 @@ var userlog = {jay:{password:"123",address:"204-460 Westview St, Coquitlam, BC, 
 /** 
  * Reading JSON file in local storage
  */
+getUsers()
+
 function readJsonFile() {
-	fs.readFile('./username.json', (err, data)=> {
-	    if (err) {
-	        throw err;
-	    }
-	    userlog = JSON.parse(data);
-	});
+	console.log(userlog);
 	fs.readFile("./reviews.json", (err, data)=> {
 	    if (err) {
 	        throw err;
 	    }
 	   	json_reviews = JSON.parse(data);
 
-	    for(item in json_reviews){
-			reviews['review'].push(json_reviews[item].concat(item));
-		}
+	 //    for(item in json_reviews){
+		// 	reviews['review'].push(json_reviews[item].concat(item));
+		// }
 	})
 }
 /** 
@@ -106,15 +134,17 @@ app.get('/', (request, response) => {
 
 /** This is for Guest input. find wether the adress is available or not */
 app.post('/address_check', (request, response) => {
-	address = request.body.address;
-	username = 'Guest'
 	if(request.body.validity == 1){
+		address = request.body.address;
+		username = 'Guest'
 		response.send('valid');
 		weather_fetcher(address);
 		validity = 1; // if validity is 1, it means address has been entered
 	}else if(request.body.validity == 0){
 		validity = 0; // if validity is 0, it means address has not been entered
 		response.send('reload');
+	}else{
+		response.statusCode = 404;
 	}
 });
 //-----------------------------------signin page--------------------------------------------------
@@ -135,6 +165,7 @@ app.post('/login_input', (request, response, next) => {
 		response.send('valid');
 	}else{
 		response.send("invalid");
+		response.statusCode = 404;
 	}
 });
 
@@ -146,7 +177,7 @@ app.get("/register", (request, response) =>{
 
 app.get("/review", (request, response)=>{
 	response.render("review", {comment:''});
-})
+});
 
 app.post("/review", (request, response)=>{
 	if(!(request.body.feedback == "")){
@@ -154,12 +185,14 @@ app.post("/review", (request, response)=>{
 	}else{
 		response.render('review', {comment:'Plesae leave a feedback.'});
 	}
-})
+});
 
 app.post('/comment', (request, response)=>{
-	console.log(reviews);
 	response.render('comment', reviews);
-})
+});
+app.get('/comment', (request, response)=>{
+	response.render('comment', reviews);
+});
 
 /** Simply sending findid.hbs page */
 app.get("/findid", (request, response) =>{
