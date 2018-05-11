@@ -180,6 +180,7 @@ app.get("/review", (request, response)=>{
 
 app.post("/review", (request, response)=>{
 	if(!(request.body.feedback == "")){
+		console.log(request.body);
 		response.render('greet');
 	}else{
 		response.render('review', {comment:'Plesae leave a feedback.'});
