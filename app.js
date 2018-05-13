@@ -26,7 +26,7 @@ function getUsers(){
             userlog = json
             return json
         }).catch((error) => {
-            console.log('Error:', error);
+            //console.log('Error:', error);
         });
     })
 }
@@ -121,8 +121,8 @@ function weather_fetcher(address){
 //-----------------------------------main page--------------------------------------------------
 /** Sending hbs file when cliet enter address */
 app.get('/', (request, response) => {
-	readJsonFile();
-	console.log(userlog);
+	getUsers()
+	//console.log(userlog);
     response.render('main', {
     	validity: validity,
     	username: username,
@@ -201,18 +201,20 @@ app.get("/findid", (request, response) =>{
 /** Check whether the address input is valid and store the information into JSON file */
 app.post("/register_check", (request, response) =>{
 	user_info = request.body;
-
+	//console.log(user_info);
 	address_finder.getAddress(user_info.address, (errorMessage, results) =>{
 		if (errorMessage){
             response.send('address invalid');
 		}else if(user_info.username in userlog){
-			response.send('username invalid');
+			response.send('username already exists');
 		}else{
-			userlog[String(user_info.username)]= {password:String(user_info.password),address:String(user_info.address)+', '+ String(user_info.city) +", "+ "BC" +", "+"Canada"};
+			server.addMember('Member',[request.body.username, request.body.password, request.body.address, request.body.city, request.body.zipcode])
+			getUsers()
+			//userlog[String(user_info.username)]= {password:String(user_info.password),address:String(user_info.address)+', '+ String(user_info.city) +", "+ "BC" +", "+"Canada"};
 			address = String(user_info.address)+', '+ String(user_info.city) +", "+ "BC" +", "+"Canada";
 			lat = JSON.stringify(results.lat, undefined, 2)
 			lng = JSON.stringify(results.lng, undefined, 2)
-			writeJsonFile();
+			//writeJsonFile();
 			response.send('valid');
 		}
 	});
@@ -245,7 +247,7 @@ app.get('/weather', (request, response) => {
 		distance_fee = parseInt(result.dis.split(' ')[0])*5;
 		ori = result.ori;
 		dest = result.dest;
-		console.log({summary: weather_body.summary,icon:weather_body.icon,temp:weather_body.temperature,humid:weather_body.humidity,winds:weather_body.windSpeed,dist_fee:distance_fee,dist:distance, ori:ori,dest:dest});
+		//console.log({summary: weather_body.summary,icon:weather_body.icon,temp:weather_body.temperature,humid:weather_body.humidity,winds:weather_body.windSpeed,dist_fee:distance_fee,dist:distance, ori:ori,dest:dest});
 		response.render('weather', {summary: weather_body.summary,icon:weather_body.icon,temp:weather_body.temperature,humid:weather_body.humidity,winds:weather_body.windSpeed,dist_fee:distance_fee,dist:distance, ori:ori,dest:dest});
 	}).catch((error)=>{
 		//console.log(error);

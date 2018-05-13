@@ -11,30 +11,18 @@ const Request = require('tedious').Request;
 const TYPES = require('tedious').TYPES;  
 
 function addMember(type, data){
-    //console.log(data)
-    connection.on('connect', function(err) {  
-        //console.log(err);   
-        addInfo(type, data)
-        if(!(err)){
-            return true;
-        }
-        else{
-            return false
-        }
-    })
+    console.log(type)
+    addInfo(type,data)
 }
 
-function removeMember(data){
-    connection.on('connect', function(err) {  
-        //console.log(err);   
-        removeInfo('Member', data)
-        if(!(err)){
-            return true;
-        }
-        else{
-            return false
-        }
-    })
+function removeMember(data){ 
+    removeInfo('Member', data)
+    if(!(err)){
+        return true;
+    }
+    else{
+        return false
+    }
 }
 
 function get(type){
@@ -55,7 +43,6 @@ function get(type){
 }
 
 function getInfo(info) { 
-    return new Promise((resolve,reject) => {
         command = ''
         list = []
         if( info == 'Members'){
@@ -87,17 +74,17 @@ function getInfo(info) {
         connection.execSql(request); 
     })
 }  
-function addInfo(type, data) { 
-        if( type == 'Member'){
-            command = `Insert into member(username, password, line_address, city, zipcode)Values('${data[0]}','${data[1]}','${data[2]}','${data[3]}','${data[4]}')`
-            console.log(command);
-        }
-        request = new Request(command, function(err) {  
-        if (err) {  
-            console.log(err);
-        }  
-        });  
-        connection.execSql(request); 
+function addInfo(type, data) {
+    if( type == 'Member'){
+        command = `Insert into member(username, password, line_address, city, zipcode)Values('${data[0]}','${data[1]}','${data[2]}','${data[3]}','${data[4]}')`
+        console.log(command);
+    }
+    request = new Request(command, function(err) {  
+    if (err) {  
+        console.log(err);
+    }  
+    });  
+    connection.execSql(request); 
 }
 function removeInfo(type, data) { 
 
@@ -137,9 +124,6 @@ function listToJson(list) {
     return newjson
 }
 
-function imTrue(){
-    return true
-}
 module.exports = {
     listToJson,
     getInfo,
