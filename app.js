@@ -19,19 +19,14 @@ const TYPES = require('tedious').TYPES;
 
 //database getter
 function getUsers(){
-	type = 'Members'
-    connection.on('connect', function(err) {  
-        //console.log(err);
-        //console.log("Connected");  
-        server.getInfo(type).then((message) => {
+    connection.on('connect', function(err) {
+        server.getInfo('Members').then((message) => {
             return server.listToJson(message)
         }).then((json)=>{
-            //console.log(json);
             userlog = json
-            //console.log(userlog);
             return json
         }).catch((error) => {
-            //console.log('Error:', error);
+            console.log('Error:', error);
         });
     })
 }
@@ -80,15 +75,15 @@ var lat = '',
 	reviews = {'review': reviiew};
 
 /** Global variable that stores fetched data from weather.js user information */
-var userlog = {jay:{password:"123",address:"204-460 Westview St, Coquitlam, BC, Canada"},min:{password:"123",address:"minsu st, vancouver, BC, Canada"}};
+var userlog = {};
+getUsers()
 //---------------------------------------functions-----------------------------------------------
 /** 
  * Reading JSON file in local storage
  */
-getUsers()
 
 function readJsonFile() {
-	//console.log(userlog);
+	getUsers()
 	fs.readFile("./reviews.json", (err, data)=> {
 	    if (err) {
 	        throw err;
@@ -127,6 +122,7 @@ function weather_fetcher(address){
 /** Sending hbs file when cliet enter address */
 app.get('/', (request, response) => {
 	readJsonFile();
+	console.log(userlog);
     response.render('main', {
     	validity: validity,
     	username: username,
@@ -225,8 +221,6 @@ app.post("/register_check", (request, response) =>{
 //-----------------------------------location page--------------------------------------------------
 /** Simply sending location.hbs page */
 app.get('/location', (request, response) => {
-	//console.log(lat);
-	//console.log(lng);
     response.render('location', {latitu:lat, longitu:lng});
 });
 
