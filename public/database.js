@@ -43,6 +43,7 @@ function get(type){
 }
 
 function getInfo(info) { 
+    return new Promise((resolve,reject) => {
         command = ''
         list = []
         if( info == 'Members'){
