@@ -1,8 +1,9 @@
 var commentArr = JSON.parse(document.getElementById('review_data').innerHTML);
 
+//logo links back to home
 document.getElementById("logo").addEventListener("click",()=>{
-	window.location = "/";
-})
+    window.location = "/";
+});
 
 function createComments(i){
     newCont = document.createElement('div');
