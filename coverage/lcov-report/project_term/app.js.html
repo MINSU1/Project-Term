@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">64.66% </span>
+        <span class="strong">70.69% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>75/116</span>
+        <span class='fraction'>82/116</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">21.43% </span>
@@ -30,14 +30,14 @@
         <span class='fraction'>3/14</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">55.17% </span>
+        <span class="strong">68.97% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>16/29</span>
+        <span class='fraction'>20/29</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">64.66% </span>
+        <span class="strong">70.69% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>75/116</span>
+        <span class='fraction'>82/116</span>
       </div>
     </div>
     <p class="quiet">
@@ -322,9 +322,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -411,11 +411,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -491,7 +491,7 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -574,10 +574,10 @@ const TYPES = require('tedious').TYPES;
 //database getter
 function getUsers(){
 	type = 'Members'
-    connection.on('connect', <span class="fstat-no" title="function not covered" >fu</span>nction(err) {  
-<span class="cstat-no" title="statement not covered" >        console.log(err);</span>
+    connection.on('connect', function(err) {  
+        console.log(err);
         //console.log("Connected");  
-<span class="cstat-no" title="statement not covered" >        server.getInfo(type).then(<span class="fstat-no" title="function not covered" >(m</span>essage) =&gt; {</span>
+        server.getInfo(type).then(<span class="fstat-no" title="function not covered" >(m</span>essage) =&gt; {
 <span class="cstat-no" title="statement not covered" >            return server.listToJson(message)</span>
         }).then(<span class="fstat-no" title="function not covered" >(j</span>son)=&gt;{
             //console.log(json);
@@ -663,12 +663,12 @@ function <span class="fstat-no" title="function not covered" >writeJsonFile(</sp
  * @param {string} address - address the user entered
  */
 function weather_fetcher(address){
-	weather_file.geocode(address).then(<span class="fstat-no" title="function not covered" >(r</span>esult) =&gt;{
-<span class="cstat-no" title="statement not covered" >		lat = result.lat</span>
-<span class="cstat-no" title="statement not covered" >		lng = result.lng</span>
-<span class="cstat-no" title="statement not covered" >		return weather_file.weather(lat, lng);</span>
-	}).then(<span class="fstat-no" title="function not covered" >(r</span>esult)=&gt;{
-<span class="cstat-no" title="statement not covered" >		weather_body = result;</span>
+	weather_file.geocode(address).then((result) =&gt;{
+		lat = result.lat
+		lng = result.lng
+		return weather_file.weather(lat, lng);
+	}).then((result)=&gt;{
+		weather_body = result;
 	}).catch(<span class="fstat-no" title="function not covered" >(e</span>rror)=&gt;{
 <span class="cstat-no" title="statement not covered" >		console.log(error)</span>
 	})
@@ -743,8 +743,8 @@ app.post("/review", (request, response)=&gt;{
 app.post('/comment', (request, response)=&gt;{
 	response.render('comment', reviews);
 });
-app.get('/comment', <span class="fstat-no" title="function not covered" >(r</span>equest, response)=&gt;{
-<span class="cstat-no" title="statement not covered" >	response.render('comment', reviews);</span>
+app.get('/comment', (request, response)=&gt;{
+	response.render('comment', reviews);
 });
 &nbsp;
 /** Simply sending findid.hbs page */
@@ -811,7 +811,7 @@ module.exports = app</pre></td></tr>
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sat May 12 2018 21:07:53 GMT-0700 (Pacific Daylight Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon May 14 2018 13:09:02 GMT-0700 (Pacific Daylight Time)
 </div>
 </div>
 <script src="..\prettify.js"></script>
