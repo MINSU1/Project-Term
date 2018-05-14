@@ -13,6 +13,7 @@ var geocode = (address) => {
 			}else if (body.status == 'ZERO_RESULTS'){
 				reject('Cannot find requested address');
 			}else if (body.status == 'OK'){
+				//console.log(body.results[0]);
 				resolve({
 					lat: body.results[0].geometry.location.lat,
 					lng: body.results[0].geometry.location.lng
