@@ -1,41 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<<<<<<< HEAD
-<coverage generated="1526161345126" clover="3.2.0">
-  <project timestamp="1526161345126" name="All files">
-    <metrics statements="29" coveredstatements="11" conditionals="16" coveredconditionals="0" methods="9" coveredmethods="6" elements="54" coveredelements="17" complexity="0" loc="29" ncloc="29" packages="1" files="1" classes="1">
-      <file name="weather.js" path="C:\Users\m4916\Desktop\CIT\node\Project Term\public\weather.js">
-        <metrics statements="29" coveredstatements="11" conditionals="16" coveredconditionals="0" methods="9" coveredmethods="6"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="4" count="1" type="stmt"/>
-        <line num="5" count="1" type="stmt"/>
-        <line num="6" count="1" type="stmt"/>
-        <line num="11" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="12" count="0" type="stmt"/>
-        <line num="13" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="14" count="0" type="stmt"/>
-        <line num="15" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="16" count="0" type="stmt"/>
-        <line num="25" count="1" type="stmt"/>
-        <line num="26" count="1" type="stmt"/>
-        <line num="27" count="1" type="stmt"/>
-        <line num="31" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="32" count="0" type="stmt"/>
-        <line num="33" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="34" count="0" type="stmt"/>
-        <line num="36" count="0" type="stmt"/>
-        <line num="42" count="1" type="stmt"/>
-        <line num="43" count="1" type="stmt"/>
-        <line num="44" count="1" type="stmt"/>
-        <line num="48" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="49" count="0" type="stmt"/>
-        <line num="50" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="51" count="0" type="stmt"/>
-        <line num="53" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="54" count="0" type="stmt"/>
-        <line num="56" count="0" type="stmt"/>
-        <line num="67" count="1" type="stmt"/>
-      </file>
-=======
 <coverage generated="1526272172718" clover="3.2.0">
   <project timestamp="1526272172718" name="All files">
     <metrics statements="226" coveredstatements="109" conditionals="66" coveredconditionals="13" methods="61" coveredmethods="25" elements="353" coveredelements="147" complexity="0" loc="226" ncloc="226" packages="2" files="4" classes="4">
@@ -283,7 +246,6 @@
           <line num="77" count="1" type="stmt"/>
         </file>
       </package>
->>>>>>> 31add9526a3acae456ff1539f71235bd55bb3413
     </metrics>
   </project>
 </coverage>
