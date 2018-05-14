@@ -1,4 +1,4 @@
-const request = require('supertest');
+const request = require('jest');
 const app = require('../public/weather.js')
 
 describe('Test the address to lat/lng converter', () => {
@@ -15,6 +15,17 @@ describe('Test the distance calculator', () => {
     	app.distance_calc('460 Westveiw St, coquitlam, bc, canada', '1045 haro st, bc, canada').then((result) =>{
     		expect(result.dis).toBe("13.5 mi");
     		expect(result.ori).toBe("460 Westview St, Coquitlam, BC V3K 6C9, Canada");
+    		expect(result.dest).toBe("1045 Haro St, Vancouver, BC V6E 3Z8, Canada");
+    	});
+    });
+});
+
+describe('Test the weather', () => {
+    test('weather should return the body.currently', () => {
+    	app.weather(49.2487721, -122.8902314).then((result) =>{
+    		expect(result.timezone).toBe("America/Vancouver");
+    		expect(result.currently.summary).toBe("Clear");
+    		expect(result.offset).toBe(-7);
     	});
     });
 });

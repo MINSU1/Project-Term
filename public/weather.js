@@ -33,7 +33,7 @@ var weather = (lat, lng) => {
 			}else if(body.code == 400){
 				reject('Cannot find weather form the address');
 			}else{
-				resolve(body.currently);
+				resolve(body);
 			}
 		});
 	});
@@ -47,18 +47,17 @@ var distance_calc = (pointa, pointb) => {
 		}, (error, response, body) => {
 			if (error){
 				reject('Cannot connect to Darksky.net');
-				//console.log('Cannot connnect to Google Maps');
 			}else if(body.code == 400){
 				reject('Cannot find weather form the address');
-				//console.log('Cannot find requested address');
 			}else{
 				if (body.rows[0].elements[0].status == "NOT_FOUND"){
 					reject(body);
 				}else{
-					var distance = body.rows[0].elements[0].distance.text,
-						ori_addr = body.origin_addresses[0],
-						dest_addr = body.destination_addresses[0];
-					resolve({dis:distance,ori:ori_addr,dest:dest_addr});
+					resolve({
+						dis:body.rows[0].elements[0].distance.text,
+						ori:body.origin_addresses[0],
+						dest:body.destination_addresses[0]
+					});
 				}
 			}
 		});
