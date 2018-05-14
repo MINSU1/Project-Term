@@ -10,95 +10,103 @@ const connection = new Connection(config);
 const Request = require('tedious').Request;  
 const TYPES = require('tedious').TYPES;  
 
-function addMember(type, data){
-    console.log(type)
-    addInfo(type,data)
+function addMember(data){
+    if(addInfo('Member',data)){
+        return true
+    }
+    else {
+        return false
+    }
 }
 
-function removeMember(data){ 
-    removeInfo('Member', data)
-    if(!(err)){
-        return true;
+function removeMember(data){
+    if(removeInfo('Member',data)){
+        return true
     }
-    else{
+    else {
         return false
     }
 }
 
 function get(type){
-    connection.on('connect', function(err) {  
-        console.log(err); 
-        console.log("Connected");  
-        getInfo(type).then((message) => {
-            console.log(message);
-            return listToJson(message)
-        }).then((json)=>{
-            //console.log(json);
-            return json
-        }).catch((error) => {
-            //console.log('Error:', error);
-        });
+    getInfo(type).then((message) => {
+        console.log(message);
+        return listToJson(message)
+        
+    }).then((json)=>{
+        console.log(json);
+        return json
+    }).catch((error) => {
+        console.log('Error:', error);
+        return err
     })
-    return {}
+    return true
 }
 
-function getInfo(info) { 
+function getInfo(info) {
     return new Promise((resolve,reject) => {
-        command = ''
-        list = []
-        if( info == 'Members'){
-            list = [info]
-            command = "SELECT * FROM member"
-        }
-        if( info == 'Orders'){
-            list = [info]
-            command = "SELECT * FROM order_history"
-        }
-        request = new Request(command, function(err) {
-        if (err) {  
-            //console.log(err);
-        }  
-        });  
-        var result = []; 
-        request.on('row', function(columns) {  
-            columns.forEach(function(column) {  
-              if (column.value === null) {  
-                //console.log('NULL');  
-              } else {  
-                result.push(column.value);  
-              }  
+        connection.on('connect', function(err) { 
+            command = ''
+            list = []
+            if( info == 'Members'){
+                list = [info]
+                command = "SELECT * FROM member"
+            }
+            if( info == 'Orders'){
+                list = [info]
+                command = "SELECT * FROM order_history"
+            }
+            request = new Request(command, function(err) {
+            if (err) {  
+                //console.log(err);
+            }  
             });  
-            list.push(result)
-            result =[];
-            resolve(list)
-        });  
-        connection.execSql(request); 
+            var result = []; 
+            request.on('row', function(columns) {  
+                columns.forEach(function(column) {  
+                  if (column.value === null) {  
+                    //console.log('NULL');  
+                  } else {  
+                    result.push(column.value);  
+                  }  
+                });  
+                list.push(result)
+                result =[];
+                resolve(list)
+            });
+            connection.execSql(request);
+        })
     })
 }  
 function addInfo(type, data) {
-    if( type == 'Member'){
-        command = `Insert into member(username, password, line_address, city, zipcode)Values('${data[0]}','${data[1]}','${data[2]}','${data[3]}','${data[4]}')`
-        console.log(command);
-    }
-    request = new Request(command, function(err) {  
-    if (err) {  
-        console.log(err);
-    }  
-    });  
-    connection.execSql(request); 
+    connection.on('connect', function(err) { 
+        if( type == 'Member'){
+            command = `Insert into member(username, password, line_address, city, zipcode)Values('${data[0]}','${data[1]}','${data[2]}','${data[3]}','${data[4]}')`
+            //console.log(command);
+        }
+        request = new Request(command, function(err) {  
+            if (err) {  
+                //console.log(err);
+            }  
+        });  
+        connection.execSql(request);
+    })
+    return true
 }
 function removeInfo(type, data) { 
-
-    command = ''
-    if( type == 'Member'){
-        command = `Delete from member where ${data[0]}='${data[1]}'`
-    }
-    request = new Request(command, function(err) {  
-    if (err) {  
-        console.log(err);
-    }  
-    });  
-    connection.execSql(request); 
+    connection.on('connect', function(err) { 
+        if( type == 'Member'){
+            command = `Delete from member where ${data[0]}='${data[1]}'`
+            //console.log(command);
+        }
+        request = new Request(command, function(err) {  
+            if (err) {  
+                console.log(err);
+            }  
+        });  
+        connection.execSql(request); 
+    })
+    return true
 }
 function listToJson(list) {
     var newjson = {}

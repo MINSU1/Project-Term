@@ -5,30 +5,28 @@ const fs = require('fs');
 const request = require('request');
 const bodyParser = require('body-parser')
 const server = require('./public/database.js')
-const Connection = require('tedious').Connection;  
-const config = {  
-    userName: 'Student',  
-    password: 'P@ssw0rd',  
-    server: 'team8server.database.windows.net',  
-    // If you are on Microsoft Azure, you need this:  
-    options: {encrypt: true, database: 'Project'}  
-}; 
-const connection = new Connection(config); 
-const Request = require('tedious').Request;  
-const TYPES = require('tedious').TYPES;
+// const Connection = require('tedious').Connection;  
+// const config = {  
+//     userName: 'Student',  
+//     password: 'P@ssw0rd',  
+//     server: 'team8server.database.windows.net',  
+//     // If you are on Microsoft Azure, you need this:  
+//     options: {encrypt: true, database: 'Project'}  
+// }; 
+// const connection = new Connection(config); 
+// const Request = require('tedious').Request;  
+// const TYPES = require('tedious').TYPES;
 
 //database getter
 function getUsers(){
-    connection.on('connect', function(err) {
-        server.getInfo('Members').then((message) => {
-            return server.listToJson(message)
-        }).then((json)=>{
-            userlog = json
-            return json
-        }).catch((error) => {
-            //console.log('Error:', error);
-        });
-    })
+    server.getInfo('Members').then((message) => {
+        return server.listToJson(message)
+    }).then((json)=>{
+        userlog = json
+        return json
+    }).catch((error) => {
+        //console.log('Error:', error);
+    });
 }
 /** calling express */
 var app = express();
