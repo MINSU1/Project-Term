@@ -9,6 +9,8 @@
 </head>
 
 <body>
+    <!--input type="text" id="lat" name="lat" value="{{{latitu}}}">
+    <input type="text" id="long" name="long" value="{{{longitu}}}"-->
     <div id="top_padding"></div>
     <img id="background" src="./img/background.jpg">
     <div id='logo'></div>
@@ -219,6 +221,12 @@
         location_confirmation();
     });
     window.onload = initMap;
+
+    //logo links back to home
+    document.getElementById("logo").addEventListener("click",()=>{
+        window.location = "/";
+    });
+
 
     // function addClassCheck(element){
     //     if(element.checked){

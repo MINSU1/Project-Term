@@ -44,9 +44,6 @@ function initMap() {
  * @returns {boolean}
  */
 
-
-
-
 function address_no_empty(){
 	if(document.getElementById("address_input").value == ''){
 		alert("Please enter address");
@@ -123,6 +120,30 @@ document.getElementById('re_address').addEventListener('click',()=>{
 	address_check(0);
 });
 
+//Links back to main page
+document.getElementById('review').addEventListener('click',()=>{
+	window.location="/review";
+});
+
+/** goto /location page when next_submit button is clicked */
+document.getElementById('next_submit').addEventListener('click',()=>{
+	window.location="/location";
+});
+
+
+//Changes pop up news opacity when page loads
+window.addEventListener('load', function() {
+	popup.style.opacity = 1;
+});
+
+//----scroll down- faded---//
+popup_close.addEventListener('click', function(){
+	popup.style.opacity = -50;
+	setTimeout(function(){
+		popup.style.display = "none"
+	}, 1500)
+});
+
 // //-----change the color of the box----
 document.getElementById('address_submit').addEventListener("click",function(){
  	if(document.getElementById('address_input').value== ''){
@@ -139,25 +160,4 @@ document.getElementById('address_submit').addEventListener("click",function(){
  		document.getElementById('zip_input').style.backgroundColor="rgb(246,220,220)";
  	}else{ 		document.getElementById('zip_input').style.backgroundColor= " ";
  	}
- })
-
-document.getElementById('review').addEventListener('click',()=>{
-	window.location="/review";
-});
-
-/** goto /location page when next_submit button is clicked */
-document.getElementById('next_submit').addEventListener('click',()=>{
-	window.location="/location";
-});
-
-window.addEventListener('load', function() {
-	popup.style.opacity = 1;
-});
-
-//----scroll down- faded---//
-popup_close.addEventListener('click', function(){
-	popup.style.opacity = -50;
-	setTimeout(function(){
-		popup.style.display = "none"
-	}, 1500)
-});
+})
