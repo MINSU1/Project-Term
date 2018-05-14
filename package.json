@@ -1,7 +1,7 @@
 {
   "name": "project_term",
   "version": "1.0.0",
-  "description": "\"# ACIT2520\"",
+  "description": "jest",
   "main": "address_finder.js",
   "directories": {
     "test": "test"
@@ -26,7 +26,7 @@
     "supertest": "^3.0.0"
   },
   "scripts": {
-    "test": "jest --coverage",
+    "test": "jest",
     "start": "node server.js"
   },
   "repository": {

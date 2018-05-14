@@ -181,7 +181,7 @@ p1{
 	position: absolute;
     margin: auto;
     top: 50px;
-    left: 250px;
+    left: 100px;
     width: 500px;
     height: 400px;
     font-size: 2em;
@@ -229,7 +229,7 @@ p1{
     height: 400px;
     font-size: 2em;
     top:50px;
-    right:250px;
+    right:100px;
     background: white;
     font-family: serif;
     border: rgb(165,0,0) solid 3px;
