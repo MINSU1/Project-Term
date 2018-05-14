@@ -10,6 +10,105 @@ const connection = new Connection(config);
 const Request = require('tedious').Request;  
 const TYPES = require('tedious').TYPES;  
 
+<<<<<<< HEAD
+function addMember(data){
+    if(addInfo('Member',data)){
+        return true
+    }
+    else {
+        return false
+    }
+}
+
+function removeMember(data){
+    if(removeInfo('Member',data)){
+        return true
+    }
+    else {
+        return false
+    }
+}
+
+function get(type){
+    getInfo(type).then((message) => {
+        console.log(message);
+        return listToJson(message)
+        
+    }).then((json)=>{
+        console.log(json);
+        return json
+    }).catch((error) => {
+        console.log('Error:', error);
+        return err
+    })
+    return true
+}
+
+function getInfo(info) {
+    return new Promise((resolve,reject) => {
+        connection.on('connect', function(err) { 
+            command = ''
+            list = []
+            if( info == 'Members'){
+                list = [info]
+                command = "SELECT * FROM member"
+            }
+            if( info == 'Orders'){
+                list = [info]
+                command = "SELECT * FROM order_history"
+            }
+            request = new Request(command, function(err) {
+            if (err) {  
+                //console.log(err);
+            }  
+            });  
+            var result = []; 
+            request.on('row', function(columns) {  
+                columns.forEach(function(column) {  
+                  if (column.value === null) {  
+                    //console.log('NULL');  
+                  } else {  
+                    result.push(column.value);  
+                  }  
+                });  
+                list.push(result)
+                result =[];
+                resolve(list)
+            });
+            connection.execSql(request);
+        })
+    })
+}  
+function addInfo(type, data) {
+    connection.on('connect', function(err) { 
+        if( type == 'Member'){
+            command = `Insert into member(username, password, line_address, city, zipcode)Values('${data[0]}','${data[1]}','${data[2]}','${data[3]}','${data[4]}')`
+            //console.log(command);
+        }
+        request = new Request(command, function(err) {  
+            if (err) {  
+                //console.log(err);
+            }  
+        });  
+        connection.execSql(request);
+    })
+    return true
+}
+function removeInfo(type, data) { 
+    connection.on('connect', function(err) { 
+        if( type == 'Member'){
+            command = `Delete from member where ${data[0]}='${data[1]}'`
+            //console.log(command);
+        }
+        request = new Request(command, function(err) {  
+            if (err) {  
+                console.log(err);
+            }  
+        });  
+        connection.execSql(request); 
+    })
+    return true
+=======
 function addMember(type, data){
     console.log(data)
     connection.on('connect', function(err) {  
@@ -96,6 +195,7 @@ function removeInfo(type, data) {
     }  
     });  
     connection.execSql(request); 
+>>>>>>> 0ea407d2faa1f211ac5863b532387af15d094ec7
 }
 function listToJson(list) {
     var newjson = {}
@@ -126,6 +226,11 @@ module.exports = {
     listToJson,
     getInfo,
     removeMember,
+<<<<<<< HEAD
+    addMember,
+    get
+}
+=======
     addMember
 }
 
@@ -143,3 +248,4 @@ SET column1 = value1, column2 = value2, ...
 WHERE condition;
 */
 
+>>>>>>> 0ea407d2faa1f211ac5863b532387af15d094ec7
