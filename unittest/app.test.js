@@ -106,7 +106,7 @@ describe('Test the location_confirmation path', () => {
     });
 });
 
-describe.skip('Test the weather path', () => {
+describe('Test the weather path', () => {
     test('/weather should response the GET method', (done) => {
         request(app).get('/weather',{
             summary: 'Clear',
