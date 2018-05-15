@@ -3,8 +3,8 @@ var infowindow,
     website_link;
 var service;
 
-var latitu = `{{latitu }}`,
-    longitu = `{{longitu}}`;
+var latitu = { { { latitu } } },
+    longitu = { { { longitu } } };
 
 var place_address = '',
     place_name = '',
