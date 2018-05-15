@@ -28,6 +28,19 @@
     font-family: Sans-serif;
 }
 
+#rateP{
+    position:relative;
+    top:-20px;
+    display:inline-block;
+    margin-right:10px;
+}
+
+.radBut{
+    display:inline-block;
+    margin-left:10px;
+    margin-right:10px;
+}
+
 #reviewSub{
     position:relative;
     left:90%;
