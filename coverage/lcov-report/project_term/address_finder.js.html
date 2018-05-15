@@ -139,48 +139,48 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const request = require('request');
 &nbsp;
 var getWeather = <span class="fstat-no" title="function not covered" >(l</span>at, lng, callback) =&gt; {
-<span class="cstat-no" title="statement not covered" >	request({</span>
-	    url: 'https://api.darksky.net/forecast/fb2d78ddaa5b88137bda186278187c8d/'+lat+','+lng,
-	    json: true
-	}, <span class="fstat-no" title="function not covered" >(e</span>rror, response, body) =&gt; {
-<span class="cstat-no" title="statement not covered" >		if (error){</span>
-<span class="cstat-no" title="statement not covered" >			callback('Cannot connect to Darksky.net');</span>
-			//console.log('Cannot connnect to Google Maps');
-		}else <span class="cstat-no" title="statement not covered" >if(body.code == 400){</span>
-<span class="cstat-no" title="statement not covered" >			callback('Cannot find weather form the address');</span>
-			//console.log('Cannot find requested address');
-		}else{
-<span class="cstat-no" title="statement not covered" >			callback(undefined, {</span>
-				icon: `icon: ${body.currently.icon}`,
-				summary: `Summary: ${body.currently.summary}`,
-				temperature: `Temperature: ${body.currently.temperature} °F`,
-				pressure: `Pressure: ${body.currently.pressure}`
-			});
-		}
-	});
+<span class="cstat-no" title="statement not covered" >  request({</span>
+      url: 'https://api.darksky.net/forecast/fb2d78ddaa5b88137bda186278187c8d/'+lat+','+lng,
+      json: true
+  }, <span class="fstat-no" title="function not covered" >(e</span>rror, response, body) =&gt; {
+<span class="cstat-no" title="statement not covered" >    if (error){</span>
+<span class="cstat-no" title="statement not covered" >      callback('Cannot connect to Darksky.net');</span>
+      //console.log('Cannot connnect to Google Maps');
+    }else <span class="cstat-no" title="statement not covered" >if(body.code == 400){</span>
+<span class="cstat-no" title="statement not covered" >      callback('Cannot find weather form the address');</span>
+      //console.log('Cannot find requested address');
+    }else{
+<span class="cstat-no" title="statement not covered" >      callback(undefined, {</span>
+        icon: `icon: ${body.currently.icon}`,
+        summary: `Summary: ${body.currently.summary}`,
+        temperature: `Temperature: ${body.currently.temperature} °F`,
+        pressure: `Pressure: ${body.currently.pressure}`
+      });
+    }
+  });
 };
 &nbsp;
 var getAddress = (address, callback) =&gt; {
-	request({
-	    url: 'http://maps.googleapis.com/maps/api/geocode/json' +
-	        '?address=' + encodeURIComponent(address),
-	    json: true
-	}, (error, response, body) =&gt; {
-		<span class="missing-if-branch" title="if path not taken" >I</span>if (error){
-<span class="cstat-no" title="statement not covered" >			callback('Cannot connect to Google Maps');</span>
-		}else <span class="missing-if-branch" title="if path not taken" >I</span>if (body.status == 'ZERO_RESULTS'){
-<span class="cstat-no" title="statement not covered" >			callback('Cannot find requested address');</span>
-		}else <span class="missing-if-branch" title="if path not taken" >I</span>if (body.status == 'OK'){
-<span class="cstat-no" title="statement not covered" >			callback(undefined, {</span>
-				lat: body.results[0].geometry.location.lat,
-				lng: body.results[0].geometry.location.lng
-			})
-		}
-	});
+  request({
+      url: 'http://maps.googleapis.com/maps/api/geocode/json' +
+          '?address=' + encodeURIComponent(address),
+      json: true
+  }, (error, response, body) =&gt; {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (error){
+<span class="cstat-no" title="statement not covered" >      callback('Cannot connect to Google Maps');</span>
+    }else <span class="missing-if-branch" title="if path not taken" >I</span>if (body.status == 'ZERO_RESULTS'){
+<span class="cstat-no" title="statement not covered" >      callback('Cannot find requested address');</span>
+    }else <span class="missing-if-branch" title="if path not taken" >I</span>if (body.status == 'OK'){
+<span class="cstat-no" title="statement not covered" >      callback(undefined, {</span>
+        lat: body.results[0].geometry.location.lat,
+        lng: body.results[0].geometry.location.lng
+      })
+    }
+  });
 };
 module.exports = {
-	getWeather,
-	getAddress
+  getWeather,
+  getAddress
 };</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
