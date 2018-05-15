@@ -9,9 +9,16 @@
 </head>
 
 <body>
+    <!--input type="text" id="lat" name="lat" value="{{{latitu}}}">
+    <input type="text" id="long" name="long" value="{{{longitu}}}"-->
     <div id="top_padding"></div>
     <img id="background" src="./img/background.jpg">
     <div id='logo'></div>
+    <div id="radiusoption">
+        <h>500m</h><input id="checkBox" type="checkbox">
+        <h>1km</h><input id="checkBox" type="checkbox">
+        <h>1.5km</h><input id="checkBox" type="checkbox">
+    </div>
     <div id="map"></div>
     <div id="explanation">
         
@@ -23,6 +30,7 @@
     var map;
     var infowindow,
         website_link;
+    var service;
 
     var latitu = {{{latitu}}},
         longitu = {{{longitu}}};
@@ -32,6 +40,8 @@
         place_rating = '',
         place_type = '',
         open_now = '',
+        phone_num='',
+        url_site='',
         isDivExist = 0;
 
     var getAddress = (address, callback)=>{
@@ -58,14 +68,14 @@
             center: pyrmont,
             zoom: 15
         });
-
-        infowindow = new google.maps.InfoWindow();
-        var service = new google.maps.places.PlacesService(map);
-        service.nearbySearch({
+        var request = {
             location: pyrmont,
             radius: 500,
             type: ['restaurant']
-        }, callback);
+        }
+        infowindow = new google.maps.InfoWindow();
+        service = new google.maps.places.PlacesService(map);
+        service.nearbySearch(request, callback);
     }
 
     function callback(results, status) {
@@ -84,17 +94,23 @@
         });
 
         google.maps.event.addListener(marker, 'click', function() {
-            
             place_address = place.vicinity,
             place_name = place.name,
             place_rating = place.rating,
             place_type = String(place.types).split(",")[0],
             open_now = place.opening_hours.open_now;
+            var request = {
+                reference: place.reference
+            };
+            service.getDetails(request, function(details, status) {
+                phone_num=details.formatted_phone_number,
+                url_site=details.website;
+            });
 
-            infowindow.setContent(place.name + "<br><br>" + `<button onclick="myFunction()">SELECT</button>`);
-            
-            // website_link = getAddress(place.name)
+            infowindow.setContent(place.name + "<br><br>" + `<button id=markerButton onclick="myFunction()">SELECT</button>`);
             infowindow.open(map, this);
+            // website_link = 
+            (place.name)
             // addtodiv(place)
         });
     }
@@ -108,43 +124,71 @@
     function myFunction() {
         if (isDivExist != 0){
                 document.getElementById('order_div').innerHTML = place_name;   
-                document.getElementById('rating_div').innerHTML = "Rating: "+place_rating; 
+                document.getElementById('rating_div').innerHTML = "Rating: "+place_rating;
+                ratecolor = ratingcolor(place_rating);
+                document.getElementById('rating_div').style.color = ratecolor;
                 document.getElementById('add_div').innerHTML = "Address: "+place_address;
                 document.getElementById('type_div').innerHTML = "Type: "+place_type;    
-                document.getElementById('open_div').innerHTML = "Open/Closed: "+isItOpen(open_now);       
+                document.getElementById('open_div').innerHTML = "Open/Closed: "+isItOpen(open_now),
+                document.getElementById('phone_div').innerHTML = "Number: "+phone_num;;
+                document.getElementById('site_div').innerHTML = "Website: "+url_site;
+
         }else{
             var nameDiv = document.createElement("div"),
                 ratingDiv = document.createElement("div"),
                 addDiv = document.createElement("div"),
                 typeDiv= document.createElement("div"),
                 openDiv= document.createElement("div");
+                phonediv= document.createElement("div");
+                sitediv= document.createElement("div");
 
             nameDiv.id = 'order_div';
             ratingDiv.id = "rating_div";
             addDiv.id = "add_div";
             typeDiv.id = "type_div";
             openDiv.id = "open_div";
+            phonediv.id = "phone_div";
+            sitediv.id = "site_div";
             // nameDiv.innerHTML = place_name + '<br>' +place_rating+ '<br>' +place_address+ '<br>' +place_type+ '<br>' +price_level+ '<br>' +open_now;
             nameDiv.innerHTML = place_name;          
             ratingDiv.innerHTML = "Rating: "+place_rating;       
             addDiv.innerHTML = "Address: "+place_address;      
             typeDiv.innerHTML = "Type: "+place_type;          
             openDiv.innerHTML = "Open/Closed: "+isItOpen(open_now);        
+            phonediv.innerHTML = "Number: "+phone_num;
+            sitediv.innerHTML = "Website: "+url_site;
 
             ratingDiv.style.font = "20px sans-serif";
             addDiv.style.font = "20px sans-serif";
             typeDiv.style.font = "20px sans-serif";
             openDiv.style.font = "20px sans-serif";
+            phonediv.style.font = "20px sans-serif";
+            sitediv.style.font = "20px sans-serif";
 
             document.getElementById('explanation').appendChild(nameDiv);
             document.getElementById('explanation').appendChild(ratingDiv);
             document.getElementById('explanation').appendChild(addDiv);
             document.getElementById('explanation').appendChild(typeDiv);
             document.getElementById('explanation').appendChild(openDiv);
+            document.getElementById('explanation').appendChild(phonediv);
+            document.getElementById('explanation').appendChild(sitediv);
             document.getElementById('submit').style.display = 'block';
             isDivExist = 1;
+            ratecolor = ratingcolor(place_rating);
+            ratingDiv.style.color = ratecolor;
         }
         
+    }
+
+    function ratingcolor(rating) {
+        mycolor = "red";
+        if (rating >= 2.5) {
+            mycolor = "#ffcc00";
+        }
+        if (rating >= 4) {
+            mycolor = "Lime";
+        }
+        return mycolor;
     }
 
     function addtodiv(place) {
@@ -155,7 +199,6 @@
         });
 
         var newDiv = document.createElement("div");
-        // newDiv.className = 'theNewDiv'
         var newContent = document.createTextNode(place.name);
         newDiv.appendChild(newContent);
         document.getElementById('explanation').appendChild(newDiv);
@@ -177,6 +220,27 @@
     document.getElementById('submit').addEventListener('click',()=>{
         location_confirmation();
     });
+    window.onload = initMap;
+
+    //logo links back to home
+    document.getElementById("logo").addEventListener("click",()=>{
+        window.location = "/";
+    });
+
+
+    // function addClassCheck(element){
+    //     if(element.checked){
+    //         element.classList.add("radcheckbox");
+    //     }else{
+    //         element.classList.remove("radcheckbox");
+    //     }
+    //     if(document.getElementsByClassName("radcheckbox").length>1){
+    //       alert("Please select only one check box");
+    //         element.checked=false;
+    //         element.classList.remove("radcheckbox");
+    //     }
+
+    // }
 
     </script>
 </body>
