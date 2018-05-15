@@ -18,10 +18,10 @@
         <div id="review_info">
             <form action="/review" method="post">
                 <div id='enterName'>
-                    <b>What should we call you?</b>
-                    <br><br>
-                    <textarea rows='1' cols='44' placeholder='Enter your name here...' name="name"></textarea>
+                    <b>Please enter your name:</b>
+                    <input type = 'text' />
                 </div>
+                <br>
                 <div id = "rateUs">
                     <br>
                     <div id="radio">
@@ -37,22 +37,17 @@
                         <label for="good">Good</label>
                         <input id="excellent" type ='radio' name ='scale' value='5'/>
                         <label for="excellent">Excellent</label>
+                        <br>
                     </div>
                 </div>
                 <div>
                     <br>
-                    <div>
                         <b>What do you think about our service?</b>
-                    </div>
-                    <br>
+                    <br><br>
                     <textarea id="feedback1" rows='6' cols='97' placeholder='Leave your feedback here...' name="feedback"></textarea>
-                </div>
-                <div>
-                    <br>
-                    <div>
+                    <br><br>
                     <b>How would you suggest us improve it?</b>
-                    </div>
-                    <br>
+                    <br><br>
                     <textarea rows='6' cols='97' placeholder='Leave your feedback here...'></textarea>
                 </div>
                 <br>
