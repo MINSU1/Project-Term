@@ -2,16 +2,23 @@ var map;
 var infowindow,
     website_link;
 var service;
+<<<<<<< HEAD
 var latitu = document.getElementById('lat').value;
 var longitu = document.getElementById('long').value;
 console.log(latitu);
 console.log(longitu);
+=======
+
+var latitu = { { { latitu } } },
+    longitu = { { { longitu } } };
+>>>>>>> origin/dev
 
 var place_address = '',
     place_name = '',
     place_rating = '',
     place_type = '',
     open_now = '',
+<<<<<<< HEAD
     phone_num='',
     url_site='',
     isDivExist = 0;
@@ -22,6 +29,17 @@ var getAddress = (address, callback)=>{
         json: true
     }, (error, response, body) => {
         console.log(body);
+=======
+    phone_num = '',
+    url_site = '',
+    isDivExist = 0;
+
+var getAddress = (address, callback) => {
+    request({
+        url: 'https://maps.googleapis.com/maps/api/geocode/json' + '?address=' + encodeURIComponent(address),
+        json: true
+    }, (error, response, body) => {
+>>>>>>> origin/dev
         if (error) {
             console.log('Can not connect to google maps');
         } else if (body.status === 'ZERO_RESULTS') {
@@ -49,9 +67,15 @@ function initMap() {
     infowindow = new google.maps.InfoWindow();
     service = new google.maps.places.PlacesService(map);
     service.nearbySearch(request, callback);
+<<<<<<< HEAD
     }
 
     function callback(results, status) {
+=======
+}
+
+function callback(results, status) {
+>>>>>>> origin/dev
     if (status === google.maps.places.PlacesServiceStatus.OK) {
         for (var i = 0; i < results.length; i++) {
             createMarker(results[i]);
@@ -68,16 +92,28 @@ function createMarker(place) {
 
     google.maps.event.addListener(marker, 'click', function() {
         place_address = place.vicinity,
+<<<<<<< HEAD
         place_name = place.name,
         place_rating = place.rating,
         place_type = String(place.types).split(",")[0],
         open_now = place.opening_hours.open_now;
+=======
+            place_name = place.name,
+            place_rating = place.rating,
+            place_type = String(place.types).split(",")[0],
+            open_now = place.opening_hours.open_now;
+>>>>>>> origin/dev
         var request = {
             reference: place.reference
         };
         service.getDetails(request, function(details, status) {
+<<<<<<< HEAD
             phone_num=details.formatted_phone_number,
             url_site=details.website;
+=======
+            phone_num = details.formatted_phone_number,
+                url_site = details.website;
+>>>>>>> origin/dev
         });
 
         infowindow.setContent(place.name + "<br><br>" + `<button onclick="myFunction()">SELECT</button>`);
@@ -86,15 +122,26 @@ function createMarker(place) {
         (place.name)
         // addtodiv(place)
     });
+<<<<<<< HEAD
     }
     function isItOpen(par){
     if (par) {
         return 'open';
     }else{
+=======
+}
+
+function isItOpen(par) {
+    if (par) {
+        return 'open';
+    } else {
+>>>>>>> origin/dev
         return 'closed';
     }
 }
+
 function myFunction() {
+<<<<<<< HEAD
     if (isDivExist != 0){
             document.getElementById('order_div').innerHTML = place_name;   
             document.getElementById('rating_div').innerHTML = "Rating: "+place_rating; 
@@ -111,6 +158,24 @@ function myFunction() {
             openDiv= document.createElement("div");
             phonediv= document.createElement("div");
             sitediv= document.createElement("div");
+=======
+    if (isDivExist != 0) {
+        document.getElementById('order_div').innerHTML = place_name;
+        document.getElementById('rating_div').innerHTML = "Rating: " + place_rating;
+        document.getElementById('add_div').innerHTML = "Address: " + place_address;
+        document.getElementById('type_div').innerHTML = "Type: " + place_type;
+        document.getElementById('open_div').innerHTML = "Open/Closed: " + isItOpen(open_now);
+        document.getElementById('phone_div').innerHTML = "Number: " + phone_num;
+        document.getElementById('site_div').innerHTML = "Website: " + url_site;
+    } else {
+        var nameDiv = document.createElement("div"),
+            ratingDiv = document.createElement("div"),
+            addDiv = document.createElement("div"),
+            typeDiv = document.createElement("div"),
+            openDiv = document.createElement("div"),
+            phonediv = document.createElement("div"),
+            sitediv = document.createElement("div");
+>>>>>>> origin/dev
 
         nameDiv.id = 'order_div';
         ratingDiv.id = "rating_div";
@@ -120,6 +185,7 @@ function myFunction() {
         phonediv.id = "phone_div";
         sitediv.id = "site_div";
         // nameDiv.innerHTML = place_name + '<br>' +place_rating+ '<br>' +place_address+ '<br>' +place_type+ '<br>' +price_level+ '<br>' +open_now;
+<<<<<<< HEAD
         nameDiv.innerHTML = place_name;          
         ratingDiv.innerHTML = "Rating: "+place_rating;       
         addDiv.innerHTML = "Address: "+place_address;      
@@ -127,6 +193,35 @@ function myFunction() {
         openDiv.innerHTML = "Open/Closed: "+isItOpen(open_now);        
         phonediv.innerHTML = "Number: "+phone_num;
         sitediv.innerHTML = "Website: "+url_site;
+=======
+        nameDiv.innerHTML = place_name;
+        ratingDiv.innerHTML = "Rating: " + place_rating;
+        addDiv.innerHTML = "Address: " + place_address;
+        typeDiv.innerHTML = "Type: " + place_type;
+        openDiv.innerHTML = "Open/Closed: " + isItOpen(open_now);
+        phonediv.innerHTML = "Number: " + phone_num;
+        sitediv.innerHTML = "Website: " + url_site;
+
+        ratingDiv.style.font = "20px sans-serif";
+        addDiv.style.font = "20px sans-serif";
+        typeDiv.style.font = "20px sans-serif";
+        openDiv.style.font = "20px sans-serif";
+        phonediv.style.font = "20px sans-serif";
+        sitediv.style.font = "20px sans-serif";
+
+        document.getElementById('explanation').appendChild(nameDiv);
+        document.getElementById('explanation').appendChild(ratingDiv);
+        document.getElementById('explanation').appendChild(addDiv);
+        document.getElementById('explanation').appendChild(typeDiv);
+        document.getElementById('explanation').appendChild(openDiv);
+        document.getElementById('explanation').appendChild(phonediv);
+        document.getElementById('explanation').appendChild(sitediv);
+        document.getElementById('submit').style.display = 'block';
+        isDivExist = 1;
+        ratecolor = ratingcolor();
+        ratingDiv.style.color = ratecolor;
+    }
+>>>>>>> origin/dev
 
         ratingDiv.style.font = "20px sans-serif";
         addDiv.style.font = "20px sans-serif";
@@ -172,22 +267,37 @@ function addtodiv(place) {
     var newContent = document.createTextNode(place.name);
     newDiv.appendChild(newContent);
     document.getElementById('explanation').appendChild(newDiv);
+<<<<<<< HEAD
     }
 
     function location_confirmation(){
+=======
+}
+
+function location_confirmation() {
+>>>>>>> origin/dev
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("POST", "/location_confirmation", true);
     xmlhttp.setRequestHeader('Content-type', "application/x-www-form-urlencoded");
     xmlhttp.onreadystatechange = () => {
+<<<<<<< HEAD
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
             window.location="/weather";
+=======
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            window.location = "/weather";
+>>>>>>> origin/dev
         }
     }
     xmlhttp.send(`address=${place_address}`);
 }
 
 //-------------------------------------interactions---------------------------------
+<<<<<<< HEAD
 document.getElementById('submit').addEventListener('click',()=>{
+=======
+document.getElementById('submit').addEventListener('click', () => {
+>>>>>>> origin/dev
     location_confirmation();
 });
 window.onload = initMap;
@@ -204,6 +314,7 @@ window.onload = initMap;
 //         element.classList.remove("radcheckbox");
 //     }
 
+<<<<<<< HEAD
 // }
 
 window.google = window.google || {};
@@ -366,3 +477,6 @@ window.google.maps.Load(function(a,b){var c=window.google.maps;Ag();var d=Bg(c);
 google.maps.__gjsload__('places', function(_){var Ar=function(a){return _.Qb(function(a){a=(0,_.rh)(a);if(a.includes("/"))throw _.Kb('Field with "/" specified: '+a);return a=a.replace(/\./g,"/")})(a)},Br=function(a,b){try{_.Ob(window.HTMLInputElement,"HTMLInputElement")(a)}catch(c){if(_.Lb(c),!a)return}_.S("places_impl",(0,_.v)(function(c){b=b||{};this.setValues(b);c.b(this,a);_.ze(a)},this))},Cr=function(){this.b=null;_.S("places_impl",(0,_.v)(function(a){this.b=a.l()},this))},Dr=function(a){this.b=null;_.S("places_impl",(0,_.v)(function(b){this.b=
 b.f(a)},this))},Er=function(a,b){_.S("places_impl",(0,_.v)(function(c){c.j(this,a);b=b||{};this.setValues(b)},this))};_.z(Br,_.N);Br.prototype.setTypes=_.Wc("types",_.Qb(_.rh));Br.prototype.setComponentRestrictions=_.Wc("componentRestrictions",_.G(_.Mb({country:_.Sb([_.rh,_.Qb(_.rh)])},!0)));_.Xc(Br.prototype,{place:null,bounds:_.G(_.uc),fields:_.G(Ar)});Cr.prototype.getPlacePredictions=function(a,b){Fr(a);_.S("places_impl",(0,_.v)(function(){this.b.getPlacePredictions(a,b)},this))};Cr.prototype.getPredictions=Cr.prototype.getPlacePredictions;Cr.prototype.getQueryPredictions=function(a,b){_.S("places_impl",(0,_.v)(function(){this.b.getQueryPredictions(a,b)},this))};var Fr=_.Mb({sessionToken:_.G(_.Ob(_.Dd,"AutocompleteSessionToken"))},!0);_.m=Dr.prototype;_.m.getDetails=function(a,b){Gr(a);_.S("places_impl",(0,_.v)(function(){this.b.getDetails(a,b)},this))};_.m.nearbySearch=function(a,b){_.S("places_impl",(0,_.v)(function(){this.b.nearbySearch(a,b)},this))};_.m.search=Dr.prototype.nearbySearch;_.m.textSearch=function(a,b){_.S("places_impl",(0,_.v)(function(){this.b.textSearch(a,b)},this))};_.m.radarSearch=function(a,b){_.S("places_impl",(0,_.v)(function(){this.b.radarSearch(a,b)},this))};
 var Gr=_.Mb({fields:_.G(Ar),sessionToken:_.G(_.Ob(_.Dd,"AutocompleteSessionToken"))},!0);_.z(Er,_.N);_.Xc(Er.prototype,{places:null,bounds:_.G(_.uc)});_.C.google.maps.places={PlacesService:Dr,PlacesServiceStatus:{OK:_.ha,UNKNOWN_ERROR:_.la,OVER_QUERY_LIMIT:_.ia,REQUEST_DENIED:_.ka,INVALID_REQUEST:_.ba,ZERO_RESULTS:_.ma,NOT_FOUND:_.fa},AutocompleteService:Cr,AutocompleteSessionToken:_.Dd,Autocomplete:Br,SearchBox:Er,RankBy:{PROMINENCE:0,DISTANCE:1},RatingLevel:{GOOD:0,VERY_GOOD:1,EXCELLENT:2,EXTRAORDINARY:3}};_.Sd("places",{});});
+=======
+// }
+>>>>>>> origin/dev

@@ -32,7 +32,6 @@ function getUsers(){
 var app = express();
 
 /** Importing js file and its functions */
-const address_finder = require('./address_finder.js');
 const weather_file = require('./public/weather.js');
 
 
@@ -177,6 +176,7 @@ app.get("/review", (request, response)=>{
 
 app.post("/review", (request, response)=>{
 	if(!(request.body.feedback == "")){
+		console.log(request.body);
 		response.render('greet');
 	}else{
 		response.render('review', {comment:'Plesae leave a feedback.'});

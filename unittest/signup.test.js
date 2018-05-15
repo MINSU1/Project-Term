@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/dev
 var div1 = document.createElement('button')
 div1.id = 'submit'
 
@@ -9,4 +13,12 @@ describe.skip('Test the root path', () => {
         expect(regester.errorTest()).toBe(false);
     });
 })
+<<<<<<< HEAD
+=======
+=======
+// import { mount } from 'enzyme';
+// const wrapper = mount(<MyComponent />)
+// const regester = require('../public/register.js')
+>>>>>>> 0ea407d2faa1f211ac5863b532387af15d094ec7
+>>>>>>> origin/dev
 
