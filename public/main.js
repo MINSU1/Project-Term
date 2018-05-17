@@ -166,3 +166,8 @@ popup_close.addEventListener('click', function(){
 		popup.style.display = "none"
 	}, 1500)
 });
+$(document).on('click','.navbar-collapse.in',function(e) {
+    if( $(e.target).is('a') ) {
+        $(this).collapse('hide');
+    }
+});
