@@ -193,13 +193,10 @@ p1{
     border-radius: 25px;
     margin-bottom: 20px;
 }*/
-@media (min-width: 768px) {
-    .container-small {
-        width: 300px;
-    }
-    .container-large {
-        width: 970px;
-    }
+.row{
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
 }
 #address_div{
     background: white;

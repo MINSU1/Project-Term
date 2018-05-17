@@ -2,7 +2,7 @@
  * topButClass = shortcut for document.getElementsByClassName('top_but')
  * global variable address that store address information
  */
-var topButClass = document.getElementsByClassName('top_but');
+var topButClass = document.getElementsByClassName('nav-link');
 var address = ''
 var popup = document.getElementById('popup_display');
 var popup_close = document.getElementById('popup_close');
@@ -140,6 +140,11 @@ document.getElementById('address_submit').addEventListener("click",function(){
  	}else{ 		document.getElementById('zip_input').style.backgroundColor= " ";
  	}
  })
+
+document.getElementById('address_input').addEventListener('click',function(){
+	document.getElementById('address_input').style.fontSize="xx-large";
+})
+
 
 document.getElementById('review').addEventListener('click',()=>{
 	window.location="/review";
