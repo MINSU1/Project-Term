@@ -8,7 +8,7 @@ create table member
 insert into member values ('Jacob', '123', '555 Seymour Street','Vancouver', 'V5R B8A');
 insert into member values ('Jay', '123', '556 Seymour Street','Vancouver', 'V5R B8L');
 insert into member values ('Le', '123', '557 Seymour Street','Vancouver', 'V5R K8L');
-insert into member values ('Min', '123', '558 Seymour Street','Vancouver', 'V5R B8F');
+insert into member values ('Min', '123', '1045 Haro Street','Vancouver', 'V5R B8F');
 insert into member values ('Ryan', '123', '559 Seymour Street','Vancouver', 'V5R D8B');
 insert into member values ('Theo', '123', '560 Seymour Street','Vancouver', 'V5R C8A');
 
