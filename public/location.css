@@ -145,13 +145,13 @@
 
 #radiusoption{
     position:absolute;
-    top:150px;
+    top:120px;
     left:220px;
-    width:200px;
+    width:220px;
     height:20px;
     border:2px solid black;
     border-radius: 20px;
-    /*background-color: rgb(165,0,0);*/a
+    /*background-color: rgb(165,0,0);*/
     /*opacity: 0.2;*/
     /*filter: alpha(opacity=50);*/
 }
