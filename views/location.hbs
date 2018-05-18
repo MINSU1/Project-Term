@@ -15,13 +15,13 @@
     <img id="background" src="./img/background.jpg">
     <div id='logo'></div>
     <div id="radiusoption">
-        <h>500m</h><input id="checkBox" type="checkbox">
-        <h>1km</h><input id="checkBox" type="checkbox">
-        <h>1.5km</h><input id="checkBox" type="checkbox">
+        <h>500m</h><input id="1checkBox" type="checkbox" class="radcheck" onclick="checkRadius(this.id)">
+        <h>1.5km</h><input id="2checkBox" type="checkbox" class="radcheck" onclick="checkRadius(this.id)">
+        <h>3.0km</h><input id="3checkBox" type="checkbox" class="radcheck" onclick="checkRadius(this.id)">
     </div>
+    <input id="test">
     <div id="map"></div>
     <div id="explanation">
-        
         <button id="submit" style='display: none;'>Confirm</button>
     </div>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBEoiFzG0XaPOHqYqQ6AGAcNBosbJQ7RUw&libraries=places&callback=initMap" async defer>
@@ -44,6 +44,13 @@
         url_site='',
         isDivExist = 0;
 
+    var pyrmont = { lat: latitu, lng: longitu };
+    var requestt = {
+            location: pyrmont,
+            radius: 200,
+            type: ['restaurant']
+        };
+
     var getAddress = (address, callback)=>{
         request({
             url:'https://maps.googleapis.com/maps/api/geocode/json'+'?address='+encodeURIComponent(address),
@@ -61,21 +68,46 @@
         });
     };
 
+    function checkRadius(id){
+        var pfive_checkbox = document.getElementById('1checkBox').checked;
+        var one_checkbox = document.getElementById('2checkBox').checked;
+        var onefive_checkbox = document.getElementById('3checkBox').checked;
+        for (var i = 1;i <= 3; i++) {
+            document.getElementById(i+"checkBox").checked = false;
+        }
+        document.getElementById(id).checked = true;
+        if (id == '1checkBox'){
+            requestt = {
+                location: pyrmont,
+                radius: 500,
+                type: ['restaurant']
+            };
+            window.onload = initMap();
+        } else if (id == '2checkBox'){
+            requestt = {
+                location: pyrmont,
+                radius: 1500,
+                type: ['restaurant']
+            };
+            window.onload = initMap();
+        } else if (id == '3checkBox'){
+            requestt = {
+                location: pyrmont,
+                radius: 2000,
+                type: ['restaurant']
+            };
+            window.onload = initMap();
+        }
+    };
+    
     function initMap() {
-        var pyrmont = { lat: latitu, lng: longitu };
-
         map = new google.maps.Map(document.getElementById('map'), {
             center: pyrmont,
             zoom: 15
         });
-        var request = {
-            location: pyrmont,
-            radius: 500,
-            type: ['restaurant']
-        }
         infowindow = new google.maps.InfoWindow();
         service = new google.maps.places.PlacesService(map);
-        service.nearbySearch(request, callback);
+        service.nearbySearch(requestt, callback);
     }
 
     function callback(results, status) {
@@ -175,7 +207,6 @@
             ratecolor = ratingcolor(place_rating);
             ratingDiv.style.color = ratecolor;
         }
-        
     }
 
     function ratingcolor(rating) {
@@ -218,27 +249,14 @@
     document.getElementById('submit').addEventListener('click',()=>{
         location_confirmation();
     });
-    window.onload = initMap;
 
     //logo links back to home
     document.getElementById("logo").addEventListener("click",()=>{
         window.location = "/";
     });
 
+    window.onload = initMap();
 
-    // function addClassCheck(element){
-    //     if(element.checked){
-    //         element.classList.add("radcheckbox");
-    //     }else{
-    //         element.classList.remove("radcheckbox");
-    //     }
-    //     if(document.getElementsByClassName("radcheckbox").length>1){
-    //       alert("Please select only one check box");
-    //         element.checked=false;
-    //         element.classList.remove("radcheckbox");
-    //     }
-
-    // }
     </script>
 </body>
 </html>
