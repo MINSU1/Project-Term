@@ -75,29 +75,29 @@ var lat = '',
 var userlog = {};
 getUsers()
 //---------------------------------------functions-----------------------------------------------
-/** 
- * Reading JSON file in local storage
- */
+// /** 
+//  * Reading JSON file in local storage
+//  */
 
-function readJsonFile() {
-	getUsers()
-	fs.readFile("./reviews.json", (err, data)=> {
-	    if (err) {
-	        throw err;
-	    }
-	   	json_reviews = JSON.parse(data);
+// function readJsonFile() {
+// 	getUsers()
+// 	fs.readFile("./reviews.json", (err, data)=> {
+// 	    if (err) {
+// 	        throw err;
+// 	    }
+// 	   	json_reviews = JSON.parse(data);
 
-	 //    for(item in json_reviews){
-		// 	reviews['review'].push(json_reviews[item].concat(item));
-		// }
-	})
-}
-/** 
- * Writing JSON file in local storage
- */
-function writeJsonFile(){
-	fs.writeFile('./username.json', JSON.stringify(userlog));
-}
+// 	 //    for(item in json_reviews){
+// 		// 	reviews['review'].push(json_reviews[item].concat(item));
+// 		// }
+// 	})
+// }
+// /** 
+//  * Writing JSON file in local storage
+//  */
+// function writeJsonFile(){
+// 	fs.writeFile('./username.json', JSON.stringify(userlog));
+// }
 /** 
  * based on the address what user entered, find the latitude and longitude, and find the weather in the place
  * @param {string} address - address the user entered
@@ -145,7 +145,7 @@ app.post('/address_check', (request, response) => {
 //-----------------------------------signin page--------------------------------------------------
 /** Simply sending signin.hbs page and read username.json file and store the data */
 app.get('/signin', (request, response) => {
-	readJsonFile(__dirname + '/username.json');
+	// readJsonFile(__dirname + '/username.json');
     response.render('signin');
 });
 
