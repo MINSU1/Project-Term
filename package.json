@@ -31,12 +31,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MINSU1/Project-Term.git"
+    "url": "git+https://github.com/Y-JayKim/Project-Term.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/MINSU1/Project-Term/issues"
+    "url": "https://github.com/Y-JayKim/Project-Term/issues"
   },
-  "homepage": "https://github.com/MINSU1/Project-Term#readme"
+  "homepage": "https://github.com/Y-JayKim/Project-Term#readme"
 }

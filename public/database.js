@@ -58,7 +58,7 @@ function getInfo(info) {
             }
             request = new Request(command, function(err) {
             if (err) {  
-                //console.log(err);
+                console.log(err);
             }  
             });  
             var result = []; 
