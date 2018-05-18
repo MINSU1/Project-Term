@@ -1,5 +1,5 @@
 const request = require('supertest');
-const app = require('../address_finder.js')
+const app = require('../address_finder')
 
 describe('Test getWeather', () => {
     test('getWeather should return summary, temperature, pressure', () => {
