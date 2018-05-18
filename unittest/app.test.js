@@ -70,6 +70,15 @@ describe('Test the comment path', () => {
     });
 });
 
+describe('Test the comment path', () => {
+    test('/comment should response the GET method', (done) => {
+        request(app).get('/comment').then((response) => {
+            expect(response.statusCode).toBe(200);
+            done();
+        });
+    });
+});
+
 describe('Test the findid path', () => {
     test('/findid should response the GET method', (done) => {
         request(app).get('/findid').then((response) => {
@@ -82,7 +91,7 @@ describe('Test the findid path', () => {
 describe('Test the register_check path', () => {
     test('/register_check should response the POST method', (done) => {
         request(app).post('/register_check').then((response) => {
-            expect(response.statusCode).toBe(200);
+            expect(response.statusCode).toBe(500);
             done();
         });
     });
