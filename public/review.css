@@ -103,3 +103,38 @@
 	height:70px;
     background-color:rgb(0,0,0);
 }
+/** media queries for screen for review */
+@media (max-width: 768px) { 
+    #rateUs{
+        width: 400px;
+        display: inline-block;
+        
+    }
+    #review_header{
+        position: relative;
+        top: 20px;
+        font-family: sans-serif;
+        text-align: left;
+        font-size: 1em;
+        display: inline;
+        color: rgb(0,0,0,165);
+    }
+    #feedback1{
+        width: 300px;
+        overflow: hidden;
+    }
+    #feedback2{
+        width: 300px;
+        overflow: hidden;
+    }
+    #reviewSub{
+        position: relative;
+        left: 350px;
+    }
+}
+#toRevBut:hover{
+    background-color: green;
+}
+#reviewSub:hover{
+    background-color: green;
+}

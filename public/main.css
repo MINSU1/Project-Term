@@ -53,9 +53,8 @@ li a:hover {
     position: absolute;
     color: white !important;
     font-size: 1.2em !important;
-    background-color: black !important;
-    border: none !important;
-    left: 100px;
+    left: 100px !important;
+    height: 50px !important;
 }
 .container{
     background-color: black;
@@ -177,14 +176,22 @@ p4{
 }
 p{
     position: relative;
+    font-family: sans-serif;
+    left: 20px;
+    top: -30px;
+    font-weight: bold;
+    font-size: 19px;
+}
+p8{
+    position: relative;
     margin:auto;
-    top:-7%;
-    left:30px;
+    top:100;
+    right: 340px;
     font-weight: bold;
     font-size: 19px;
     font-family: Sans-serif;
 }
-}
+
 p1{
     position: absolute;
     width: 300px;
@@ -195,6 +202,11 @@ p1{
     font-size: 19px;
     font-family: Sans-serif;
 }
+.nav-item{
+    position: absolute;
+    top: 0px;
+}
+
 /*#address_div{
     position: absolute;
     margin: auto;
@@ -221,6 +233,7 @@ p1{
     left: 50px;
     top: 40px;
     position: relative;
+    box-shadow: 5px 10px;
 }
 
 #login_div{
@@ -230,17 +243,17 @@ p1{
     width: 500px;
     height: 400px;
     right: -70px;
-    top: 40px;
+    top: 45px;
     position: relative;
+    box-shadow: 5px 10px;
 }
-#guestentry {
-    width: auto;
-}
+
+
 #address_input,#city_input,#zip_input{
     border: solid rgb(165,0,0) 1px;
     position: relative;
     left: 10%;
-    bottom: 20px;
+    bottom: 40px;
     right: 0px;
     margin: 10px;
     padding: 7px;
@@ -251,7 +264,7 @@ p1{
     height: 30px;
 }
 #address_submit{
-    position: absolute;
+    position: relative;
     bottom:2%;
     height:50px;
     width:50%;
@@ -306,7 +319,7 @@ p3{
 
 #login_submit{
     position: absolute;
-    bottom:2%;
+    bottom:10%;
     height:50px;
     width:50%;
     left:25%;
@@ -357,21 +370,51 @@ p3{
 
 @media (max-width: 768px) { 
     #address_div{
-        top: 70px;
+        top: 90px;
         position: relative;
         width: 300px;
+        height: 400px;
     }
+    #address_submit{
+    position: absolute;
+    bottom:15%;
+    height:15%;
+    width:50%;
+    left:25%;
+    border:none;
+    background:rgb(165,0,0);
+    color:white;
+    font-weight: bold;
+    cursor:pointer;
+    font-size:22px;
+    }
+    #login_submit{
+    position: absolute;
+    bottom:15%;
+    height:15%;
+    width:50%;
+    left:25%;
+    border:none;
+    background:rgb(165,0,0);
+    color:white;
+    font-weight: bold;
+    cursor:pointer;
+    font-size:22px;
+    border-radius: 25px;
+}
     p{
         top: -55px;
         position: relative;
+        left: 7px;
     }
+
     #address_input,#city_input,#zip_input{
-        top: -65px;
+        top: -70px;
         position: relative;
     }
 
     #login_div{
-        top: 140px;
+        top: 160px;
         left: 50px;
         width: 300px;
         position: relative;
@@ -379,6 +422,9 @@ p3{
     p2{
         position: relative;
         top: -55px;
+    }
+    #about_display{
+        z-index: -1;
     }
  
  }
@@ -388,6 +434,7 @@ p3{
         position: relative;
         width: 390px;
 
+
     }
     #login_div{
         position: relative;
@@ -396,6 +443,22 @@ p3{
         width: 390px;
         
     }
+     p{
+        top: -50px;
+        position: relative;
+        left: 10px;
+    }
+    #address_input,#city_input,#zip_input{
+    border: solid rgb(165,0,0) 1px;
+    position: relative;
+    left: 10%;
+    bottom: 55px;
+    right: 0px;
+    margin: 10px;
+    padding: 7px;
+    width: 70%;
+}
+
  }
 }
 
@@ -683,4 +746,4 @@ input[type="text"]
 .navbar-brand:hover{
     background-color: rgb(165,0,0) !important;
 }
-/*style the register div and login div*/
+
