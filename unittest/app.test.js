@@ -70,6 +70,15 @@ describe('Test the comment path', () => {
     });
 });
 
+describe('Test the comment path', () => {
+    test('/comment should response the GET method', (done) => {
+        request(app).get('/comment').then((response) => {
+            expect(response.statusCode).toBe(200);
+            done();
+        });
+    });
+});
+
 describe('Test the findid path', () => {
     test('/findid should response the GET method', (done) => {
         request(app).get('/findid').then((response) => {
@@ -82,7 +91,7 @@ describe('Test the findid path', () => {
 describe('Test the register_check path', () => {
     test('/register_check should response the POST method', (done) => {
         request(app).post('/register_check').then((response) => {
-            expect(response.statusCode).toBe(200);
+            expect(response.statusCode).toBe(500);
             done();
         });
     });
@@ -108,7 +117,17 @@ describe('Test the location_confirmation path', () => {
 
 describe('Test the weather path', () => {
     test('/weather should response the GET method', (done) => {
-        request(app).get('/weather').then((response) => {
+        request(app).get('/weather',{
+            summary: 'Clear',
+            icon: 'clear-day',
+            temp: 62.38,
+            humid: 0.63,
+            winds: 4.33,
+            dist_fee: 0,
+            dist: '0.3 mi',
+            ori: 'Seymour St, Vancouver, BC, Canada',
+            dest: '560 Smithe St, Vancouver, BC V6B 3L9, Canada'
+        }).then((response) => {
             expect(response.statusCode).toBe(200);
             done();
         });
