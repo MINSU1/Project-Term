@@ -76,30 +76,28 @@
             document.getElementById(i+"checkBox").checked = false;
         }
         document.getElementById(id).checked = true;
-
-        if (pfive_checkbox == true){
-            requestt = {
-                location: pyrmont,
-                radius: 100,
-                type: ['restaurant']
-            };
-            window.onload = initMap();
-        } else if (one_checkbox == true){
-            requestt = {
-                location: pyrmont,
-                radius: 300,
-                type: ['restaurant']
-            };
-            window.onload = initMap();
-        } else if (onefive_checkbox == true){
+        if (id == '1checkBox'){
             requestt = {
                 location: pyrmont,
                 radius: 500,
                 type: ['restaurant']
             };
             window.onload = initMap();
+        } else if (id == '2checkBox'){
+            requestt = {
+                location: pyrmont,
+                radius: 1500,
+                type: ['restaurant']
+            };
+            window.onload = initMap();
+        } else if (id == '3checkBox'){
+            requestt = {
+                location: pyrmont,
+                radius: 2000,
+                type: ['restaurant']
+            };
+            window.onload = initMap();
         }
-        window.onload = initMap();
     };
     
     function initMap() {
