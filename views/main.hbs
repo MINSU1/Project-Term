@@ -4,38 +4,82 @@
 <head>
     <title>Main</title>
     <link href="main.css" rel="stylesheet" type="text/css" />
+
+     <!--Install bootstrap css-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 </head>
 
 <body>
-     <div id="logo-animation">
-        <img src="img/logo.png" width="200px" height="200px">
-    </div>
-    <div id='top_menu'>
-        <div id="logo"></div>
-        <button id="main" class="top_but">MAIN</button>
-        <button id="contact" class="top_but">Contact</button>
-        <button id="about" class="top_but">About Us</button>
-        <button id="review" class="top_but">Review Us</button>
-    </div>
-    <img id="background" src="./img/background.jpg">
+     <img id="logo-animation" src="./img/logo.jpg"/>
+   
+ <img id="background" src="./img/background.jpg">
+        <nav class="navbar navbar-default">
+            <div id="logo"></div>
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#codebrainery-toggle-nav" aria-expanded="false">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                        <a href="#" id="main" class="navbar-brand">Main</a>
+                </div>
+                <div class="collapse navbar-collapse" id="codebrainery-toggle-nav">
+                    <ul class="nav navbar-nav navbar-right">
+                         <li class="nav-item"><a href="#" id="contact" class="nav-link">Contact<span class="sr-only">(current)</span></a></li>
+                        <!--Problem solve here but about does not work/do something with javascript -->
+                        <li class="nav-item"><a href="#" id="about" class="nav-link">About<span class="sr-only">(current)</span></a></li>
+                        <li class="nav-item"><a href="#" id="review" class="nav-link">Review</a></li>
+                    </ul> 
+                    
+
+                </div>
+            </div>
+        </nav>
+              
+</br>
+</br>
+    <!--adding bootstrap for the div -->
     <div id="main_display" class="displays">
+        <div class="row">
+            <div class="clearfix visible-xs"></div>
+            <div class="clearfix visible-xs"></div>
+            <div class="clearfix visible-xs"></div>
+            <div class="clearfix visible-xs"></div>
+            <div class="clearfix visible-xs"></div>
+            <div class="clearfix visible-xs"></div>
+
+
         <div id="no_address" style="display: none;">
-            <div id="address_div">
-                <p id="guesttext">Please enter your address to continue as a guest</p>
-                <p id="guestentry">Address Line</p>
-                <input type="text" id='address_input' class="guest_address" placeholder="Apt#/Street">
-                <p>City</p>
-                <input type="text" id='city_input' class="guest_address" placeholder="ex)Vancouver">
-                <p>Postal Code</p>
-                <input type="text" id='zip_input' class="guest_address" placeholder="ex)V6B 3H6">
-                <button type="submit" id="address_submit">Submit</button>
-            </div>
-            <div id="login_div">
-                <p2>If you have an account, press login!</p2>
-                <button type="submit" id="login_submit">Sign in</button>
-                <img id="deliverypng" src="./img/scooter.png">  
-            </div>
-             <p3>Or</p3>
+           <div class="col-md-6 col-xs-12">
+                    <div id="address_div" class="float-left">
+                        <p id="guesttext">Please enter your address to continue as a guest</p>
+                    </br>
+                        <p id="guestentry">Address Line</p>
+                    <form>
+                        <input type="text" id="address_input" class="guest_address" placeholder="555">
+                        <p>City</p>
+                        <input type="text" id='city_input' class="guest_address" placeholder="ex)Vancouver">
+                        <p>Postal Code</p>
+                        <input type="text" id='zip_input' class="guest_address" placeholder="ex)V6B 3H6">
+                    </form>
+                        <button type="submit" id="address_submit">Submit</button>
+                    </div>
+                </div>
+                <div class="clearfix visible-xs"></div>
+                <div class="clearfix visible-xs"></div>
+                <div class="col-md-6 col-xs-12">
+                    <div id="login_div">
+                        <p2>If you have an account, press login!</p2>
+                        <button type="submit" id="login_submit">Sign in</button>
+                        <img id="deliverypng" src="./img/scooter.png">  
+                    </div>
+                </div>
+            </div>       
+
         </div>
             <!--Style this-->
         <div id="yes_address" style="display: none;">
@@ -68,7 +112,7 @@
         </script>
     </div>
     <div id="contact_display" class="displays" style="display:none;">
-        <p5>CONTACT INFORMATION</p5>
+         <p5><strong>CONTACT INFORMATION</strong></p5>
         <div id="separator" class="top_sep"></div>
         <div id="map"></div>
         <div id="info">
@@ -116,6 +160,10 @@
         <div id="popup_text">Unit testing errors corrected.</div>
         <div id="popup_close">X</div>
     </div>
+    <!--Install javascript-->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="main.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOYA62OBwbkCp7SgiDlDYLCdJOIv1fySY&callback=initMap">
     </script>
