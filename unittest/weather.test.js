@@ -1,33 +1,31 @@
-const assert = require('chai').assert;
-// const sayHello = require('../index').sayHello;
-// const addNumbers = require('../index').addNumbers;
-const app = require('../unittest');
+const request = require('jest');
+const app = require('../public/weather.js')
 
-sayHelloResult=app.sayHello();
-addNumbersResult=app.addNumbers(5,5);
+describe('Test the address to lat/lng converter', () => {
+    test('geocode should return lat and lng of the address', () => {
+    	app.geocode('460 Westveiw St, coquitlam, bc, canada').then((result) =>{
+    		expect(result.lat).toBe(49.2487721);
+    		expect(result.lng).toBe(-122.8902314);
+    	});
+    });
+});
 
-describe('App',function(){
-	describe('sayHellofunctions', function(){
-		it('sayHello should return hello',function(){
-		// let result =  app.sayHello();
-		assert.equal(sayHelloResult,'hello');
-		});
+describe('Test the distance calculator', () => {
+    test('distance_calc should return the distance between the user and restaurant', () => {
+    	app.distance_calc('460 Westveiw St, coquitlam, bc, canada', '1045 haro st, bc, canada').then((result) =>{
+    		expect(result.dis).toBe("13.5 mi");
+    		expect(result.ori).toBe("460 Westview St, Coquitlam, BC V3K 6C9, Canada");
+    		expect(result.dest).toBe("1045 Haro St, Vancouver, BC V6E 3Z8, Canada");
+    	});
+    });
+});
 
-		it('sayHello should return type string',function(){
-			// let result =  app.sayHello();
-			assert.typeOf(sayHelloResult,'string');
-		});
-	});
-	
-	describe('addNumbersfunctions', function(){
-		it('addNumbers should be above 5',function(){
-		// let result =  app.addNumbers(5,5);
-		assert.isAbove(addNumbersResult,5);
-		});
-
-		it('addNumbers should return type numbers',function(){
-			// let result =  app.addNumbers(5,5);
-			assert.typeOf(addNumbersResult,'number');
-		});
-	});
+describe('Test the weather', () => {
+    test('weather should return the body.currently', () => {
+    	app.weather(49.2487721, -122.8902314).then((result) =>{
+    		expect(result.timezone).toBe("America/Vancouver");
+    		expect(result.currently.summary).toBe("Clear");
+    		expect(result.offset).toBe(-7);
+    	});
+    });
 });
