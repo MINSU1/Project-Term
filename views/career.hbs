@@ -11,52 +11,37 @@
     <div id='top_padding'>
         <div id='logo'></div>
     </div>
-    <img id="background" src="./img/background.jpg">
+    <img id="background" src="./img/career.png">
     <div id= 'review_display'>
         <div id="review_header">
-            <h1>Please let us know what you think about our service!</h1>
+            <h1 id="careerfont">Would you like to become part of Skip-A-Dish? Sign up here to start delivering food whenever wherever!</h1>
         </div>
         <div id="review_info">
             <form action="/review" method="post">
                 <div id='enterName'>
                     <br>
-                    <b>Please enter your name:</b>
+                    <b id="space">Full name:</b>
+                    <input type = 'text' />
+                    <br/><br/>
+                    <b id="space">Phone num:</b>
+                    <input type = 'text' />
+                    <br/><br/>
+                    <b id="space">E-Mail:</b>
                     <input type = 'text' />
                 </div>
                 <br>
-                <div id = "rateUs">
-                    <br>
-                    <div id="radio">
-                        <b>On a scale of 1 to 5, what would you rate us?</b>
-                        <br><br>
-                        <input id="awful" type ='radio' name ='scale' value='1'/>
-                        <label for="awful">Awful</label>
-                        <input id="bad" type ='radio' name ='scale' value='2'/>
-                        <label for="bad">Bad</label>
-                        <input id="okay" type ='radio' name ='scale' value='3'/>
-                        <label for="okay">Okay</label>
-                        <input id="good" type ='radio' name ='scale' value='4'/>
-                        <label for="good">Good</label>
-                        <input id="excellent" type ='radio' name ='scale' value='5'/>
-                        <label for="excellent">Excellent</label>
-                        <br>
-                    </div>
-                </div>
                 <div>
                     <br>
-                        <b>What do you think about our service?</b>
+                        <b>Insert cover letter here.</b>
                     <br><br>
-                    <textarea id="feedback1" rows='6' cols='97' placeholder='Leave your feedback here...' name="feedback"></textarea>
+                    <textarea id="feedback1" rows='6' cols='97' placeholder='Enter information here...' name="feedback"></textarea>
                     <br><br>
-                    <b>How would you suggest us improve it?</b>
+                    <b>Insert resume here.</b>
                     <br><br>
-                    <textarea rows='6' cols='97' placeholder='Leave your feedback here...'></textarea>
+                    <textarea rows='6' cols='97' placeholder='Paste resume here...'></textarea>
                 </div>
                 <br>
-                <button id='reviewSub'>Submit</button>
-            </form>
-            <form action="/comment" method='post'>
-                <button id='toRevBut' class='toRevPage'>See others' comments</button>
+                <button id='careerSub'>Get Started</button>
             </form>
         </div>
     </div>

@@ -24,7 +24,6 @@
 
 #logo{
     position: absolute;
-    top:5px;
     left:30px;
     width:90px;
     height:70px;
@@ -519,3 +518,4 @@ input[type="text"]
 }
 
 }
+
