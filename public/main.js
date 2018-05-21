@@ -89,6 +89,7 @@ for (var ind = 0; ind < topButClass.length; ind++){
 		document.getElementById('contact_display').style.display = 'none'
 		document.getElementById('about_display').style.display = 'none'
 		document.getElementById('main_display').style.display = 'none'
+		document.getElementById('applynow_display').style.display = 'none'
 		document.getElementById(ev.target.id + '_display').style.display='block';
         }
 	});

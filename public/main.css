@@ -60,6 +60,11 @@
 #review{
     right:10px;
 }
+
+#applynow{
+    right:450px;
+}
+
 /*---------------------------Displays-----------------------------------------*/
 .displays{
     position: absolute;

@@ -27,7 +27,6 @@ describe('Test the weather', () => {
     	app.weather(49.2487721, -122.8902314).then((result) =>{
     		expect(result.timezone).toBe("America/Vancouver");
             expect(result.timezone).toBeType("string");
-    		expect(result.currently.summary).toBe("Clear");
             expect(result.currently.summary).toBeType("string");
     		expect(result.offset).toBe(-7);
             expect(result.offset).toBeType("number");
