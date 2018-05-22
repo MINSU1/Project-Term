@@ -6,8 +6,6 @@ describe('Test the address to lat/lng converter', () => {
     	app.geocode('460 Westveiw St, coquitlam, bc, canada').then((result) =>{
     		expect(result.lat).toBe(49.2487721);
     		expect(result.lng).toBe(-122.8902314);
-        expect(result.lat).toBeType("number");
-        expect(result.lng).toBeType("number");
     	});
     });
 });
@@ -26,10 +24,8 @@ describe('Test the weather', () => {
     test('weather should return the body.currently', () => {
     	app.weather(49.2487721, -122.8902314).then((result) =>{
     		expect(result.timezone).toBe("America/Vancouver");
-        expect(result.timezone).toBeType("string");
-        expect(result.currently.summary).toBeType("string");
+    		expect(result.currently.summary).toBe("Clear");
     		expect(result.offset).toBe(-7);
-        expect(result.offset).toBeType("number");
     	});
     });
 });
