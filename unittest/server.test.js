@@ -15,22 +15,27 @@ const database = require('../public/database.js')
 describe('add and remove form server', ()=>{
 	test('can you add a member',()=>{
 		//the fuction add a vow to the database and returns true when sucsessfull
-		expect(database.addMember(['test', 'test', 'test', 'test', 'test'])).toBe('done')
+		thing = (typeof database.addMember(['test', 'test', 'test', 'test']))
+		expect(thing).toBe('object')
+		//expect(thing).toBe(Promise.resolve)
 	})
 	test('can you remove a member',()=>{
 		//the fuction add a vow to the database and returns true when sucsessfull
-		expect(database.removeMember('test')).toBe('done')
+		thing = (typeof database.removeMember('test'))
+		expect(thing).toBe('object')
 	})
 })
 
 describe('can you get from the server', ()=>{
 	test('get the members from the server',()=>{
 		//the fuction saves the result to a database and returns true when sucsessfull
-		expect(database.get('member')).toBe('')
+		test = (typeof database.get('member'))
+		expect(test).toBe('object')
 	})
 	test('get the orders from the server',()=>{
 		//the fuction saves the result to a database and returns true when sucsessfull
-		expect(database.get('order_history')).toBe('')
+		test = (typeof database.get('order_history'))
+		expect(test).toBe('object')
 	})
 })
 

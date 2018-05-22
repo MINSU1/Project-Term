@@ -31,13 +31,12 @@ function doCommand(command, type){
 	return new Promise((resolve,reject) => {
 		pool.acquire(function (err, connection) {
 			if (err) {
-				console.error(err);
-				return;
+				resolve(err)
 			}
 			//use the connection as normal
 			var request = new Request(command, function(err, rowCount) {
 				if (err) {
-					console.error(err);
+					console.error(String(err));
 					return;
 				}
 				//release the connection back to the pool when finished
@@ -62,11 +61,12 @@ function doCommand(command, type){
 /////////////////////
 function addMember(data){
 	return new Promise((resolve,reject) => {
-		command = `Insert into member(username, password, line_address, city, zipcode)Values('${data[0]}','${data[1]}','${data[2]}','${data[3]}','${data[4]}')`
+		command = `Insert into member(username, password, line_address, city)Values('${data[0]}','${data[1]}','${data[2]}','${data[3]}')`
 		doCommand(command,'adder')
 		resolve('done')
 	})
 }
+
 function removeMember(data){
 	return new Promise((resolve,reject) => {
 		command = `DELETE FROM review WHERE username = ${data}`
@@ -83,25 +83,27 @@ function removeMember(data){
 	})
 }
 function get(type){
-	doCommand(`SELECT * FROM ${type}`,'getter').then((results)=>{
-		list = []
-		result = []
-		results.forEach(function(row){
-			row.forEach(function(value){
-				if (typeof value === 'object'){
-					result.push(value.value); 
-				} 
-			});  
-			if(result.length > 1){
-				list.push(result)
-			}
-			result =[];
-		})
-		console.log(list);
-		return results;
-	}).catch((error) => {
-        console.log('Error:', error);
-    });
+	return new Promise((resolve,reject) => {
+		doCommand(`SELECT * FROM ${type}`,'getter').then((results)=>{
+			list = []
+			result = []
+			results.forEach(function(row){
+				row.forEach(function(value){
+					if (typeof value === 'object'){
+						result.push(value.value); 
+					} 
+				});  
+				if(result.length > 1){
+					list.push(result)
+				}
+				result =[];
+			})
+			console.log(list);
+			resolve(list)
+		}).catch((error) => {
+	        console.log('Error:', error);
+	    });
+	})
 }
 
 function listToJson(list) {
@@ -129,9 +131,11 @@ function listToJson(list) {
 	}
 	return newjson
 }
+
 module.exports = {
 	listToJson,
 	removeMember,
 	addMember,
-	doCommand
+	doCommand,
+	get
 }
