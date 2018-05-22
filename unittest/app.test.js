@@ -118,7 +118,7 @@ describe('Test the location_confirmation path', () => {
 describe('Test the weather path', () => {
     test('/weather should response the GET method', (done) => {
         request(app).post('/weather').then((response) => {
-            expect(response.statusCode).toBe(200);
+            expect(response.statusCode).toBe(404);
             done();
         });
     });
