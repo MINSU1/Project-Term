@@ -108,7 +108,7 @@ function listToJson(list) {
 	oldList = list[1]
 	var newjson = {}
 	if(list[0]== 'member'){
-		for (x=1;x<oldList.length;x++){
+		for (x=0;x<oldList.length;x++){
 			str = `${oldList[x][2]}, ${oldList[x][3]}, ${oldList[x][4]}`
 			newjson[oldList[x][0]] = {
 				'password': oldList[x][1],
@@ -117,7 +117,7 @@ function listToJson(list) {
 		}
 	}
 	else if(list[0] == 'order_history'){
-		for (x=1;x<oldList.length;x++){
+		for (x=0;x<oldList.length;x++){
 			newjson[oldList[x][0]] = {
 				'username': oldList[x][1],
 				'date_orderd': oldList[x][2],
