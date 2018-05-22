@@ -93,6 +93,13 @@ textarea{
     background-color:rgb(0,0,0);
 }
 
+#toRevBut:hover{
+    background-color: green;
+}
+#reviewSub:hover{
+    background-color: green;
+}
+
 .radBut {
     width:15px;
     text-align:center;
@@ -156,3 +163,4 @@ textarea{
 #careerfont {
     font-family: Verdana;
     font-weight: lighter;
+}
