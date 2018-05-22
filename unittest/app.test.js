@@ -1,6 +1,15 @@
 const request = require('supertest');
 const app = require('../app')
 
+describe('Test the address to lat/lng converter', () => {
+    test('geocode should return lat and lng of the address', () => {
+        app.geocode('460 Westveiw St, coquitlam, bc, canada').then((result) =>{
+            expect(result.lat).toBe(49.2487721);
+            expect(result.lng).toBe(-122.8902314);
+        });
+    });
+});
+
 describe('Test the root path', () => {
     test('/ path should response the GET method', (done) => {
         request(app).get('/').then((response) => {
@@ -70,6 +79,15 @@ describe('Test the comment path', () => {
     });
 });
 
+describe('Test the comment path', () => {
+    test('/comment should response the GET method', (done) => {
+        request(app).get('/comment').then((response) => {
+            expect(response.statusCode).toBe(200);
+            done();
+        });
+    });
+});
+
 describe('Test the findid path', () => {
     test('/findid should response the GET method', (done) => {
         request(app).get('/findid').then((response) => {
@@ -82,7 +100,7 @@ describe('Test the findid path', () => {
 describe('Test the register_check path', () => {
     test('/register_check should response the POST method', (done) => {
         request(app).post('/register_check').then((response) => {
-            expect(response.statusCode).toBe(200);
+            expect(response.statusCode).toBe(500);
             done();
         });
     });

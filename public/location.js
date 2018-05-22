@@ -76,7 +76,7 @@ function createMarker(place) {
         };
         service.getDetails(request, function(details, status) {
             phone_num = details.formatted_phone_number,
-                url_site = details.website;
+            url_site = details.website;
         });
 
         infowindow.setContent(place.name + "<br><br>" + `<button onclick="myFunction()">SELECT</button>`);

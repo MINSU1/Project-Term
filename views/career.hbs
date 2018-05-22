@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Career</title>
+    <link href ='review.css' rel='stylesheet' type='text/css' />
+
+</head>
+
+<body>
+    <div id='top_padding'>
+        <div id='logo'></div>
+    </div>
+    <img id="background" src="./img/career.png">
+    <div id= 'review_display'>
+        <div id="review_header">
+            <h1 id="careerfont">Sign up here to start delivering food whenever wherever!</h1>
+        </div>
+        <div id="review_info">
+            <form action="/review" method="post">
+                <div id='enterName'>
+                    <br>
+                    <b id="space">Full name:</b>
+                    <input type = 'text' />
+                    <br/><br/>
+                    <b id="space">Phone num:</b>
+                    <input type = 'text' />
+                    <br/><br/>
+                    <b id="space">E-Mail:</b>
+                    <input type = 'text' />
+                </div>
+                <br>
+                <div>
+                    <br>
+                        <b>Insert cover letter here.</b>
+                    <br><br>
+                    <textarea id="feedback1" rows='6' cols='97' placeholder='Enter information here...' name="feedback"></textarea>
+                    <br><br>
+                    <b>Insert resume here.</b>
+                    <br><br>
+                    <textarea rows='6' cols='97' placeholder='Paste resume here...'></textarea>
+                </div>
+                <br>
+                <button id='careerSub'>Get Started</button>
+            </form>
+        </div>
+    </div>
+    <script src='review.js'></script>
+    <script type="text/javascript">
+        if(!(`{{{comment}}}` == '')){
+            alert(`{{{comment}}}`);
+        }
+    </script>
+</body>
+
+</html>
