@@ -5,35 +5,51 @@ const fs = require('fs');
 const request = require('request');
 const bodyParser = require('body-parser')
 const server = require('./public/database.js')
-// const Connection = require('tedious').Connection;  
-// const config = {  
-//     userName: 'Student',  
-//     password: 'P@ssw0rd',  
-//     server: 'team8server.database.windows.net',  
-//     // If you are on Microsoft Azure, you need this:  
-//     options: {encrypt: true, database: 'Project'}  
-// }; 
-// const connection = new Connection(config); 
-// const Request = require('tedious').Request;  
-// const TYPES = require('tedious').TYPES;
-
-//database getter
-function getUsers(){
-    server.getInfo('Members').then((message) => {
-        return server.listToJson(message)
-    }).then((json)=>{
-        userlog = json
-        return json
-    }).catch((error) => {
-        //console.log('Error:', error);
-    });
-}
-/** calling express */
-var app = express();
-
 /** Importing js file and its functions */
 const weather_file = require('./public/weather.js');
 
+/** serrver stuff */
+const Connection = require('tedious').Connection;  
+const config = {  
+    userName: 'Student',  
+    password: 'P@ssw0rd',  
+    server: 'team8server.database.windows.net',  
+    // If you are on Microsoft Azure, you need this:  
+    options: {encrypt: true, database: 'Project'}  
+}; 
+const connection = new Connection(config); 
+const Request = require('tedious').Request;  
+const TYPES = require('tedious').TYPES;
+
+
+function get(type){
+	server.doCommand(`SELECT * FROM ${type}`,'getter').then((results)=>{
+		list = []
+		result = []
+		results.forEach(function(row){
+			row.forEach(function(value){
+				if (typeof value === 'object'){
+					result.push(value.value); 
+				} 
+			});  
+			if(result.length > 1){
+				list.push(result)
+			}
+			result =[];
+		})
+		return [type,server.listToJson([type,list])]
+	}).then((list)=>{
+		if(list[0]=='member'){
+			userlog = list[1]
+			//console.log(userlog);
+		}
+	}).catch((error) => {
+        console.log('Error:', error);
+    });
+}
+
+/** calling express */
+var app = express();
 
 app.use(bodyParser.urlencoded({
     extended: true
@@ -73,24 +89,18 @@ var lat = '',
 
 /** Global variable that stores fetched data from weather.js user information */
 var userlog = {};
-getUsers()
+var reviews = {};
+get('member')
+//getReviews()
 //---------------------------------------functions-----------------------------------------------
 /** 
  * Reading JSON file in local storage
  */
 
 function readJsonFile() {
-	getUsers()
-	fs.readFile("./reviews.json", (err, data)=> {
-	    if (err) {
-	        throw err;
-	    }
-	   	json_reviews = JSON.parse(data);
-
-	 //    for(item in json_reviews){
-		// 	reviews['review'].push(json_reviews[item].concat(item));
-		// }
-	})
+	get('member')
+	get('order_history')
+	get('review')
 }
 /** 
  * Writing JSON file in local storage
@@ -118,7 +128,6 @@ function weather_fetcher(address){
 //-----------------------------------main page--------------------------------------------------
 /** Sending hbs file when cliet enter address */
 app.get('/', (request, response) => {
-	getUsers()
 	//console.log(userlog);
     response.render('main', {
     	validity: validity,
@@ -176,7 +185,7 @@ app.get("/review", (request, response)=>{
 
 app.post("/review", (request, response)=>{
 	if(!(request.body.feedback == "")){
-		console.log(request.body);
+		//console.log(request.body);
 		response.render('greet');
 	}else{
 		response.render('review', {comment:'Plesae leave a feedback.'});
@@ -184,9 +193,6 @@ app.post("/review", (request, response)=>{
 });
 
 app.post('/comment', (request, response)=>{
-	response.render('comment', reviews);
-});
-app.get('/comment', (request, response)=>{
 	response.render('comment', reviews);
 });
 
@@ -200,20 +206,21 @@ app.get("/findid", (request, response) =>{
 app.post("/register_check", (request, response) =>{
 	user_info = request.body;
 	//console.log(user_info);
-	address_finder.getAddress(user_info.address, (errorMessage, results) =>{
-		if (errorMessage){
-            response.send('address invalid');
-		}else if(user_info.username in userlog){
+	weather_file.getAddress(user_info.address).then((results)=>{
+		//console.log([request.body.username, request.body.password, request.body.address, request.body.city, request.body.zipcode]);
+		if(user_info.username in userlog){
 			response.send('username already exists');
-		}else{
-			server.addMember('Member',[request.body.username, request.body.password, request.body.address, request.body.city, request.body.zipcode])
-			getUsers()
-			//userlog[String(user_info.username)]= {password:String(user_info.password),address:String(user_info.address)+', '+ String(user_info.city) +", "+ "BC" +", "+"Canada"};
+		}
+		else{
+			server.addMember([request.body.username, request.body.password, request.body.address, request.body.city, request.body.zipcode]).then(()=>{
+				get('member')
+				return 'hi'
+			}).then(()=>{
+				response.send('valid');
+			})
 			address = String(user_info.address)+', '+ String(user_info.city) +", "+ "BC" +", "+"Canada";
 			lat = JSON.stringify(results.lat, undefined, 2)
-			lng = JSON.stringify(results.lng, undefined, 2)
-			//writeJsonFile();
-			response.send('valid');
+			lng = JSON.stringify(results.lng, undefined, 2)		
 		}
 	});
 });

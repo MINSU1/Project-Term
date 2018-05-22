@@ -10,62 +10,63 @@
             <div id="theHeader">
             Create your 2K Account
             </div>
-            <div class="questions">
-                <p1>Name/*</p1>
-                <input type="text" id="first" class="q" placeholder="First" name="first_name"/>
-                <input type="text" id="last" class="q" placeholder="Last" name="last_name"/>
-            </div>
-            <div class="questions">
-                <p1>Type your username/*</p1>
-                <input type="text" id="username" class="q" placeholder="Username" name="username"/>
-            </div>
-            <div class="questions">
-                <p1>Type a password/*</p1>
-                <input type="password" id="password1" class="q" name="password1"/>
-            </div>
-            <div class="questions">
-                <p1>Confirm your password/*</p1>
-                <input type="password" id="password2" class="q" name="password1"/>
-            </div>
-            <div class="questions">
-                <p>Birthday</p>
-                <select id="month" class="q">
-                    <option value="Month">Month</option>
-                    <option value="January">January</option>
-                    <option value="February">February</option>
-                    <option value="March">March</option>
-                    <option value="April">April</option>
-                    <option value="May">May</option>
-                    <option value="June">June</option>
-                    <option value="July">July</option>
-                    <option value="August">August</option>
-                    <option value="September">September</option>
-                    <option value="October">October</option>
-                    <option value="November">November</option>
-                    <option value="December">December</option>
-                </select>
-                <input type="text" id="day" class="q"  placeholder="Day" />
-                <input type="text" id="year" class="q"  placeholder="Year" />
-            </div>
-            <div class="questions">
-                <p>Phone Number</p>
-                <input type="text" id="phone" class="q"  placeholder="ex)7789990000"  name="phone_number"/>
-            </div>
-            <div class="questions">
-                <p1>Address Line/*</p1>
-                <input type="text" id="address" class="q"  placeholder="Apt#/Street" name="street_address"/>
-            </div>
-            <div class="questions">
-                <p1>City/*</p1>
-                <input type="text" id="city" class="q" placeholder="ex)Vancouver" name="city_address"/>
-            </div>
-            <div class="questions">
-            </div>
-            <div class="questions">
-                <p1>Zipcode/*</p1>
-                <input type="text" id="zipcode" class="q" placeholder="ex)V6B 3H6" name="postal_code" />
-            </div>
-            <button
+            <form action="/register" id="registerForm" method="post">
+                <div class="questions">
+                    <p1>Name/*</p1>
+                    <input type="text" id="first" class="q" placeholder="First" name="first_name"/>
+                    <input type="text" id="last" class="q" placeholder="Last" name="last_name"/>
+                </div>
+                <div class="questions">
+                    <p1>Type your username/*</p1>
+                    <input type="text" id="username" class="q" placeholder="Username" name="username"/>
+                </div>
+                <div class="questions">
+                    <p1>Type a password/*</p1>
+                    <input type="password" id="password1" class="q" name="password1"/>
+                </div>
+                <div class="questions">
+                    <p1>Confirm your password/*</p1>
+                    <input type="password" id="password2" class="q" name="password1"/>
+                </div>
+                <div class="questions">
+                    <p>Birthday</p>
+                    <select id="month" class="q">
+                        <option value="Month">Month</option>
+                        <option value="January">January</option>
+                        <option value="February">February</option>
+                        <option value="March">March</option>
+                        <option value="April">April</option>
+                        <option value="May">May</option>
+                        <option value="June">June</option>
+                        <option value="July">July</option>
+                        <option value="August">August</option>
+                        <option value="September">September</option>
+                        <option value="October">October</option>
+                        <option value="November">November</option>
+                        <option value="December">December</option>
+                    </select>
+                    <input type="text" id="day" class="q"  placeholder="Day" />
+                    <input type="text" id="year" class="q"  placeholder="Year" />
+                </div>
+                <div class="questions">
+                    <p>Phone Number</p>
+                    <input type="text" id="phone" class="q"  placeholder="ex)7789990000"  name="phone_number"/>
+                </div>
+                <div class="questions">
+                    <p1>Address Line/*</p1>
+                    <input type="text" id="address" class="q"  placeholder="Apt#/Street" name="street_address"/>
+                </div>
+                <div class="questions">
+                    <p1>City/*</p1>
+                    <input type="text" id="city" class="q" placeholder="ex)Vancouver" name="city_address"/>
+                </div>
+                <div class="questions">
+                </div>
+                <div class="questions">
+                    <p1>Zipcode/*</p1>
+                    <input type="text" id="zipcode" class="q" placeholder="ex)V6B 3H6" name="postal_code" />
+                </div>
+            </form>
             <button id="submit">SUBMIT</button>
         </div>
         <script src='register.js'></script>
