@@ -30,5 +30,6 @@ describe('Test the weather', () => {
             expect(result.currently.summary).toBeType("string");
     		expect(result.offset).toBe(-7);
             expect(result.offset).toBeType("number");
+    	});
     });
 });

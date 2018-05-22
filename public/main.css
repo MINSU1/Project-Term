@@ -24,7 +24,6 @@
 
 #logo{
     position: absolute;
-    top:5px;
     left:30px;
     width:90px;
     height:70px;
@@ -50,19 +49,19 @@
     margin:auto;
 }
 #contact{
-    right: 150px;
-}
-
-#about{
     right: 300px;
 }
 
-#review{
-    right:10px;
+#about{
+    right: 430px;
 }
 
-#applynow{
-    right:450px;
+#review{
+    right:150px;
+}
+
+#career{
+    right: 10px;
 }
 
 /*---------------------------Displays-----------------------------------------*/
@@ -520,3 +519,4 @@ input[type="text"]
 }
 
 }
+
