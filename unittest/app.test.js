@@ -117,17 +117,7 @@ describe('Test the location_confirmation path', () => {
 
 describe('Test the weather path', () => {
     test('/weather should response the GET method', (done) => {
-        request(app).get('/weather',{
-            summary: 'Clear',
-            icon: 'clear-day',
-            temp: 62.38,
-            humid: 0.63,
-            winds: 4.33,
-            dist_fee: 0,
-            dist: '0.3 mi',
-            ori: 'Seymour St, Vancouver, BC, Canada',
-            dest: '560 Smithe St, Vancouver, BC V6B 3L9, Canada'
-        }).then((response) => {
+        request(app).post('/weather').then((response) => {
             expect(response.statusCode).toBe(200);
             done();
         });

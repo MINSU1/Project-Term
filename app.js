@@ -266,7 +266,6 @@ app.get('/weather', (request, response) => {
 	}).catch((error)=>{
 		//console.log(error);
 	});
-	response.render('weather');
 });
 
 //-----------------------------------Confirm Page-----------------------------------------------------
