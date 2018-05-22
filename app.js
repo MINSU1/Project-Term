@@ -230,9 +230,9 @@ app.get('/location', (request, response) => {
 });
 
 app.post('/location', (request, response) => {
-	console.log(request);
-	console.log(lat);
-	console.log(lng);
+	//console.log(request);
+	//console.log(lat);
+	//console.log(lng);
     response.render('location', {latitu:lat, longitu:lng, user:request.body.username});
 });
 
