@@ -7,13 +7,14 @@ var width = window.matchMedia("(max-width: 450px)"),
     radioDiv = document.getElementById('radio'),
     radTextList = document.getElementsByClassName('radText');
     
-function response(){
-    if (width3.matches){
-        subBut.style.left = (0.5 * (revInfo.clientWidth - subBut.clientWidth)) + 'px';
-    } else {
-    subBut.style.left = (revInfo.clientWidth - subBut.clientWidth) + 'px';
-    }
-}
+// function response(){
+//     if (width3.matches){
+//         subBut.style.left = (0.5 * (revInfo.clientWidth - subBut.clientWidth)) + 'px';
+//     } else {
+//     subBut.style.left = (revInfo.clientWidth - subBut.clientWidth) + 'px';
+//     }
+// }
+
 
 function alterRate(){
     if (width.matches){
@@ -31,7 +32,6 @@ function alterRate(){
     }
 };
 
-response();
 alterRate();
 
 window.onresize = function(){
