@@ -1,15 +1,16 @@
 {
   "name": "project_term",
   "version": "1.0.0",
-  "description": "jest",
-  "main": "address_finder.js",
+  "description": "\"# ACIT2520\"",
+  "main": "server.js",
   "directories": {
     "test": "test"
   },
   "dependencies": {
     "async": "^2.6.0",
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
     "body-parser": "^1.18.2",
-    "chai": "^4.1.2",
     "ejs": "^2.5.9",
     "express": "^4.16.3",
     "fs": "^0.0.1-security",
@@ -21,22 +22,26 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.6.1",
+
     "jest": "^22.4.3",
+    "request": "^2.85.0",
     "superagent": "^3.8.3",
-    "supertest": "^3.0.0"
+    "supertest": "^3.0.0",
+    "tedious": "^2.3.1"
   },
+  "devDependencies": {},
   "scripts": {
-    "test": "jest --coverage",
+    "test": "jest",
     "start": "node server.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MINSU1/Project-Term.git"
+    "url": "git+https://github.com/Y-JayKim/Project-Term.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/MINSU1/Project-Term/issues"
+    "url": "https://github.com/Y-JayKim/Project-Term/issues"
   },
-  "homepage": "https://github.com/MINSU1/Project-Term#readme"
+  "homepage": "https://github.com/Y-JayKim/Project-Term#readme"
 }

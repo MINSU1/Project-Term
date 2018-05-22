@@ -14,7 +14,6 @@
 /*-----------------------Top-----------------------------*/
 #logo{
     position: absolute;
-    top:5px;
     left:30px;
     width:70px;
     height:45px;
@@ -70,6 +69,21 @@ nav{
     font-family: Sans-serif;
     height: 55px !important;
 }
+/*#contact{
+    right: 300px;
+}
+
+#about{
+    right: 430px;
+}
+
+#review{
+    right:150px;
+}
+
+#career{
+    right: 10px;
+}*/
 /*---------------------------Displays-----------------------------------------*/
 .displays{
     position: absolute;
@@ -785,4 +799,5 @@ input[type="text"]
 .navbar-brand:hover{
     background-color: rgb(165,0,0) !important;
 }
+
 

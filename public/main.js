@@ -85,7 +85,7 @@ function address_check(validity){
 /** display the block associated with the clicked element */
 for (var ind = 0; ind < topButClass.length; ind++){
 	document.getElementById(topButClass[ind].id).addEventListener('click',(ev)=>{
-        if (ev.target.id != 'review') {
+        if (ev.target.id != 'review' && ev.target.id != 'career') {
 		document.getElementById('contact_display').style.display = 'none'
 		document.getElementById('about_display').style.display = 'none'
 		document.getElementById('main_display').style.display = 'none'
@@ -120,9 +120,14 @@ document.getElementById('re_address').addEventListener('click',()=>{
 	address_check(0);
 });
 
-//Links back to main page
+//Links to review page
 document.getElementById('review').addEventListener('click',()=>{
 	window.location="/review";
+});
+
+//Links to career page
+document.getElementById('career').addEventListener('click',()=>{
+	window.location="/career";
 });
 
 /** goto /location page when next_submit button is clicked */
