@@ -36,7 +36,7 @@ function doCommand(command, type){
 			//use the connection as normal
 			var request = new Request(command, function(err, rowCount) {
 				if (err) {
-					console.error(String(err));
+					console.error(err);
 					return;
 				}
 				//release the connection back to the pool when finished
@@ -61,7 +61,7 @@ function doCommand(command, type){
 /////////////////////
 function addMember(data){
 	return new Promise((resolve,reject) => {
-		command = `Insert into member(username, password, line_address, city)Values('${data[0]}','${data[1]}','${data[2]}','${data[3]}')`
+		command = `Insert into member(username, password, line_address, city, zipcode)Values('${data[0]}','${data[1]}','${data[2]}','${data[3]}','${data[4]}')`
 		doCommand(command,'adder')
 		resolve('done')
 	})

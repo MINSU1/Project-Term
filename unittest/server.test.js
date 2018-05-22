@@ -15,7 +15,7 @@ const database = require('../public/database.js')
 describe('add and remove form server', ()=>{
 	test('can you add a member',()=>{
 		//the fuction add a vow to the database and returns true when sucsessfull
-		thing = (typeof database.addMember(['test', 'test', 'test', 'test']))
+		thing = (typeof database.addMember(['test', 'test', 'test', 'test', 'test']))
 		expect(thing).toBe('object')
 		//expect(thing).toBe(Promise.resolve)
 	})

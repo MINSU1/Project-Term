@@ -70,7 +70,7 @@ describe('Test the comment path', () => {
     });
 });
 
-describe('Test the comment path', () => {
+describe.skip('Test the comment path', () => {
     test('/comment should response the GET method', (done) => {
         request(app).get('/comment').then((response) => {
             expect(response.statusCode).toBe(200);
@@ -91,7 +91,7 @@ describe('Test the findid path', () => {
 describe('Test the register_check path', () => {
     test('/register_check should response the POST method', (done) => {
         request(app).post('/register_check').then((response) => {
-            expect(response.statusCode).toBe(500);
+            expect(response.statusCode).toBe(200);
             done();
         });
     });
@@ -115,7 +115,7 @@ describe('Test the location_confirmation path', () => {
     });
 });
 
-describe.skip('Test the weather path', () => {
+describe('Test the weather path', () => {
     test('/weather should response the GET method', (done) => {
         request(app).post('/weather').then((response) => {
             expect(response.statusCode).toBe(404);
