@@ -195,6 +195,10 @@ app.get("/findid", (request, response) =>{
 	response.render('findid');
 });
 
+/** Go to career page */
+app.get("/career", (request, response) =>{
+	response.render('career');
+});
 
 /** Check whether the address input is valid and store the information into JSON file */
 app.post("/register_check", (request, response) =>{

@@ -24,7 +24,6 @@
 
 #logo{
     position: absolute;
-    top:5px;
     left:30px;
     width:90px;
     height:70px;
@@ -50,15 +49,19 @@
     margin:auto;
 }
 #contact{
-    right: 150px;
-}
-
-#about{
     right: 300px;
 }
 
+#about{
+    right: 430px;
+}
+
 #review{
-    right:10px;
+    right:150px;
+}
+
+#career{
+    right: 10px;
 }
 /*---------------------------Displays-----------------------------------------*/
 .displays{
@@ -515,3 +518,4 @@ input[type="text"]
 }
 
 }
+
