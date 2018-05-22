@@ -1,6 +1,15 @@
 const request = require('supertest');
 const app = require('../app')
 
+describe('Test the address to lat/lng converter', () => {
+    test('geocode should return lat and lng of the address', () => {
+        app.geocode('460 Westveiw St, coquitlam, bc, canada').then((result) =>{
+            expect(result.lat).toBe(49.2487721);
+            expect(result.lng).toBe(-122.8902314);
+        });
+    });
+});
+
 describe('Test the root path', () => {
     test('/ path should response the GET method', (done) => {
         request(app).get('/').then((response) => {
