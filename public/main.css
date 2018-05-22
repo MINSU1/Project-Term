@@ -83,7 +83,12 @@ nav{
 
 #career{
     right: 10px;
+<<<<<<< HEAD
 }*/
+=======
+}
+
+>>>>>>> 464c2e3b6135d7d708bba5e98c1dbf8480d1bfea
 /*---------------------------Displays-----------------------------------------*/
 .displays{
     position: absolute;
@@ -659,7 +664,7 @@ p7{
     }
     #next_submit{
         position: absolute;
-        top: 530px;
+        top: 580px;
         left: 150px;
     }
 
