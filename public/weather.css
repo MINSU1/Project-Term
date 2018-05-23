@@ -139,3 +139,93 @@
 #confirm_order:hover{
     background-color: green;
 }
+@media (max-width: 768px) {
+    #h1{
+    position: absolute;
+    left:-270px;
+    top:0px;
+    width:auto;
+    height:auto;
+    font:30px bold;
+    font-family:sans-serif;
+}
+.sum_text{
+    position: relative;
+    width:auto;
+    height:auto;
+    font-family:sans-serif;
+}
+
+#main_info{
+    position: absolute;
+    top:60px;
+    left:-270px;
+    font:20px bold;
+    width: 500px;
+    height: 250px;
+   
+}
+#weather_display{
+    position:absolute;
+    left:50px;
+    top:420px;
+    width:170px;
+    height:290px;
+    margin:auto;
+    border:black 2px solid;
+    text-align: center;
+    font:20px bold;
+    font-family:sans-serif;
+}
+
+#weather_icon{
+    position: absolute;
+    left:0px;
+    right:0px;
+    top:30px;
+    margin:auto;
+    width:100px;
+    height:100px;
+    background-size: contain;
+}
+#explanation{
+    position: absolute;
+    left:10px;
+    top:120px;
+    font:20px bold;
+    font-family:sans-serif;
+}
+#total{
+    position: absolute;
+    right:20px;
+    bottom:30px;
+    font:50px bold;
+    font-family:sans-serif;
+}
+#tot_summary{
+    position: absolute;
+    right:10px;
+    bottom:110px;
+    width:300px;
+    height:80px; 
+}
+#total_amt{
+    position: absolute;
+    left:70px;
+    font:40px bold;
+    font-family:sans-serif;
+}
+#confirm_order{
+    position: absolute;
+    right:20px;
+    bottom:0px;
+    width:200px;
+    height:70px;
+    font:40px bold;
+    font-family:sans-serif;
+    background-color:rgb(165,0,0);
+    color:white; 
+    cursor:pointer;
+    border-radius: 25px;
+}
+}

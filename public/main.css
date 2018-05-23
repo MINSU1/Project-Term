@@ -85,10 +85,7 @@ nav{
     right: 10px;
 <<<<<<< HEAD
 }*/
-=======
-}
 
->>>>>>> 464c2e3b6135d7d708bba5e98c1dbf8480d1bfea
 /*---------------------------Displays-----------------------------------------*/
 .displays{
     position: absolute;
@@ -356,7 +353,7 @@ p3{
 #next_submit{
     position: absolute;
     border:none;
-    bottom: -60px;
+    bottom: -350px;
     left:42%;
     width:210px;
     height:40px;
@@ -664,9 +661,14 @@ p7{
     }
     #next_submit{
         position: absolute;
-        top: 580px;
+        top: 500px;
         left: 150px;
     }
+    h4{
+    left:10%;
+    font-size:20px;
+    font-family: Sans-serif;
+}
 
 }
 
