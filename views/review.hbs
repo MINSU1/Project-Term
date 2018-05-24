@@ -59,9 +59,10 @@
         </form>
     </div>
     <script src='review.js'></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script type="text/javascript">
         if(!(`{{{comment}}}` == '')){
-            alert(`{{{comment}}}`);
+            swal(`{{{comment}}}`, {icon:"info"});
         }
     </script>
 </body>
