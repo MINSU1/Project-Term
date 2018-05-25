@@ -3,6 +3,8 @@
 
 <head>
     <title>Review</title>
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href ='review.css' rel='stylesheet' type='text/css' />
 </head>
 
@@ -11,62 +13,56 @@
         <div id='logo'></div>
     </div>
     <img id="background" src="./img/background.jpg">
-    <div id= 'review_display'>
-        <div id="review_header">
-            <h1>Please let us know what you think about our service!</h1>
-        </div>
-        <div id="review_info">
-            <form action="/review" method="post">
-                <div id='enterName'>
-                    <b>What should we call you?</b>
-                    <br><br>
-                    <textarea rows='1' cols='44' placeholder='Enter your name here...' name="name"></textarea>
-                </div>
-                <div id = "rateUs">
-                    <br>
-                    <div id="radio">
-                        <b>On a scale of 1 to 5, what would you rate us?</b>
-                        <br><br>
-                        <input id="awful" type ='radio' name ='scale' value='1'/>
-                        <label for="awful">Awful</label>
-                        <input id="bad" type ='radio' name ='scale' value='2'/>
-                        <label for="bad">Bad</label>
-                        <input id="okay" type ='radio' name ='scale' value='3'/>
-                        <label for="okay">Okay</label>
-                        <input id="good" type ='radio' name ='scale' value='4'/>
-                        <label for="good">Good</label>
-                        <input id="excellent" type ='radio' name ='scale' value='5'/>
-                        <label for="excellent">Excellent</label>
-                    </div>
-                </div>
-                <div>
-                    <br>
-                    <div>
-                        <b>What do you think about our service?</b>
-                    </div>
-                    <br>
-                    <textarea id="feedback1" rows='6' cols='97' placeholder='Leave your feedback here...' name="feedback"></textarea>
-                </div>
-                <div>
-                    <br>
-                    <div>
-                    <b>How would you suggest us improve it?</b>
-                    </div>
-                    <br>
-                    <textarea rows='6' cols='97' placeholder='Leave your feedback here...'></textarea>
-                </div>
+    <div id="review_header">
+        <h1>Please let us know what you think about our service!</h1>
+    </div>
+    <div id="review_info">
+        <form action="/review" method="post">
+            <div id='enterName'>
                 <br>
-                <button id='reviewSub'>Submit</button>
-            </form>
-            <form action="/comment" method='post'>
-                <button id='toRevBut' class='toRevPage'>See others' comments</button>
-            </form>
-        </div>
+                <b>Please enter your name:</b>
+                <input type = 'text'/>
+            </div>
+            <div id = "rateUs">
+                <br>
+                <div id="radio">
+                    <b>On a scale of 1 to 5, what would you rate us?</b>
+                    <br><br>
+                    <input id="awful" class = 'radBut' type ='radio' name ='scale' value='1'/>
+                    <label for="awful" class = 'radText'>Awful</label>
+                    <input id="bad" class = 'radBut' type ='radio' name ='scale' value='2'/>
+                    <label for="bad" class = 'radText'>Bad</label>
+                    <input id="okay" class = 'radBut' type ='radio' name ='scale' value='3'/>
+                    <label for="okay" class = 'radText'>Okay</label>
+                    <input id="good" class = 'radBut' type ='radio' name ='scale' value='4'/>
+                    <label for="good" class = 'radText'>Good</label>
+                    <input id="excellent" class = 'radBut' type ='radio' name ='scale' value='5'/>
+                    <label for="excellent" class = 'radText'>Excellent</label>
+                    <br>
+                </div>
+            </div>
+            <div>
+                <br>
+                    <b>What do you think about our service?</b>
+                <br><br>
+                <textarea id="feedback1" rows='6' cols='86' placeholder='Leave your feedback here...' name="feedback"></textarea>
+                <br><br>
+                <b>How would you suggest us improve it?</b>
+                <br><br>
+                <textarea id="feedback2" rows='6' cols='86' placeholder='Leave your feedback here...'></textarea>
+            </div>
+            <br>
+            <button id='reviewSub'>Submit</button>
+        </form>
+        <form action="/comment" method='post'>
+            <button id='toRevBut' class='toRevPage'>See others' comments</button>
+        </form>
     </div>
     <script src='review.js'></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script type="text/javascript">
         if(!(`{{{comment}}}` == '')){
-            alert(`{{{comment}}}`);
+            swal(`{{{comment}}}`, {icon:"info"});
         }
     </script>
 </body>

@@ -2,7 +2,7 @@
  * topButClass = shortcut for document.getElementsByClassName('top_but')
  * global variable address that store address information
  */
-var topButClass = document.getElementsByClassName('top_but');
+var topButClass = document.getElementsByClassName('nav-link');
 var address = ''
 var popup = document.getElementById('popup_display');
 var popup_close = document.getElementById('popup_close');
@@ -46,13 +46,13 @@ function initMap() {
 
 function address_no_empty(){
 	if(document.getElementById("address_input").value == ''){
-		alert("Please enter address");
+		swal("Please enter address", {icon:"info"});
 		return false;
 	}else if(document.getElementById("city_input").value == ''){
-		alert("Please enter city");
+        swal("Please enter city", {icon:"info"});
 		return false;
 	}else if(document.getElementById("zip_input").value == ''){
-		alert("Please enter Postal Code");
+		swal("Please enter Postal Code", {icon:"info"});
 		return false;
 	}else{
 		return true;
@@ -70,10 +70,11 @@ function address_check(validity){
 	xmlhttp.onreadystatechange = () => {
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
 			if(xmlhttp.responseText == "invalid"){
-				alert("invalid address.\nPlesae enter again");
+				swal("Invalid address", "Please enter again", {icon:"error"});
 			}else if(xmlhttp.responseText == "valid"){
-				alert('Found the matching address!');
-				location.reload();
+				swal('Valid address',"Found the matching address!", {icon:"success"}).then(() => {
+                    location.reload();
+                });
 			}else if(xmlhttp.responseText == "reload"){
 				location.reload();
 			}
@@ -85,7 +86,7 @@ function address_check(validity){
 /** display the block associated with the clicked element */
 for (var ind = 0; ind < topButClass.length; ind++){
 	document.getElementById(topButClass[ind].id).addEventListener('click',(ev)=>{
-        if (ev.target.id != 'review') {
+        if (ev.target.id != 'review' && ev.target.id != 'career') {
 		document.getElementById('contact_display').style.display = 'none'
 		document.getElementById('about_display').style.display = 'none'
 		document.getElementById('main_display').style.display = 'none'
@@ -120,14 +121,19 @@ document.getElementById('re_address').addEventListener('click',()=>{
 	address_check(0);
 });
 
-//Links back to main page
+//Links to review page
 document.getElementById('review').addEventListener('click',()=>{
 	window.location="/review";
 });
 
+//Links to career page
+document.getElementById('career').addEventListener('click',()=>{
+	window.location="/career";
+});
+
 /** goto /location page when next_submit button is clicked */
 document.getElementById('next_submit').addEventListener('click',()=>{
-	window.location="/location";
+	document.getElementById('myForm').submit()
 });
 
 
@@ -161,3 +167,9 @@ document.getElementById('address_submit').addEventListener("click",function(){
  	}else{ 		document.getElementById('zip_input').style.backgroundColor= " ";
  	}
 })
+
+$(document).on('click','.navbar-collapse.in',function(e) {
+    if( $(e.target).is('a') ) {
+        $(this).collapse('hide');
+    }
+});

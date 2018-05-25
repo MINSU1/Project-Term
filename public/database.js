@@ -1,142 +1,156 @@
 const Connection = require('tedious').Connection;  
 const config = {  
-    userName: 'Student',  
-    password: 'P@ssw0rd',  
-    server: 'team8server.database.windows.net',  
-    // If you are on Microsoft Azure, you need this:  
-    options: {encrypt: true, database: 'Project'}  
+	userName: 'Student',  
+	password: 'P@ssw0rd',  
+	server: 'team8server.database.windows.net',    
+	options: {encrypt: true, database: 'Project'}  
 }; 
 const connection = new Connection(config); 
 const Request = require('tedious').Request;  
-const TYPES = require('tedious').TYPES;  
+const TYPES = require('tedious').TYPES;
 
+/////////////////////
+var items = null
+var ConnectionPool = require('tedious-connection-pool');
+
+var poolConfig = {
+	min: 0,
+	max: 100,
+	log: true
+};
+
+//create the pool
+var pool = new ConnectionPool(poolConfig, config);
+
+pool.on('error', function(err) {
+	console.error(err);
+});
+
+//acquire a connection
+function doCommand(command, type){
+	return new Promise((resolve,reject) => {
+		pool.acquire(function (err, connection) {
+			if (err) {
+				resolve(err)
+			}
+			//use the connection as normal
+			var request = new Request(command, function(err, rowCount) {
+				if (err) {
+					console.error(err);
+					return;
+				}
+				//release the connection back to the pool when finished
+				connection.release();
+
+			});
+			// return info if needed
+			list = []
+			result = []
+			if (type == 'getter'){
+				request.on('row', function(columns) {  
+					list.push(columns)
+					resolve(list)
+				});
+				list = []
+				result = []
+			}
+			connection.execSql(request);
+		})
+	})
+}
+/////////////////////
 function addMember(data){
-    if(addInfo('Member',data)){
-        return true
-    }
-    else {
-        return false
-    }
+	return new Promise((resolve,reject) => {
+		command = `Insert into member(username, password, line_address, city, zipcode)Values('${data[0]}','${data[1]}','${data[2]}','${data[3]}','${data[4]}')`
+		doCommand(command,'adder')
+		resolve('done')
+	})
 }
 
 function removeMember(data){
-    if(removeInfo('Member',data)){
-        return true
-    }
-    else {
-        return false
-    }
+	return new Promise((resolve,reject) => {
+		command = `DELETE FROM review WHERE username = ${data}`
+		doCommand(command,'remover').then(()=>{
+			command = `DELETE FROM order_history WHERE username = ${data}`
+			doCommand(command,'remover')
+		}).then(()=>{
+			command = `DELETE FROM member WHERE username = ${data};`
+			doCommand(command,'remover')
+		}).then(()=>{
+			resolve('done')
+		})
+		
+	})
 }
-
 function get(type){
-    getInfo(type).then((message) => {
-        console.log(message);
-        return listToJson(message)
-        
-    }).then((json)=>{
-        console.log(json);
-        return json
-    }).catch((error) => {
-        console.log('Error:', error);
-        return err
-    })
-    return true
+	return new Promise((resolve,reject) => {
+		doCommand(`SELECT * FROM ${type}`,'getter').then((results)=>{
+			list = []
+			result = []
+			results.forEach(function(row){
+				row.forEach(function(value){
+					if (typeof value === 'object'){
+						result.push(value.value); 
+					} 
+				});  
+				if(result.length > 1){
+					list.push(result)
+				}
+				result =[];
+			})
+			console.log(list);
+			resolve(list)
+		}).catch((error) => {
+	        console.log('Error:', error);
+	    });
+	})
 }
 
-function getInfo(info) {
-    return new Promise((resolve,reject) => {
-        connection.on('connect', function(err) { 
-            command = ''
-            list = []
-            if( info == 'Members'){
-                list = [info]
-                command = "SELECT * FROM member"
-            }
-            if( info == 'Orders'){
-                list = [info]
-                command = "SELECT * FROM order_history"
-            }
-            request = new Request(command, function(err) {
-            if (err) {  
-                //console.log(err);
-            }  
-            });  
-            var result = []; 
-            request.on('row', function(columns) {  
-                columns.forEach(function(column) {  
-                  if (column.value === null) {  
-                    //console.log('NULL');  
-                  } else {  
-                    result.push(column.value);  
-                  }  
-                });  
-                list.push(result)
-                result =[];
-                resolve(list)
-            });
-            connection.execSql(request);
-        })
-    })
-}  
-function addInfo(type, data) {
-    connection.on('connect', function(err) { 
-        if( type == 'Member'){
-            command = `Insert into member(username, password, line_address, city, zipcode)Values('${data[0]}','${data[1]}','${data[2]}','${data[3]}','${data[4]}')`
-            //console.log(command);
-        }
-        request = new Request(command, function(err) {  
-            if (err) {  
-                //console.log(err);
-            }  
-        });  
-        connection.execSql(request);
-    })
-    return true
-}
-function removeInfo(type, data) { 
-    connection.on('connect', function(err) { 
-        if( type == 'Member'){
-            command = `Delete from member where ${data[0]}='${data[1]}'`
-            //console.log(command);
-        }
-        request = new Request(command, function(err) {  
-            if (err) {  
-                console.log(err);
-            }  
-        });  
-        connection.execSql(request); 
-    })
-    return true
-}
 function listToJson(list) {
-    var newjson = {}
-    if(list[0] == 'Members'){
-        for (x=1;x<list.length;x++){
-            str = `${list[x][2]}, ${list[x][3]}, ${list[x][4]}`
-            newjson[list[x][0]] = {
-                'password': list[x][1],
-                'address': str
-            }
-        }
-    }
-    if(list[0] == 'Orders'){
-        for (x=1;x<list.length;x++){
-            newjson[list[x][0]] = {
-                'username': list[x][1],
-                'date_orderd': list[x][2],
-                'restaurant_name': list[x][3],
-                'restaurant_address': list[x][4],
-                'fee':list[x][5]
-            }
-        }
-    }
-    return newjson
+	oldList = list[1]
+	var newjson = {}
+	if(list[0]== 'member'){
+		for (x=0;x<oldList.length;x++){
+			str = `${oldList[x][2]}, ${oldList[x][3]}, ${oldList[x][4]}`
+			newjson[oldList[x][0]] = {
+				'password': oldList[x][1],
+				'address': str
+			}
+		}
+	}
+	else if(list[0] == 'order_history'){
+		for (x=0;x<oldList.length;x++){
+			newjson[oldList[x][0]] = {
+				'username': oldList[x][1],
+				'date_orderd': oldList[x][2],
+				'restaurant_name': oldList[x][3],
+				'restaurant_address': oldList[x][4],
+				'fee':oldList[x][5]
+			}
+		}
+	}
+	else if(list[0] == 'review'){
+		//console.log(list[1]);
+		bigList = []
+		for(x=0;x<list[1].length;x++){
+			//console.log(list[1][x]);
+			newList = []
+			for (y=0;y<list[1][x].length;y++){
+				//console.log(list[1][x][y]);
+				newList.push(String(list[1][x][y]).replace(',','^'))
+			}
+			bigList.push(newList)
+		}
+		//console.log(bigList);
+		return bigList
+	}
+	return newjson
 }
 
 module.exports = {
-    listToJson,
-    getInfo,
-    removeMember,
-    addMember,
-    get
+	listToJson,
+	removeMember,
+	addMember,
+	doCommand,
+	get
 }
