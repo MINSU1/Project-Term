@@ -390,7 +390,7 @@ p3{
     }
     #address_submit{
     position: absolute;
-    bottom:15%;
+    bottom:10%;
     height:15%;
     width:50%;
     left:25%;
@@ -400,6 +400,8 @@ p3{
     font-weight: bold;
     cursor:pointer;
     font-size:22px;
+    border-radius: 25px;
+    z-index: 1;
     }
     #login_submit{
     position: absolute;
@@ -422,8 +424,14 @@ p3{
     }
 
     #address_input,#city_input,#zip_input{
-        top: -70px;
-        position: relative;
+       border: solid rgb(165,0,0) 1px;
+    position: relative;
+    left: 10%;
+    bottom: 40px;
+    right: 0px;
+    margin: 10px;
+    padding: 7px;
+    width: 70%;
     }
 
     #login_div{
