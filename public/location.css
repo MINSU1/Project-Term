@@ -18,7 +18,7 @@
 }
 
 #top_padding{
-    position: fixed;
+    position: absolute;
     top:0px;
     left:0px;
     width:100%;
@@ -169,4 +169,124 @@ h{
 /**hover the button*/
 #submit:hover{
     background-color: green;
+}
+@media (max-width: 768px) { 
+    #radiusoption{
+    position:absolute;
+    top:120px;
+    left:10px;
+    width:220px;
+    height:20px;
+    border:2px solid black;
+    border-radius: 20px;
+    /*background-color: rgb(165,0,0);*/
+    /*opacity: 0.2;*/
+    /*filter: alpha(opacity=50);*/
+}
+    #map{
+    position: absolute;
+    left:10px;
+    top: 30%;
+    margin:auto;
+    width:450px;
+    height:400px;
+    border:2px black solid;
+}
+
+#explanation{
+    background-color: white;
+    position: absolute;
+    left:10px;
+    bottom: -120%;
+    margin:auto;
+    width:450px;
+    height:400px;
+    border:2px black solid;
+    opacity: .95;
+}
+#logo{
+    position: absolute;
+    top:0px;
+    right: 230px;
+    margin:auto;
+    width:170px;
+    height:12%;
+    background:url(./img/logo.jpg) no-repeat;
+    background-size:contain;
+}
+}
+@media (min-width: 769px) and (max-width: 992px) {
+    #radiusoption{
+    position:absolute;
+    top:120px;
+    left:200px;
+    width:220px;
+    height:20px;
+    border:2px solid black;
+    border-radius: 20px;
+    /*background-color: rgb(165,0,0);*/
+    /*opacity: 0.2;*/
+    /*filter: alpha(opacity=50);*/
+}
+    #map{
+    position: absolute;
+    left:20px;
+    top: 30%;
+    margin:auto;
+    width:400px;
+    height:400px;
+    border:2px black solid;
+}
+
+    #explanation{
+    background-color: white;
+    position: absolute;
+    right:0px;
+    top: 30%;
+    margin:auto;
+    width:350px;
+    height:400px;
+    border:2px black solid;
+    opacity: .95;
+
+}
+#logo{
+    position: absolute;
+    top:0px;
+    right: 600px;
+    margin:auto;
+    width:170px;
+    height:12%;
+    background:url(./img/logo.jpg) no-repeat;
+    background-size:contain;
+}
+#order_div{
+    background-color: #ff8080;
+    border-radius: 20px;
+    position: absolute;
+    width:90%;
+    height:50px;
+    left:25px;
+    top:10px;
+    border-bottom:2px rgb(165,0,0) solid;
+    font:20px bold;
+    font-family:sans-serif;
+    text-align: center;
+    overflow: hidden;
+}
+#submit{
+    position:absolute;
+    left:0px;
+    right:0px;
+    margin:auto;
+    bottom:10px;
+    width:150px;
+    height:40px;
+    background-color: rgb(165,0,0);
+    font:20px bold;
+    font-family:sans-serif;
+    color:white;
+    cursor:pointer;
+}
+
 }
