@@ -52,12 +52,14 @@ li a:hover {
     font-size: 1.2em !important;
     left: 100px !important;
     height: 50px !important;
+
 }
 .container{
     background-color: black;
     color:white;
     font-family: Sans-serif;
     font-size: 1.2em;
+    z-index: 1;
 }
 
 nav{
@@ -68,6 +70,7 @@ nav{
     color:white;
     font-family: Sans-serif;
     height: 55px !important;
+    z-index: 1;
 }
 /*#contact{
     right: 300px;
@@ -424,7 +427,7 @@ p3{
     }
 
     #address_input,#city_input,#zip_input{
-       border: solid rgb(165,0,0) 1px;
+    border: solid rgb(165,0,0) 1px;
     position: relative;
     left: 10%;
     bottom: 40px;
