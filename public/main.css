@@ -427,9 +427,9 @@ p3{
     }
 
     #login_div{
-        top: 160px;
+       top: 160px;
         left: 50px;
-        width: 300px;
+        width: 400px;
         position: relative;
     }
     p2{
@@ -440,8 +440,8 @@ p3{
         z-index: -1;
     }
  
- }
-@media (min-width: 769px) and (max-width: 992px) {
+ 
+ 
         #address_div{
         top: 100px;
         position: relative;
@@ -449,13 +449,7 @@ p3{
 
 
     }
-    #login_div{
-        position: relative;
-        top: -310px;
-        left: 500px;
-        width: 390px;
-        
-    }
+   
      p{
         top: -50px;
         position: relative;
@@ -471,9 +465,15 @@ p3{
     padding: 7px;
     width: 70%;
 }
-
- }
 }
+p5{
+    position: absolute;
+    top: 30px !important;
+    left: 30% !important;
+    font-size: 3em !important;
+}
+ 
+
 
 /*-------------------------Contact Display-------------------------------------*/
 #contact_display > p5{
@@ -518,11 +518,13 @@ p3{
     top:390px;
 }
 @media (max-width: 768px) { 
-    p5{
-        position: absolute;
-        top: 80px;
-        font-weight: bold;
-    }
+   p5{
+    position: absolute;
+    top: 30px !important;
+    left: 10% !important;
+    font-size: 2em !important;
+}
+ 
     #info{ 
     position: absolute;
     left:10px;
@@ -564,6 +566,7 @@ p3{
     top:0px;
 }
 h4{
+
     left:20%;
     font-size:20px;
     font-family: Sans-serif;
@@ -591,6 +594,7 @@ p7{
     top:3%;
     font-family: Sans-serif;
 }
+
 /*------media queries----------------*/
 @media (max-width: 768px) { 
     #about_display{
@@ -665,11 +669,13 @@ p7{
         left: 150px;
     }
     h4{
-    left:10%;
-    font-size:20px;
+    position: absolute;
+    top: -100px;
+    left: 2px;
+    font-size:3em !important;
     font-family: Sans-serif;
 }
-
+  
 }
 
 /*-----------style animtaion----------*/
