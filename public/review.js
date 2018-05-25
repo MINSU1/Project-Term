@@ -5,7 +5,8 @@ var width = window.matchMedia("(max-width: 450px)"),
     toRev = document.getElementById('toRevBut'),
     revInfo = document.getElementById('review_info'),
     radioDiv = document.getElementById('radio'),
-    radTextList = document.getElementsByClassName('radText');
+    radTextList = document.getElementsByClassName('radText'),
+    isClicked = false
 
 function response(){
     if (width3.matches){
@@ -39,16 +40,35 @@ window.onresize = function(){
     alterRate();
 };
 function testIfFilled(){
-    console.log(document.getElementsByName('awful').value);
-    console.log(document.getElementsByName('awful').checked);
-    console.log(document.getElementById('name').value);
-    console.log(document.getElementById('feedback1').value);
-    console.log(document.getElementById('feedback2').value);
-    return false
+    if (isClicked != false &&
+        document.getElementById('name').value != '' &&
+        document.getElementById('feedback1').value != '' &&
+        document.getElementById('feedback2').value != ''){
+        return true
+    }
+    else{
+        return false
+    }
+    
 }
 document.getElementById("logo").addEventListener("click",()=>{
 	window.location = "/";
 });
+document.getElementById('awful').addEventListener("click",()=>{
+    isClicked = awful
+})
+document.getElementById('bad').addEventListener("click",()=>{
+    isClicked = bad
+})
+document.getElementById('okay').addEventListener("click",()=>{
+    isClicked = okay
+})
+document.getElementById('good').addEventListener("click",()=>{
+    isClicked = good
+})
+document.getElementById('excellent').addEventListener("click",()=>{
+    isClicked = excellent
+})
 document.getElementById("reviewSub").addEventListener("click",()=>{
     if(testIfFilled()){
         document.getElementById('reviewForm').submit()

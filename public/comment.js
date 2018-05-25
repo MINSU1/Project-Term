@@ -40,7 +40,7 @@ for (i = 0; i < list.length; i+=6){
      name = list[i+1]
      time = list[i+2].split(' ')
      score = list[i+3]
-     comment = list[i+4].replace('^',',')
-     sugestion = list[i+5].replace('^',',')
+     comment = list[i+4].replace(/\^/g,',')
+     sugestion = list[i+5].replace(/\^/g,',')
      createComments([name,time,score,comment,sugestion])
 };

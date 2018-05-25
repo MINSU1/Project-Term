@@ -66,6 +66,13 @@ function addMember(data){
 		resolve('done')
 	})
 }
+function addReview(data){
+	return new Promise((resolve,reject) => {
+		command = `Insert into review(NAME, DATE, RATING, COMMENT, SUGGESTION)Values('${data[0]}','${data[1]}','${data[2]}','${data[3]}','${data[4]}')`
+		doCommand(command,'adder')
+		resolve('done')
+	})
+}
 
 function removeMember(data){
 	return new Promise((resolve,reject) => {
@@ -137,7 +144,7 @@ function listToJson(list) {
 			newList = []
 			for (y=0;y<list[1][x].length;y++){
 				//console.log(list[1][x][y]);
-				newList.push(String(list[1][x][y]).replace(',','^'))
+				newList.push(String(list[1][x][y]).replace(/,/g,'^',1000))
 			}
 			bigList.push(newList)
 		}
@@ -152,5 +159,6 @@ module.exports = {
 	removeMember,
 	addMember,
 	doCommand,
-	get
+	get,
+	addReview
 }

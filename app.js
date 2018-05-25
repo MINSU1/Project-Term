@@ -45,7 +45,7 @@ function get(type){
 		}
 		if(list[0]=='review'){
 			reviews = list[1]
-			//console.log(reviews);
+			console.log(reviews);
 		}
 	}).catch((error) => {
         console.log('Error:', error);
@@ -182,13 +182,24 @@ app.get("/review", (request, response)=>{
 });
 
 app.post("/review", (request, response)=>{
-	console.log(request.body);
+	var d = new Date();
+	date = `${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()+1}`
 	if(!(request.body.feedback == "")){
-		//console.log(request.body);
-		response.render('greet');
+		server.addReview([request.body.name, date, request.body.scale, request.body.comment, request.body.sugestion]).then(()=>{
+			get('review')
+			return 'hi'
+		}).then((thing)=>{
+			console.log(thing);
+			console.log(reviews);
+			response.render('greet');
+		})
 	}else{
 		response.render('review', {comment:'Plesae leave a feedback.'});
 	}
+});
+
+app.get('/comment', (request, response)=>{
+	response.render('comment', {'reviews':reviews})
 });
 
 app.post('/comment', (request, response)=>{
