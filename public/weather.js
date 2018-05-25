@@ -1,6 +1,5 @@
 const request = require('request');
 
-
 var geocode = (address) => {
     return new Promise((resolve, reject) => {
 		request({
