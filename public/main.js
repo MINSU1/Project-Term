@@ -2,15 +2,19 @@
  * topButClass = shortcut for document.getElementsByClassName('top_but')
  * global variable address that store address information
  */
-var topButClass = document.getElementsByClassName('top_but');
+var topButClass = document.getElementsByClassName('nav-link');
 var address = ''
 var popup = document.getElementById('popup_display');
 var popup_close = document.getElementById('popup_close');
 var counter = 0;
+
 //--------------------------------contact map-----------------------------------------------
 /** 
  * initialize google map from the latitude and longitude
  */
+ document.getElementById("main").addEventListener("click",()=>{
+	window.location = "/";
+});
 function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
         center: { lat: 49.283387, lng: -123.115097 },
@@ -46,13 +50,13 @@ function initMap() {
 
 function address_no_empty(){
 	if(document.getElementById("address_input").value == ''){
-		alert("Please enter address");
+		swal("Please enter address", {icon:"info"});
 		return false;
 	}else if(document.getElementById("city_input").value == ''){
-		alert("Please enter city");
+        swal("Please enter city", {icon:"info"});
 		return false;
 	}else if(document.getElementById("zip_input").value == ''){
-		alert("Please enter Postal Code");
+		swal("Please enter Postal Code", {icon:"info"});
 		return false;
 	}else{
 		return true;
@@ -70,10 +74,11 @@ function address_check(validity){
 	xmlhttp.onreadystatechange = () => {
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
 			if(xmlhttp.responseText == "invalid"){
-				alert("invalid address.\nPlesae enter again");
+				swal("Invalid address", "Please enter again", {icon:"error"});
 			}else if(xmlhttp.responseText == "valid"){
-				alert('Found the matching address!');
-				location.reload();
+				swal('Valid address',"Found the matching address!", {icon:"success"}).then(() => {
+                    location.reload();
+                });
 			}else if(xmlhttp.responseText == "reload"){
 				location.reload();
 			}
@@ -166,3 +171,9 @@ document.getElementById('address_submit').addEventListener("click",function(){
  	}else{ 		document.getElementById('zip_input').style.backgroundColor= " ";
  	}
 })
+
+$(document).on('click','.navbar-collapse.in',function(e) {
+    if( $(e.target).is('a') ) {
+        $(this).collapse('hide');
+    }
+});
