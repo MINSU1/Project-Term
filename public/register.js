@@ -4,34 +4,34 @@ var username = document.getElementById("username"),
     qClass = document.getElementsByClassName('q');
 //-----------------------------function----------------------
 function errorTest(){
-    if(parseInt(document.getElementById("day").value)>31 || parseInt(document.getElementById("year").value)>2010){
-        swal("Wrong Brithday Input", {icon: "error"}).then(() => {
-                return false;
-            });
-    };
     for (var i = 0; i < qClass.length; i++){
         if (qClass[i].value == ""){
-            swal("Please fill out the form", {icon:"info"}).then(() => {
-                return false;
-            });
+            swal("Please fill out the form", {icon:"info"});
+            return false;
             break;
         }
     };
+    
     if(document.getElementById("password1").value != document.getElementById("password2").value){
-        swal("These passwords don't match", {icon:"error"}).then(() => {
-                return false;
-            });
+        swal("These passwords don't match", {icon:"error"});
+        return false;
     };
+    
+    if(parseInt(document.getElementById("day").value)>31 || parseInt(document.getElementById("year").value)>2010){
+        swal("Wrong Brithday Input", {icon: "error"});
+        return false;
+    };
+    
     if(username.value.indexOf(';') > -1){
-        swal("You cannot use ';' for your username", {icon:"error"}).then(() => {
-                return false;
-            });
+        swal("You cannot use ';' for your username", {icon:"error"});
+        return false;
     };
+    
     if(username.value=="guest" || username.value=="Guest" ){
-        swal("Username cannot be guest please use other", {icon:"error"}).then(() => {
-                return false;
-            });
+        swal("Username cannot be guest please use other", {icon:"error"});
+        return false;
     };
+    
     return true;
 }
 
