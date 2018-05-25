@@ -255,7 +255,7 @@ app.get('/weather', (request, response) => {
 			dest:dest
 		});
 	}).catch((error)=>{
-		//console.log(error);
+		console.log(error);
 	});
 });
 
