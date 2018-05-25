@@ -129,6 +129,21 @@ function listToJson(list) {
 			}
 		}
 	}
+	else if(list[0] == 'review'){
+		//console.log(list[1]);
+		bigList = []
+		for(x=0;x<list[1].length;x++){
+			//console.log(list[1][x]);
+			newList = []
+			for (y=0;y<list[1][x].length;y++){
+				//console.log(list[1][x][y]);
+				newList.push(String(list[1][x][y]).replace(',','^'))
+			}
+			bigList.push(newList)
+		}
+		//console.log(bigList);
+		return bigList
+	}
 	return newjson
 }
 

@@ -43,6 +43,10 @@ function get(type){
 			userlog = list[1]
 			//console.log(userlog);
 		}
+		if(list[0]=='review'){
+			reviews = list[1]
+			//console.log(reviews);
+		}
 	}).catch((error) => {
         console.log('Error:', error);
     });
@@ -83,15 +87,15 @@ var lat = '',
 	address = '460 Westveiw St, coquitlam, bc, canada',
     dest_address = 'bcit, bc, ca',
 	validity = 0
-	weather_body = '',
-	reviiew = JSON.stringify([{name:'Jay', rating: 5, date: '20170501', comment: 'This app is awesome'}, {name:'Jakob', rating: 1, date: '20170501', comment: 'App is too buggy, the devs suck lol'}]),
-	reviews = {'review': reviiew};
+	weather_body = ''
+	// review = JSON.stringify([{name:'Jay', rating: 5, date: '20170501', comment: 'This app is awesome'}, {name:'Jakob', rating: 1, date: '20170501', comment: 'App is too buggy, the devs suck lol'}]),
+	// reviews = {'review': review};
 
 /** Global variable that stores fetched data from weather.js user information */
 var userlog = {};
-var reviews = {};
+//var reviews = {};
 get('member')
-//getReviews()
+get('review')
 //---------------------------------------functions-----------------------------------------------
 // /** 
 //  * Reading JSON file in local storage
@@ -187,7 +191,7 @@ app.post("/review", (request, response)=>{
 });
 
 app.post('/comment', (request, response)=>{
-	response.render('comment', reviews);
+	response.render('comment', {'reviews':reviews})
 });
 
 /** Simply sending findid.hbs page */

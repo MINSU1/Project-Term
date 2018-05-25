@@ -46,13 +46,13 @@ function initMap() {
 
 function address_no_empty(){
 	if(document.getElementById("address_input").value == ''){
-		alert("Please enter address");
+		swal("Please enter address", {icon:"info"});
 		return false;
 	}else if(document.getElementById("city_input").value == ''){
-		alert("Please enter city");
+        swal("Please enter city", {icon:"info"});
 		return false;
 	}else if(document.getElementById("zip_input").value == ''){
-		alert("Please enter Postal Code");
+		swal("Please enter Postal Code", {icon:"info"});
 		return false;
 	}else{
 		return true;
@@ -70,10 +70,11 @@ function address_check(validity){
 	xmlhttp.onreadystatechange = () => {
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
 			if(xmlhttp.responseText == "invalid"){
-				alert("invalid address.\nPlesae enter again");
+				swal("Invalid address", "Please enter again", {icon:"error"});
 			}else if(xmlhttp.responseText == "valid"){
-				alert('Found the matching address!');
-				location.reload();
+				swal('Valid address',"Found the matching address!", {icon:"success"}).then(() => {
+                    location.reload();
+                });
 			}else if(xmlhttp.responseText == "reload"){
 				location.reload();
 			}

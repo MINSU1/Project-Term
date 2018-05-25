@@ -1,50 +1,40 @@
 var info = [];
 var strInfo = "";
-var username = document.getElementById("username");
+var username = document.getElementById("username"),
+    qClass = document.getElementsByClassName('q');
 //-----------------------------function----------------------
 function errorTest(){
     if(parseInt(document.getElementById("day").value)>31 || parseInt(document.getElementById("year").value)>2010){
-        alert("Wrong Brithday Input")
-        return false;
-    }else if (document.getElementById('username').value == ''){
-        alert('Please fill out the form');
-        return false;
-    }else if (document.getElementById('password1').value == ''){
-        alert('Please fill out the form');
-        return false;
-    }else if (document.getElementById('password2').value == ''){
-        alert('Please fill out the form');
-        return false;
-    }else if (document.getElementById('first').value == ''){
-        alert('Please fill out the form');
-        return false;
-    }else if (document.getElementById('last').value == ''){
-        alert('Please fill out the form');
-        return false;
-    }else if (document.getElementById('address').value == ''){
-        alert('Please fill out the form');
-        return false;
-    }else if (document.getElementById('city').value == ''){
-        alert('Please fill out the form');
-        return false;
-    }else if (document.getElementById('zipcode').value == ''){
-        alert('Please fill out the form');
-        return false;
-    }
+        swal("Wrong Brithday Input", {icon: "error"}).then(() => {
+                return false;
+            });
+    };
+    for (var i = 0; i < qClass.length; i++){
+        if (qClass[i].value == ""){
+            swal("Please fill out the form", {icon:"info"}).then(() => {
+                return false;
+            });
+            break;
+        }
+    };
     if(document.getElementById("password1").value != document.getElementById("password2").value){
-        alert("These passwords don't match");
-        return false;
-    }
+        swal("These passwords don't match", {icon:"error"}).then(() => {
+                return false;
+            });
+    };
     if(username.value.indexOf(';') > -1){
-        alert("You cannot use ';' for your username");
-        return false;
-    }
+        swal("You cannot use ';' for your username", {icon:"error"}).then(() => {
+                return false;
+            });
+    };
     if(username.value=="guest" || username.value=="Guest" ){
-        alert("Username cannot be guest please use other")
-        return false;
-    }
+        swal("Username cannot be guest please use other", {icon:"error"}).then(() => {
+                return false;
+            });
+    };
     return true;
 }
+
 function login_submit(){
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("POST", "/register_check", true);
@@ -52,7 +42,7 @@ function login_submit(){
     xmlhttp.onreadystatechange = () => {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
             if(xmlhttp.responseText == "username invalid"){
-                alert("Invalid username please use other username");
+                swal("Invalid username please use other username", {icon:"error"});
             }else if(xmlhttp.responseText == "valid"){
                 console.log('login_submit valid');
                 window.location ='/signin';
