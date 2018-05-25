@@ -28,6 +28,7 @@
     height:80px;
     background:url(./img/logo.jpg) no-repeat;
     background-size:contain;
+    cursor:pointer;
 }
 #login{
     position: absolute;
