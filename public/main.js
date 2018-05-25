@@ -136,7 +136,7 @@ document.getElementById('career').addEventListener('click',()=>{
 
 /** goto /location page when next_submit button is clicked */
 document.getElementById('next_submit').addEventListener('click',()=>{
-	window.location="/location";
+	document.getElementById('myForm').submit()
 });
 
 

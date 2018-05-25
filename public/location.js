@@ -2,9 +2,10 @@ var map;
 var infowindow,
     website_link;
 var service;
-
-var latitu = { { { latitu } } },
-    longitu = { { { longitu } } };
+var latitu = document.getElementById('lat').value;
+var longitu = document.getElementById('long').value;
+console.log(latitu);
+console.log(longitu);
 
 var place_address = '',
     place_name = '',
@@ -90,6 +91,7 @@ function isItOpen(par) {
     if (par) {
         return 'open';
     } else {
+>>>>>>> origin/dev
         return 'closed';
     }
 }
@@ -148,6 +150,25 @@ function myFunction() {
         ratingDiv.style.color = ratecolor;
     }
 
+        ratingDiv.style.font = "20px sans-serif";
+        addDiv.style.font = "20px sans-serif";
+        typeDiv.style.font = "20px sans-serif";
+        openDiv.style.font = "20px sans-serif";
+        phonediv.style.font = "20px sans-serif";
+        sitediv.style.font = "20px sans-serif";
+
+        document.getElementById('explanation').appendChild(nameDiv);
+        document.getElementById('explanation').appendChild(ratingDiv);
+        document.getElementById('explanation').appendChild(addDiv);
+        document.getElementById('explanation').appendChild(typeDiv);
+        document.getElementById('explanation').appendChild(openDiv);
+        document.getElementById('explanation').appendChild(phonediv);
+        document.getElementById('explanation').appendChild(sitediv);
+        document.getElementById('submit').style.display = 'block';
+        isDivExist = 1;
+        ratecolor = ratingcolor();
+        ratingDiv.style.color = ratecolor;
+    }
 }
 
 function ratingcolor() {
@@ -188,6 +209,7 @@ function location_confirmation() {
 }
 
 //-------------------------------------interactions---------------------------------
+
 document.getElementById('submit').addEventListener('click', () => {
     location_confirmation();
 });
@@ -205,4 +227,4 @@ window.onload = initMap;
 //         element.classList.remove("radcheckbox");
 //     }
 
-// }
+
