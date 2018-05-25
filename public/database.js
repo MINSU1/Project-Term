@@ -36,8 +36,8 @@ function doCommand(command, type){
 			//use the connection as normal
 			var request = new Request(command, function(err, rowCount) {
 				if (err) {
-					console.error(err);
-					return;
+					console.log(err);
+					reject(null);
 				}
 				//release the connection back to the pool when finished
 				connection.release();

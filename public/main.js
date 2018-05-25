@@ -7,6 +7,7 @@ var address = ''
 var popup = document.getElementById('popup_display');
 var popup_close = document.getElementById('popup_close');
 var counter = 0;
+
 //--------------------------------contact map-----------------------------------------------
 /** 
  * initialize google map from the latitude and longitude

@@ -45,7 +45,7 @@ function get(type){
 		}
 		if(list[0]=='review'){
 			reviews = list[1]
-			console.log(reviews);
+			//console.log(reviews);
 		}
 	}).catch((error) => {
         console.log('Error:', error);
@@ -188,9 +188,7 @@ app.post("/review", (request, response)=>{
 		server.addReview([request.body.name, date, request.body.scale, request.body.comment, request.body.sugestion]).then(()=>{
 			get('review')
 			return 'hi'
-		}).then((thing)=>{
-			console.log(thing);
-			console.log(reviews);
+		}).then(()=>{
 			response.render('greet');
 		})
 	}else{
@@ -219,9 +217,8 @@ app.get("/career", (request, response) =>{
 /** Check whether the address input is valid and store the information into JSON file */
 app.post("/register_check", (request, response) =>{
 	user_info = request.body;
-	//console.log(user_info);
 	weather_file.getAddress(user_info.address).then((results)=>{
-		//console.log([request.body.username, request.body.password, request.body.address, request.body.city, request.body.zipcode]);
+		console.log(userlog);
 		if(user_info.username in userlog){
 			response.send('username already exists');
 		}

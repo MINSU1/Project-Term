@@ -63,8 +63,8 @@ describe('Test the review post path', () => {
 
 describe('Test the comment path', () => {
     test('/comment should response the POST method', (done) => {
+        reviews = {}
         request(app).post('/comment').then((response) => {
-            console.log(response);
             expect(response.statusCode).toBe(200);
             done();
         });
@@ -74,7 +74,6 @@ describe('Test the comment path', () => {
 describe('Test the comment path', () => {
     test('/comment should response the GET method', (done) => {
         request(app).get('/comment').then((response) => {
-            console.log(response);
             expect(response.statusCode).toBe(200);
             done();
         });
