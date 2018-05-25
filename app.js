@@ -33,7 +33,7 @@ var app = express();
 
 /** Importing js file and its functions */
 const weather_file = require('./public/weather.js');
-
+// const address_finder = require('./address_finder.js');
 
 app.use(bodyParser.urlencoded({
     extended: true
@@ -131,7 +131,7 @@ app.get('/', (request, response) => {
 app.post('/address_check', (request, response) => {
 	if(request.body.validity == 1){
 		address = request.body.address;
-		username = 'Guest'
+		username = 'Guest';
 		response.send('valid');
 		weather_fetcher(address);
 		validity = 1; // if validity is 1, it means address has been entered
@@ -204,22 +204,16 @@ app.get("/career", (request, response) =>{
 app.post("/register_check", (request, response) =>{
 	user_info = request.body;
 	//console.log(user_info);
-	address_finder.getAddress(user_info.address, (errorMessage, results) =>{
-		if (errorMessage){
-            response.send('address invalid');
-		}else if(user_info.username in userlog){
-			response.send('username already exists');
-		}else{
-			server.addMember('Member',[request.body.username, request.body.password, request.body.address, request.body.city, request.body.zipcode])
-			getUsers()
-			//userlog[String(user_info.username)]= {password:String(user_info.password),address:String(user_info.address)+', '+ String(user_info.city) +", "+ "BC" +", "+"Canada"};
-			address = String(user_info.address)+', '+ String(user_info.city) +", "+ "BC" +", "+"Canada";
-			lat = JSON.stringify(results.lat, undefined, 2)
-			lng = JSON.stringify(results.lng, undefined, 2)
-			//writeJsonFile();
-			response.send('valid');
-		}
-	});
+	
+	if(user_info.username in userlog){
+		response.send('username already exists');
+	}else{
+		server.addMember('Member',[request.body.username, request.body.password, request.body.address, request.body.city, request.body.zipcode])
+		getUsers()
+		//userlog[String(user_info.username)]= {password:String(user_info.password),address:String(user_info.address)+', '+ String(user_info.city) +", "+ "BC" +", "+"Canada"};
+		//writeJsonFile();
+		response.send('valid');
+	}
 });
 
 //-----------------------------------location page--------------------------------------------------
