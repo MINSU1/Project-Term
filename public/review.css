@@ -142,7 +142,7 @@ textarea{
         top:10px;
         left:calc(50% - 94px);
     }
-}
+
 
 #careerSub{
     position:absolute;
@@ -164,11 +164,5 @@ textarea{
 #careerfont {
     font-family: Verdana;
     font-weight: lighter;
-<<<<<<< HEAD
-<<<<<<< HEAD
 }
-=======
->>>>>>> f6eb22789b2ead2886089540c7c156fa313dd62a
-=======
 }
->>>>>>> ac38dd86958e29e6020ebdd70caa13156e3d0ce0
