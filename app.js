@@ -182,6 +182,7 @@ app.get("/review", (request, response)=>{
 });
 
 app.post("/review", (request, response)=>{
+	console.log(request.body);
 	if(!(request.body.feedback == "")){
 		//console.log(request.body);
 		response.render('greet');
@@ -257,7 +258,7 @@ app.get('/weather', (request, response) => {
 	weather_fetcher(address)
 	/** Using distance_calc function in weather.js, it finds out the price to deliver the food */
 	weather_file.distance_calc(address, dest_address).then((result)=>{
-		console.log(weather_body);
+		//console.log(weather_body);
 		distance = result.dis;
 		distance_fee = parseInt(result.dis.split(' ')[0])*5;
 		ori = result.ori;

@@ -17,11 +17,11 @@
         <h1>Please let us know what you think about our service!</h1>
     </div>
     <div id="review_info">
-        <form action="/review" method="post">
+        <form action="/review"  id="reviewForm" method="post">
             <div id='enterName'>
                 <br>
                 <b>Please enter your name:</b>
-                <input type = 'text'/>
+                <input id='name' type = 'text'/>
             </div>
             <div id = "rateUs">
                 <br>
@@ -52,19 +52,14 @@
                 <textarea id="feedback2" rows='6' cols='86' placeholder='Leave your feedback here...'></textarea>
             </div>
             <br>
-            <button id='reviewSub'>Submit</button>
         </form>
+        <button id='reviewSub'>Submit</button>
         <form action="/comment" method='post'>
             <button id='toRevBut' class='toRevPage'>See others' comments</button>
         </form>
     </div>
     <script src='review.js'></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script type="text/javascript">
-        if(!(`{{{comment}}}` == '')){
-            swal(`{{{comment}}}`, {icon:"info"});
-        }
-    </script>
 </body>
 
 </html>

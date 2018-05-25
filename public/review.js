@@ -38,7 +38,23 @@ window.onresize = function(){
     response();
     alterRate();
 };
-    
+function testIfFilled(){
+    console.log(document.getElementsByName('awful').value);
+    console.log(document.getElementsByName('awful').checked);
+    console.log(document.getElementById('name').value);
+    console.log(document.getElementById('feedback1').value);
+    console.log(document.getElementById('feedback2').value);
+    return false
+}
 document.getElementById("logo").addEventListener("click",()=>{
 	window.location = "/";
 });
+document.getElementById("reviewSub").addEventListener("click",()=>{
+    if(testIfFilled()){
+        document.getElementById('reviewForm').submit()
+    }
+    else{
+        swal(`Plesae leave a feedback.`, {icon:"info"});
+    }
+    
+})
