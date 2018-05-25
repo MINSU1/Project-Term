@@ -87,6 +87,9 @@
         <div id="yes_address" style="display: none;">
             <div id="user_info">
                 <img id="user_default" src="./img/user.png">
+                <form action='/location' id="myForm" method='post'>
+                    <input id='name' value='{{{username}}}' style="display: none;">
+                </form>
                 <div id="username_info">
                     Username: {{{username}}}
                 </div>
@@ -96,7 +99,7 @@
                     <p4>OR</p4>
                     <div id="right_sep" class="user_info_separator"></div>
                     <button id='re_address'>New Address</button>
-                   
+                 
                 </div>
             </div>
              <button type="submit" id="next_submit" style="display:block;">Next</button>
