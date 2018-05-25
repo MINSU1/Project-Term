@@ -64,8 +64,15 @@ var distance_calc = (pointa, pointb) => {
 	});
 }
 
+var fah_to_cel = (the_num) => {
+	next_num=parseFloat(Math.round((the_num-32)/1.8)).toFixed(2)
+	return next_num
+}
+
+
 module.exports = {
 	geocode,
 	weather,
-	distance_calc
+	distance_calc,
+	fah_to_cel
 }

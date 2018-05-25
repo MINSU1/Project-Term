@@ -252,7 +252,8 @@ app.get('/weather', (request, response) => {
 		response.render('weather', {
 			summary: weather_body.currently.summary,
 			icon:weather_body.currently.icon,
-			temp:parseFloat(Math.round((weather_body.currently.temperature-32)/1.8)).toFixed(2),
+			temp:weather_file.fah_to_cel(weather_body.currently.temperature),
+			// temp:parseFloat(Math.round((weather_body.currently.temperature-32)/1.8)).toFixed(2),
 			humid:weather_body.currently.humidity,
 			winds:weather_body.currently.windSpeed,
 			dist_fee:distance_fee,
