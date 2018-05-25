@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1527032768211" clover="3.2.0">
-  <project timestamp="1527032768212" name="All files">
+<coverage generated="1527223966627" clover="3.2.0">
+  <project timestamp="1527223966627" name="All files">
     <metrics statements="202" coveredstatements="95" conditionals="54" coveredconditionals="7" methods="55" coveredmethods="27" elements="311" coveredelements="129" complexity="0" loc="202" ncloc="202" packages="2" files="3" classes="3">
       <package name="Project Term">
         <metrics statements="107" coveredstatements="57" conditionals="14" coveredconditionals="1" methods="27" coveredmethods="13"/>
@@ -189,34 +189,34 @@
         <file name="weather.js" path="C:\Users\m4916\Desktop\CIT\node\Project Term\public\weather.js">
           <metrics statements="29" coveredstatements="11" conditionals="16" coveredconditionals="0" methods="9" coveredmethods="6"/>
           <line num="1" count="2" type="stmt"/>
-          <line num="4" count="2" type="stmt"/>
+          <line num="3" count="2" type="stmt"/>
+          <line num="4" count="1" type="stmt"/>
           <line num="5" count="1" type="stmt"/>
-          <line num="6" count="1" type="stmt"/>
-          <line num="11" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="12" count="0" type="stmt"/>
-          <line num="13" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="14" count="0" type="stmt"/>
-          <line num="15" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="17" count="0" type="stmt"/>
-          <line num="26" count="2" type="stmt"/>
+          <line num="10" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="11" count="0" type="stmt"/>
+          <line num="12" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="13" count="0" type="stmt"/>
+          <line num="14" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="16" count="0" type="stmt"/>
+          <line num="25" count="2" type="stmt"/>
+          <line num="26" count="1" type="stmt"/>
           <line num="27" count="1" type="stmt"/>
-          <line num="28" count="1" type="stmt"/>
-          <line num="32" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="33" count="0" type="stmt"/>
-          <line num="34" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="35" count="0" type="stmt"/>
-          <line num="37" count="0" type="stmt"/>
-          <line num="43" count="2" type="stmt"/>
+          <line num="31" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="32" count="0" type="stmt"/>
+          <line num="33" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="34" count="0" type="stmt"/>
+          <line num="36" count="0" type="stmt"/>
+          <line num="42" count="2" type="stmt"/>
+          <line num="43" count="1" type="stmt"/>
           <line num="44" count="1" type="stmt"/>
-          <line num="45" count="1" type="stmt"/>
-          <line num="49" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="50" count="0" type="stmt"/>
-          <line num="51" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="52" count="0" type="stmt"/>
-          <line num="54" count="0" type="cond" truecount="0" falsecount="2"/>
-          <line num="55" count="0" type="stmt"/>
-          <line num="57" count="0" type="stmt"/>
-          <line num="68" count="2" type="stmt"/>
+          <line num="48" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="49" count="0" type="stmt"/>
+          <line num="50" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="51" count="0" type="stmt"/>
+          <line num="53" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="54" count="0" type="stmt"/>
+          <line num="56" count="0" type="stmt"/>
+          <line num="67" count="2" type="stmt"/>
         </file>
       </package>
     </metrics>
