@@ -83,12 +83,6 @@ nav{
 
 #career{
     right: 10px;
-<<<<<<< HEAD
-}*/
-=======
-}
-
->>>>>>> 464c2e3b6135d7d708bba5e98c1dbf8480d1bfea
 /*---------------------------Displays-----------------------------------------*/
 .displays{
     position: absolute;
@@ -356,7 +350,7 @@ p3{
 #next_submit{
     position: absolute;
     border:none;
-    bottom: -60px;
+    bottom: -350px;
     left:42%;
     width:210px;
     height:40px;
@@ -443,7 +437,7 @@ p3{
         z-index: -1;
     }
  
- }
+}
 @media (min-width: 769px) and (max-width: 992px) {
         #address_div{
         top: 100px;
@@ -473,9 +467,7 @@ p3{
     margin: 10px;
     padding: 7px;
     width: 70%;
-}
-
- }
+    }
 }
 
 /*-------------------------Contact Display-------------------------------------*/
@@ -567,6 +559,7 @@ p3{
     top:0px;
 }
 h4{
+
     left:20%;
     font-size:20px;
     font-family: Sans-serif;
@@ -668,6 +661,91 @@ p7{
         left: 150px;
     }
 
+}
+
+/*-----------style animtaion----------*/
+
+/*------media queries----------------*/
+@media (max-width: 768px) { 
+    #about_display{
+        position: absolute;
+        width: 500px;
+        top:0;
+        bottom: 0;
+        left:0;
+        right:0;
+    }
+    #about_header{
+        position: relative;
+        top: 130px;
+        font-size: 25px;
+        width: 500px;
+    }
+    #about_left{
+        position: absolute;
+        top: 150px;
+        left: 30px;
+    }
+    #about_right{
+        position: relative;
+        top: 300px;
+        left:50px;
+    }
+    #about_img{
+        position: absolute;
+        top: 550px;
+        width: 100%;
+        height: 300px;
+    }
+    h2{
+    position: relative;
+    top: -35px;
+    font-size: 40px;
+    font-weight: bold;
+    font-family: Sans-serif;
+}
+    #map{
+    position: absolute;
+    overflow: hidden;
+    left:50px;
+    top:150px;
+    width:300px;
+    height:300px;
+}
+    #user_default{
+        position: absolute;
+        left: 0px;
+        width: 200px;
+        height: 200px;
+
+    }
+    #username_info{
+        position: absolute;
+        left: -50px;
+        top: 250px;
+        height: 50px;
+    }
+    #address_info{
+        position: absolute;
+        left: -80px;
+        top: 320px;
+        text-align: left;
+        font-size: 20px;
+        width: 380px;
+    }
+    #next_submit{
+        position: absolute;
+        top: 500px;
+        left: 150px;
+    }
+    h4{
+    position: absolute;
+    top: -100px;
+    left: 2px;
+    font-size:3em !important;
+    font-family: Sans-serif;
+}
+  
 }
 
 /*-----------style animtaion----------*/

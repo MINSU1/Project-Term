@@ -11,6 +11,9 @@ var counter = 0;
 /** 
  * initialize google map from the latitude and longitude
  */
+ document.getElementById("main").addEventListener("click",()=>{
+	window.location = "/";
+});
 function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
         center: { lat: 49.283387, lng: -123.115097 },
