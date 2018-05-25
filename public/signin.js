@@ -8,12 +8,15 @@ function login_submit(validity){
 	xmlhttp.onreadystatechange = () => {
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
 			if(xmlhttp.responseText == "invalid"){
-				alert("Invalid Username or Password");
+				swal("Invalid Username or Password", {icon: "error"});
 				document.getElementById('passInput').value = '';
 			}
 			else if(xmlhttp.responseText == "valid"){
-				alert('Login Successful');
-				window.location = '/';
+				swal('Login Successful', {icon: "success"}).then ((value) => {
+                    if (value == true) {
+                        window.location = '/';
+                    };
+                });
 			}
 		}
 	}
@@ -39,11 +42,9 @@ document.getElementById('register').addEventListener("click",()=>{
     window.location="/register";
 });
 document.getElementById('forget').addEventListener("click",()=>{
-    window.location="/findid";
-});
-
-document.getElementById('forget').addEventListener('click',()=>{
-    alert("Did you forget your password or Username?")
+    swal("Did you forget your Password or Username?", {icon: "info"}).then(() => {
+        window.location="/findid";
+    })
 });
 
 //logo links back to home

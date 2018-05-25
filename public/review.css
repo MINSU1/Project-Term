@@ -74,6 +74,7 @@ textarea{
 
 #logo{
     position: absolute;
+    top:5px;
     left:calc(50% - 45px);
     width:90px;
     height:100%;
@@ -163,4 +164,7 @@ textarea{
 #careerfont {
     font-family: Verdana;
     font-weight: lighter;
+<<<<<<< HEAD
 }
+=======
+>>>>>>> f6eb22789b2ead2886089540c7c156fa313dd62a
