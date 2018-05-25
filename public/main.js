@@ -2,7 +2,7 @@
  * topButClass = shortcut for document.getElementsByClassName('top_but')
  * global variable address that store address information
  */
-var topButClass = document.getElementsByClassName('top_but');
+var topButClass = document.getElementsByClassName('nav-link');
 var address = ''
 var popup = document.getElementById('popup_display');
 var popup_close = document.getElementById('popup_close');
@@ -133,7 +133,7 @@ document.getElementById('career').addEventListener('click',()=>{
 
 /** goto /location page when next_submit button is clicked */
 document.getElementById('next_submit').addEventListener('click',()=>{
-	window.location="/location";
+	document.getElementById('myForm').submit()
 });
 
 
@@ -167,3 +167,9 @@ document.getElementById('address_submit').addEventListener("click",function(){
  	}else{ 		document.getElementById('zip_input').style.backgroundColor= " ";
  	}
 })
+
+$(document).on('click','.navbar-collapse.in',function(e) {
+    if( $(e.target).is('a') ) {
+        $(this).collapse('hide');
+    }
+});
