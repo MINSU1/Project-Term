@@ -23,33 +23,38 @@ const TYPES = require('tedious').TYPES;
 
 
 function get(type){
-	server.doCommand(`SELECT * FROM ${type}`,'getter').then((results)=>{
-		list = []
-		result = []
-		results.forEach(function(row){
-			row.forEach(function(value){
-				if (typeof value === 'object'){
-					result.push(value.value); 
-				} 
-			});  
-			if(result.length > 1){
-				list.push(result)
+	return new Promise((resolve,reject)=>{
+		server.doCommand(`SELECT * FROM ${type}`,'getter').then((results)=>{
+			list = []
+			result = []
+			results.forEach(function(row){
+				row.forEach(function(value){
+					if (typeof value === 'object'){
+						result.push(value.value); 
+					} 
+				});  
+				if(result.length > 1){
+					list.push(result)
+				}
+				result =[];
+			})
+			return [type,server.listToJson([type,list])]
+		}).then((list)=>{
+			if(list[0]=='member'){
+				userlog = list[1]
+				//console.log(userlog);
+				resolve(userlog)
 			}
-			result =[];
-		})
-		return [type,server.listToJson([type,list])]
-	}).then((list)=>{
-		if(list[0]=='member'){
-			userlog = list[1]
-			//console.log(userlog);
-		}
-		if(list[0]=='review'){
-			reviews = list[1]
-			//console.log(reviews);
-		}
-	}).catch((error) => {
-        console.log('Error:', error);
-    });
+			if(list[0]=='review'){
+				reviews = list[1]
+				//console.log(reviews);
+				resolve(reviews)
+			}
+			resolve('fail')
+		}).catch((error) => {
+	        console.log('Error:', error);
+	    });
+	})
 }
 
 /** calling express */
@@ -126,7 +131,7 @@ function weather_fetcher(address){
 //-----------------------------------main page--------------------------------------------------
 /** Sending hbs file when cliet enter address */
 app.get('/', (request, response) => {
-	//console.log(userlog);
+	readJsonFile()
     response.render('main', {
     	validity: validity,
     	username: username,
@@ -184,11 +189,14 @@ app.get("/review", (request, response)=>{
 app.post("/review", (request, response)=>{
 	var d = new Date();
 	date = `${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()+1}`
-	if(!(request.body.feedback == "")){
+	console.log(request.body.feedback == undefined);
+	if(request.body.feedback == undefined){
+		response.statusCode = 200;
+	}
+	if(request.body.feedback != ""){
 		server.addReview([request.body.name, date, request.body.scale, request.body.comment, request.body.sugestion]).then(()=>{
-			get('review')
-			return 'hi'
-		}).then(()=>{
+			return get('review')
+		}).then((thing)=>{
 			response.render('greet');
 		})
 	}else{
@@ -218,20 +226,24 @@ app.get("/career", (request, response) =>{
 app.post("/register_check", (request, response) =>{
 	user_info = request.body;
 	weather_file.getAddress(user_info.address).then((results)=>{
-		console.log(userlog);
+		if(user_info == undefined){
+			response.statusCode = 200;
+		}
 		if(user_info.username in userlog){
 			response.send('username already exists');
 		}
 		else{
 			server.addMember([request.body.username, request.body.password, request.body.address, request.body.city, request.body.zipcode]).then(()=>{
-				get('member')
-				return 'hi'
-			}).then(()=>{
+				return get('member')
+			}).then((thing)=>{
 				response.send('valid');
 			})
 			address = String(user_info.address)+', '+ String(user_info.city) +", "+ "BC" +", "+"Canada";
+			console.log(address);
 			lat = JSON.stringify(results.lat, undefined, 2)
-			lng = JSON.stringify(results.lng, undefined, 2)		
+			lng = JSON.stringify(results.lng, undefined, 2)
+			console.log(lat)
+			console.log(lng);
 		}
 	});
 });
@@ -243,10 +255,10 @@ app.get('/location', (request, response) => {
 });
 
 app.post('/location', (request, response) => {
-	//console.log(request);
-	//console.log(lat);
-	//console.log(lng);
-    response.render('location', {latitu:lat, longitu:lng, user:request.body.username});
+	weather_file.geocode(address).then((results)=>{
+		console.log(results.lat);
+   		response.render('location', {latitu:`${results.lat}`, longitu:`${results.lng}`, user:request.body.username});
+   	})
 });
 
 /** take the address information what user picked */
